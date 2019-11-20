@@ -15,9 +15,10 @@
     <!-- CSS Files -->
     <link href="{{ asset('assets/css/bootstrap.min.css') }}" rel="stylesheet" />
     <link href="{{ asset('assets/css/light-bootstrap-dashboard.css?v=2.0.0') }}" rel="stylesheet" />
-    <link href="{{ asset('css/app.css') }}" rel="stylesheet">
     <!-- CSS Just for demo purpose, don't include it in your project -->
     <!-- <link href="{{ asset('assets/css/demo.css') }}" rel="stylesheet" /> -->
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.0.0-alpha/css/bootstrap.css" rel="stylesheet">
+
 </head>
 
 <body>
@@ -48,9 +49,9 @@
                         </a>
                     </li>
                     <li>
-                        <a class="nav-link" href="./table.html">
+                        <a class="nav-link" href="products">
                             <i class="nc-icon nc-notes"></i>
-                            <p>Table List</p>
+                            <p>Productos</p>
                         </a>
                     </li>
                     <li>
@@ -157,7 +158,6 @@
                                 </div>
                             </li> 
                         </ul>
-                        
 
                     </div>
                 </div>
@@ -297,7 +297,7 @@
 <script src="{{ asset('/assets/js/light-bootstrap-dashboard.js?v=2.0.0') }}" type="text/javascript"></script>
 <!-- Light Bootstrap Dashboard DEMO methods, don't include it in your project! -->
 <script src="{{ asset('../assets/js/demo.js') }}"></script>
-<script type="text/javascript">
+<!-- <script type="text/javascript">
     $(document).ready(function() {
         // Javascript method's body can be found in assets/js/demos.js
         demo.initDashboardPageCharts();
@@ -305,6 +305,6 @@
         demo.showNotification();
 
     });
-</script>
+</script> -->
 
 </html>
