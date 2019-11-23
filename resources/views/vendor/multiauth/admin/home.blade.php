@@ -1,5 +1,6 @@
-@extends('administrador.layout') 
+@extends('vendor.multiauth.admin.administrador.layout') 
 @section('content')
+<br>
 <div class="container">
     <div class="row justify-content-center">
         <div class="col-md-8">

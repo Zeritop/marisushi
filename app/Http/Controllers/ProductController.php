@@ -18,7 +18,7 @@ class ProductController extends Controller
 
   
 
-        return view('administrador.products.index',compact('products'))
+        return view('vendor.multiauth.admin.products.index',compact('products'))
 
             ->with('i', (request()->input('page', 1) - 1) * 5);
 
