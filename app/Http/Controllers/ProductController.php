@@ -141,4 +141,10 @@ class ProductController extends Controller
                         ->with('success','Producto Eliminado Exitosamente');
 
     }
+    
+    public function __construct()
+    {
+        $this->middleware('auth:admin');
+        $this->middleware('role:super', ['only'=>'show']);
+    }
 }
