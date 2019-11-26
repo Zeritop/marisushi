@@ -1,4 +1,4 @@
-@extends('administrador.layout')
+@extends('vendor.multiauth.admin.administrador.layout')
 
   
 

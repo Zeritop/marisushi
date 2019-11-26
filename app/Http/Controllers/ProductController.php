@@ -31,7 +31,7 @@ class ProductController extends Controller
      */
     public function create()
     {
-        return view('administrador.products.create');
+        return view('vendor.multiauth.admin.products.create');
     }
 
     /**
@@ -75,7 +75,7 @@ class ProductController extends Controller
      */
     public function show(Product $product)
     {
-        return view('administrador.products.show',compact('product'));
+        return view('vendor.multiauth.admin.products.show',compact('product'));
     }
 
     /**
@@ -86,7 +86,7 @@ class ProductController extends Controller
      */
     public function edit(Product $product)
     {
-        return view('administrador.products.edit',compact('product'));
+        return view('vendor.multiauth.admin.products.edit',compact('product'));
     }
 
     /**

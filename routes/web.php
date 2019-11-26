@@ -17,9 +17,9 @@ Route::get('/', function () {
 Route::get('about', function () {
     return view('about');
 });
-Route::get('menu', function () {
+/*Route::get('menu', function () {
     return view('menu');
-});
+});*/
 Route::get('contact', function () {
     return view('contact');
 });
@@ -36,4 +36,6 @@ Auth::routes();
 
 Route::get('/home', 'HomeController@index')->name('home');
 
-Route::resource('/admin/products','ProductController');
+Route::resource('products','ProductController');
+Route::resource('menus','MenuController');
+Route::resource('menu','MeenuController');

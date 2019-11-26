@@ -10,13 +10,13 @@
 
             <div class="pull-left">
 
-                <h2>Ver Producto</h2>
+                <h2>Ver Menu</h2>
 
             </div>
 
             <div class="pull-right">
 
-                <a class="btn btn-primary" href="{{ route('products.index') }}"> Atras</a>
+                <a class="btn btn-primary" href="{{ route('menus.index') }}"> Atras</a>
 
             </div>
 
@@ -32,21 +32,9 @@
 
             <div class="form-group">
 
-                <strong>Nombre:</strong>
+                <strong>Titulo:</strong>
 
-                {{ $product->name }}
-
-            </div>
-
-        </div>
-
-        <div class="col-xs-12 col-sm-12 col-md-12">
-
-            <div class="form-group">
-
-                <strong>Cantidad:</strong>
-
-                {{ $product->cantidad }}
+                {{ $menu->titulo }}
 
             </div>
 
@@ -56,21 +44,9 @@
 
             <div class="form-group">
 
-                <strong>Precio Inicial:</strong>
+                <strong>Descripcion:</strong>
 
-                {{ $product->precio_inicial }}
-
-            </div>
-
-        </div>
-
-        <div class="col-xs-12 col-sm-12 col-md-12">
-
-            <div class="form-group">
-
-                <strong>Precio Actual:</strong>
-
-                {{ $product->precio_actual }}
+                {{ $menu->descripcion }}
 
             </div>
 
@@ -80,21 +56,9 @@
 
             <div class="form-group">
 
-                <strong>Proveedores:</strong>
+                <strong>Precio:</strong>
 
-                {{ $product->proveedor }}
-
-            </div>
-
-        </div>
-
-        <div class="col-xs-12 col-sm-12 col-md-12">
-
-            <div class="form-group">
-
-                <strong>Descuento:</strong>
-
-                {{ $product->descuento }}%
+                {{ $menu->precio }}
 
             </div>
 
@@ -104,9 +68,9 @@
 
             <div class="form-group">
 
-                <strong>Observaciones:</strong>
+                <strong>Descripcion:</strong>
 
-                {{ $product->observaciones }}
+                {{ $menu->descripcion }}
 
             </div>
 
@@ -118,7 +82,7 @@
 
                 <strong>Fecha Creacion:</strong>
 
-                {{ $product->created_at }}
+                {{ $menu->created_at }}
 
             </div>
 
@@ -130,12 +94,12 @@
 
                 <strong>Fecha Modificacion:</strong>
 
-                {{ $product->updated_at }}
+                {{ $menu->updated_at }}
 
             </div>
 
         </div>
-
+        <img width="500px;" src="/storage/{{ $menu->foto }}"  alt="">
     </div>
 </div>
     
