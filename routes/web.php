@@ -32,10 +32,11 @@ Auth::routes();
 
 Route::get('/home', 'HomeController@index')->name('home');
 
-Auth::routes();
 
-Route::get('/home', 'HomeController@index')->name('home');
 
-Route::resource('products','ProductController');
+Route::resource('admin/products','ProductController');
+Route::resource('admin/ingredients','IngredientController');
+
+
 Route::resource('menus','MenuController');
 Route::resource('menu','MeenuController');

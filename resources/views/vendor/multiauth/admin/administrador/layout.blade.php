@@ -49,9 +49,15 @@
                         </a>
                     </li>
                     <li>
-                        <a class="nav-link" href="{{ url('products') }}">
+                        <a class="nav-link" href="{{ url('admin/ingredients') }}">
                             <i class="nc-icon nc-notes"></i>
-                            <p>Productos</p>
+                            <p>Ingredientes</p>
+                        </a>
+                    </li>
+                    <li>
+                        <a class="nav-link" href="{{ url('admin/products') }}">
+                            <i class="nc-icon nc-notes"></i>
+                            <p>Inventario</p>
                         </a>
                     </li>
                     <li>
@@ -198,7 +204,7 @@
         </a>
 
         <ul class="dropdown-menu">
-			<li class="header-title"> Sidebar Style</li>
+            <li class="header-title"> Sidebar Style</li>
             <li class="adjustments-line">
                 <a href="javascript:void(0)" class="switch-trigger">
                     <p>Background Image</p>
@@ -262,7 +268,7 @@
             <li class="header-title" id="sharrreTitle">Thank you for sharing!</li>
 
             <li class="button-container">
-				<button id="twitter" class="btn btn-social btn-outline btn-twitter btn-round sharrre"><i class="fa fa-twitter"></i> · 256</button>
+                <button id="twitter" class="btn btn-social btn-outline btn-twitter btn-round sharrre"><i class="fa fa-twitter"></i> · 256</button>
                 <button id="facebook" class="btn btn-social btn-outline btn-facebook btn-round sharrre"><i class="fa fa-facebook-square"></i> · 426</button>
             </li>
         </ul>
