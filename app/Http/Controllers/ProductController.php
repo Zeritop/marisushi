@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Product;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\DB;
 
 class ProductController extends Controller
 {
@@ -31,7 +32,10 @@ class ProductController extends Controller
      */
     public function create()
     {
-        return view('vendor.multiauth.admin.products.create');
+        //
+        $ingredients = DB::table('ingredients')->select('name')->get();
+        return view('vendor.multiauth.admin.products.create',compact('ingredients'));
+                    
     }
 
     /**
@@ -42,20 +46,25 @@ class ProductController extends Controller
      */
     public function store(Request $request)
     {
+            
+
             $request->validate([
 
             'name' => 'required',
-
-            'observaciones' => 'required',
             'cantidad' => 'required',
             'precio_inicial' => 'required',
             'precio_actual' => 'required',
-            'proveedor' => 'required',
-            'descuento' => 'required',
 
         ]);
 
-  
+    //    $producto = new Product;
+    //    $producto->name = $request->name;
+    //    $producto->cantidad = $request->cantidad;
+    //    $producto->precio_inicial = $request->precio_inicial;
+    //    $producto->precio_actual = $request->precio_actual;
+
+
+        var_dump($request->marca);
 
         Product::create($request->all());
 

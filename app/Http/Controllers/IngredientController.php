@@ -48,14 +48,15 @@ class IngredientController extends Controller
 
         ]);
 
-  
+
+        if(Ingredient::query()->where('name',$request->name)->exists()){
+            return redirect()->route('ingredients.create')
+                             ->withErrors('Ingrediente ya existe');
+        }  
 
         Ingredient::create($request->all());
 
-   
-
         return redirect()->route('ingredients.index')
-
                         ->with('success','Producto creado exitosamente.');
     }
 

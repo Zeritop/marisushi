@@ -16,13 +16,16 @@ class CreateProductsTable extends Migration
         Schema::create('products', function (Blueprint $table) {
             $table->bigIncrements('id');
             $table->string('name');
+            $table->string('marca')->nullable();
             $table->integer('precio_inicial');
             $table->integer('precio_actual');
-            $table->integer('descuento');
+            $table->integer('descuento')->nullable();
             $table->integer('cantidad');
-            $table->string('proveedor');
-            $table->text('observaciones');
+            $table->string('proveedor')->nullable();
+            $table->text('observaciones')->nullable();
             $table->timestamps();
+
+
         });
     }
 
@@ -33,6 +36,8 @@ class CreateProductsTable extends Migration
      */
     public function down()
     {
+        Schema::disableForeignKeyConstraints();
         Schema::dropIfExists('products');
+        Schema::enableForeignKeyConstraints();
     }
 }

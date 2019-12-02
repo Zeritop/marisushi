@@ -17,7 +17,7 @@
 
         <div class="pull-right">
 
-            <a class="btn btn-primary" href="{{ route('products.index') }}"> Atras</a>
+            <a class="btn btn-primary" href="{{ route('ingredients.index') }}"> Atras</a>
 
         </div>
 

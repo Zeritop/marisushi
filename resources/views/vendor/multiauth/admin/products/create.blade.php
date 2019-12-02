@@ -53,7 +53,7 @@
 
     @csrf
 
-  
+
 
      <div class="row">
 
@@ -61,9 +61,31 @@
 
             <div class="form-group">
 
-                <strong>Nombre:</strong>
+                <strong>Ingrediente:</strong>
 
-                <input type="text" name="name" class="form-control" placeholder="Nombre">
+                <select class="form-control" name="name">
+                    <option disabled selected>Selecciona una opción</option>
+
+                    @foreach ($ingredients as $ingredient)
+
+                    <option value=" {{ $ingredient->name }} "> {{ $ingredient->name }} </option>
+
+
+                    @endforeach
+
+                </select>
+
+            </div>
+
+        </div>
+
+        <div class="col-xs-12 col-sm-12 col-md-12">
+
+            <div class="form-group">
+
+                <strong>Marca:</strong>
+
+                <input type="text" name="marca" class="form-control" placeholder="Ingresar marca si existe">
 
             </div>
 
@@ -123,7 +145,7 @@
 
                 <strong>Descuento:</strong>
 
-                <input type="text" name="descuento" class="form-control" placeholder="Si no hay descuento poner $0">
+                <input type="text" name="descuento" class="form-control" placeholder="Si no hay descuento poner 0">
 
             </div>
 
