@@ -17,8 +17,6 @@ class ProductController extends Controller
     {
         $products = Product::latest()->paginate(5);
 
-  
-
         return view('vendor.multiauth.admin.products.index',compact('products'))
 
             ->with('i', (request()->input('page', 1) - 1) * 5);
@@ -57,19 +55,9 @@ class ProductController extends Controller
 
         ]);
 
-    //    $producto = new Product;
-    //    $producto->name = $request->name;
-    //    $producto->cantidad = $request->cantidad;
-    //    $producto->precio_inicial = $request->precio_inicial;
-    //    $producto->precio_actual = $request->precio_actual;
-
-
-        var_dump($request->marca);
 
         Product::create($request->all());
-
    
-
         return redirect()->route('products.index')
 
                         ->with('success','Producto creado exitosamente.');
@@ -95,6 +83,7 @@ class ProductController extends Controller
      */
     public function edit(Product $product)
     {
+        //
         return view('vendor.multiauth.admin.products.edit',compact('product'));
     }
 

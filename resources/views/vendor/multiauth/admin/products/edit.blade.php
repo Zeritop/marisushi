@@ -11,7 +11,7 @@
 
             <div class="pull-left">
 
-                <h2>Editar Producto</h2>
+                <h2>Editar algo(Ingresar nombre producto aqui, no se como,aiuda)</h2>
 
             </div>
 
@@ -58,18 +58,6 @@
    
 
          <div class="row">
-
-            <div class="col-xs-12 col-sm-12 col-md-12">
-
-                <div class="form-group">
-
-                    <strong>Nombre:</strong>
-
-                    <input type="text" name="name" value="{{ $product->name }}" class="form-control" placeholder="Nombre">
-
-                </div>
-
-            </div>
 
             <div class="col-xs-12 col-sm-12 col-md-12">
 

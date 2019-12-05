@@ -61,12 +61,33 @@
 
             <div class="form-group">
 
-                <strong>Nombre:</strong>
+                <strong>Nombre del Ingrediente:</strong>
 
                 <input type="text" name="name" class="form-control" placeholder="Nombre">
 
             </div>
 
+        </div>
+
+        <div class="col-xs-12 col-sm-12 col-md-12">
+        
+            <div class="form-group">
+
+                <strong>Categoria:</strong>
+
+                <select class="form-control" name="categoria">
+                    <option disabled selected>Selecciona una opción</option>
+
+                    @foreach ($categorys as $category)
+
+                    <option value=" {{ $category->name }} "> {{ $category->name }} </option>
+
+
+                    @endforeach
+
+                </select>
+
+            </div>
         </div>
 
 

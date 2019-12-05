@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Ingredient;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\DB;
 
 class IngredientController extends Controller
 {
@@ -15,7 +16,6 @@ class IngredientController extends Controller
     public function index()
     {
         $ingredients = Ingredient::latest()->paginate(5);
-
 
         return view('vendor.multiauth.admin.ingredients.index',compact('ingredients'))
 
@@ -30,7 +30,8 @@ class IngredientController extends Controller
     public function create()
     {
         //
-        return view('vendor.multiauth.admin.ingredients.create');
+        $categorys = DB::table('categorys')->select('name')->get();
+        return view('vendor.multiauth.admin.ingredients.create',compact('categorys'));
     }
 
     /**
@@ -45,6 +46,7 @@ class IngredientController extends Controller
         $request->validate([
 
             'name' => 'required',
+            'categoria' => 'required'
 
         ]);
 
@@ -80,7 +82,8 @@ class IngredientController extends Controller
     public function edit(Ingredient $ingredient)
     {
         //
-        return view('vendor.multiauth.admin.ingredients.edit',compact('ingredient'));
+        $categorys = DB::table('categorys')->select('name')->get();
+        return view('vendor.multiauth.admin.ingredients.edit',compact('ingredient','categorys'));
     }
 
     /**

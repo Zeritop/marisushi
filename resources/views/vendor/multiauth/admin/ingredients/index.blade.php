@@ -45,6 +45,8 @@
 
             <th>Nombre</th>
 
+            <th>Categoria</th>
+
             <th width="280px">Action</th>
 
         </tr>
@@ -56,6 +58,8 @@
             <td>{{ ++$i }}</td>
 
             <td>{{ $ingredient->name }}</td>
+
+            <td>{{ $ingredient->categoria }}</td>
 
             <td>
 
