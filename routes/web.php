@@ -40,3 +40,5 @@ Route::resource('admin/ingredients','IngredientController');
 
 Route::resource('menus','MenuController');
 Route::resource('menu','MeenuController');
+
+Route::resource('personalizar','PersonalizarController');

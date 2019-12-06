@@ -15,7 +15,7 @@ class IngredientController extends Controller
      */
     public function index()
     {
-        $ingredients = Ingredient::latest()->paginate(5);
+        $ingredients = Ingredient::orderBy('created_at', 'ASC')->paginate(5);
 
         return view('vendor.multiauth.admin.ingredients.index',compact('ingredients'))
 

@@ -16,7 +16,7 @@
 
             <div class="pull-right">
 
-                <a class="btn btn-primary" href="{{ route('products.index') }}"> Atras</a>
+                <a class="btn btn-primary" href="{{ route('ingredients.index') }}"> Atras</a>
 
             </div>
 
@@ -34,8 +34,7 @@
 
                 <strong>Nombre:</strong>
 
-                {{ $product->name }}
-
+                
             </div>
 
         </div>
@@ -46,7 +45,7 @@
 
                 <strong>Cantidad:</strong>
 
-                {{ $product->cantidad }}
+               
 
             </div>
 
@@ -58,7 +57,7 @@
 
                 <strong>Precio Inicial:</strong>
 
-                {{ $product->precio_inicial }}
+                
 
             </div>
 
@@ -70,7 +69,7 @@
 
                 <strong>Precio Actual:</strong>
 
-                {{ $product->precio_actual }}
+                
 
             </div>
 
@@ -82,7 +81,7 @@
 
                 <strong>Proveedores:</strong>
 
-                {{ $product->proveedor }}
+                
 
             </div>
 
@@ -94,7 +93,7 @@
 
                 <strong>Descuento:</strong>
 
-                {{ $product->descuento }}%
+                
 
             </div>
 
@@ -106,7 +105,7 @@
 
                 <strong>Observaciones:</strong>
 
-                {{ $product->observaciones }}
+               
 
             </div>
 
@@ -118,7 +117,7 @@
 
                 <strong>Fecha Creacion:</strong>
 
-                {{ $product->created_at }}
+               
 
             </div>
 
@@ -130,7 +129,7 @@
 
                 <strong>Fecha Modificacion:</strong>
 
-                {{ $product->updated_at }}
+                
 
             </div>
 

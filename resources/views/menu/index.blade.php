@@ -37,10 +37,10 @@
 	<!-- gallery model-->
 	<div class="container">
 		<div class="row mt-4">
-		@foreach($menus as $menu)
+		@foreach($menus as ($index,$menu))
 				<div class="col-md-4">
 					<div class="gallery-demo">
-						<a href="#gal">
+						<a href="#{{ $menu->index }}">
 							<img src="/storage/{{$menu->foto}}" alt=" " class="img-fluid" />
 							<h4 class="p-mask"> {{ $menu->titulo }} - <span>${{ $menu->precio }}</span></h4>
 						</a>
@@ -53,7 +53,7 @@
 
 	<!-- gallery popup 1 -->
 	@foreach($menus as $menu)
-	<div id="gal" class="pop-overlay">
+	<div id="{{ $menu->index }}" class="pop-overlay">
 		<div class="popup">
 			<img class="img-fluid" src="/storage/{{$menu->foto}}" alt="">
 			<h4 class="p-mask">{{ $menu->titulo }} - - <span>${{ $menu->precio }}</span></h4>

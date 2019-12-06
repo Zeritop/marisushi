@@ -24,5 +24,9 @@ class CategorysTableSeeder extends Seeder
             'name' => 'Secundarios',
         ]);
 
+        DB::table('categorys')->insert([
+            'name' => 'Envoltura',
+        ]);
+
     }
 }

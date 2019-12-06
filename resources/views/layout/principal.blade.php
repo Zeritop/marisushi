@@ -37,7 +37,13 @@
 	<link
 		href="//fonts.googleapis.com/css?family=Barlow+Semi+Condensed:100,100i,200,200i,300,300i,400,400i,500,500i,600,600i,700,700i,800,800i,900,900i"
 		rel="stylesheet">
+		  <link href="assetss/css/bootstrap.min.css" rel="stylesheet" />
+	<link href="assetss/css/paper-bootstrap-wizard.css" rel="stylesheet" />
 
+	<!-- Fonts and Icons -->
+    <link href="https://netdna.bootstrapcdn.com/font-awesome/4.4.0/css/font-awesome.css" rel="stylesheet">
+	<link href='https://fonts.googleapis.com/css?family=Muli:400,300' rel='stylesheet' type='text/css'>
+	<link href="assetss/css/themify-icons.css" rel="stylesheet">
 	<!-- //Web-Fonts -->
 </head>
 
@@ -179,6 +185,7 @@
 								</ul>
 							</li>
 							<li><a href="menu">Menu</a></li>
+							<li><a href="personalizar">Personalizar Sushi</a></li>
 							<li><a href="contact">Contactanos</a></li>
 						</ul>
 					</nav>
@@ -323,4 +330,15 @@
 <script src="{{ asset('/assets/js/light-bootstrap-dashboard.js?v=2.0.0') }}" type="text/javascript"></script>
 <!-- Light Bootstrap Dashboard DEMO methods, don't include it in your project! -->
 <script src="{{ asset('../assets/js/demo.js') }}"></script>
+<!--   Core JS Files   -->
+	<script src="assetss/js/jquery-2.2.4.min.js" type="text/javascript"></script>
+	<script src="assetss/js/bootstrap.min.js" type="text/javascript"></script>
+	<script src="assetss/js/jquery.bootstrap.wizard.js" type="text/javascript"></script>
+
+	<!--  Plugin for the Wizard -->
+	
+	<script src="assetss/js/paper-bootstrap-wizard.js" type="text/javascript"></script>
+
+	<!--  More information about jquery.validate here: https://jqueryvalidation.org/	 -->
+	<script src="assetss/js/jquery.validate.min.js" type="text/javascript"></script>
 </html>
