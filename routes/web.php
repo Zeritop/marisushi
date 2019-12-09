@@ -31,6 +31,7 @@ Route::get('administrador', function () {
 Auth::routes();
 
 Route::get('/home', 'HomeController@index')->name('home');
+Route::post('/home', 'HomeController@newsletter')->name('home.newsletter');
 
 
 

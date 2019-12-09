@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use Mailchimp;
 
 class HomeController extends Controller
 {
@@ -11,11 +12,11 @@ class HomeController extends Controller
      *
      * @return void
      */
-    public function __construct()
+/*    public function __construct()
     {
         $this->middleware('auth');
     }
-
+*/
     /**
      * Show the application dashboard.
      *
@@ -25,4 +26,29 @@ class HomeController extends Controller
     {
         return view('index');
     }
+
+    public function newsletter(Request $request)
+    {
+        //
+        $listId = 'b022c2c7c4';
+        $email = $request->email;
+
+        if(Mailchimp::check($listId, $email)){
+
+            return redirect()->route('home')
+                             ->withErrors('El email ya se encuentra registrado en nuestro newsletter'); 
+        }
+        
+        Mailchimp::subscribe(
+            $listId,
+            $email,
+            [], //    mergeFields, nombre,apellido  
+            false //  confirm
+            );
+
+        return redirect()->route('home')
+                        ->with('success','Email registrado en nuestro newsletter');
+
+    }
+
 }

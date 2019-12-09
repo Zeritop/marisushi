@@ -44,6 +44,43 @@
 </head>
 
 <body>
+@if ($errors->any())
+
+    <div class="alert alert-danger">
+    	<button type="button" class="close" data-dismiss="alert" aria-label="Close">
+    		<span aria-hidden="true">&times;</span>
+  		</button>
+
+        <strong>Whoops!</strong> Parece que encontramos un problema.<br><br>
+
+        <ul>
+
+            @foreach ($errors->all() as $error)
+
+                <li>{{ $error }}</li>
+
+            @endforeach
+
+        </ul>
+
+    </div>
+
+@endif
+
+@if ($message = Session::get('success'))
+
+        <div class="alert alert-success">
+        	<button type="button" class="close" data-dismiss="alert" aria-label="Close">
+    			<span aria-hidden="true">&times;</span>
+  			</button>
+
+  			<h4 class="alert-heading">TE HAS SUSCRITO!</h4>
+  			<hr>
+            <p class="mb-0">{{ $message }}</p>
+
+        </div>
+
+@endif
 
 	<!-- banner -->
 	<div class="baneer-w3ls">
@@ -390,11 +427,16 @@
 			<div class="row pb-lg-4 pt-lg-5">
 				<div class="col-lg-6 col-md-9 text-center">
 					<h3 class="w3ls-title mb-2">Suscribete al Newsletter</h3>
-					<p class="mb-xl-5 mb-4">Free Delivery on your first order!</p>
-					<form action="#" method="post" class="d-flex newsletter-info">
+					<p class="mb-xl-5 mb-4">Recibe noticias de nuevos productos y descuentos!</p>
+
+					<form action="{{ route('home.newsletter') }}" method="POST" class="d-flex newsletter-info">
+						@csrf
+						
 						<input type="email" name="email" placeholder="Ingresa tu Email..." required="">
-						<button type="submit">Aceptar 	</button>
+						
+						<button type="submit">Aceptar</button>
 					</form>
+
 				</div>
 				<div class="col-lg-6 col-md-3">
 
