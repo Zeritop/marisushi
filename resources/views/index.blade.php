@@ -429,7 +429,7 @@
 					<h3 class="w3ls-title mb-2">Suscribete al Newsletter</h3>
 					<p class="mb-xl-5 mb-4">Recibe noticias de nuevos productos y descuentos!</p>
 
-					<form action="{{ route('home.newsletter') }}" method="POST" class="d-flex newsletter-info">
+					<form action="{{ route('home.subscribe') }}" method="POST" class="d-flex newsletter-info">
 						@csrf
 						
 						<input type="email" name="email" placeholder="Ingresa tu Email..." required="">
