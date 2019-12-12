@@ -74,7 +74,7 @@
     			<span aria-hidden="true">&times;</span>
   			</button>
 
-  			<h4 class="alert-heading">TE HAS SUSCRITO!</h4>
+  			<h4 class="alert-heading">Exito!</h4>
   			<hr>
             <p class="mb-0">{{ $message }}</p>
 

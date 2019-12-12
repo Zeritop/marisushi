@@ -53,6 +53,30 @@
 	</div>
 	<!-- //page details -->
 
+@if ($errors->any())
+
+    <div class="alert alert-danger">
+    	<button type="button" class="close" data-dismiss="alert" aria-label="Close">
+    		<span aria-hidden="true">&times;</span>
+  		</button>
+
+        <strong>Whoops!</strong> Parece que encontramos un problema.<br><br>
+
+        <ul>
+
+            @foreach ($errors->all() as $error)
+
+                <li>{{ $error }}</li>
+
+            @endforeach
+
+        </ul>
+
+    </div>
+
+@endif
+
+
     <!-- banner -->
 	<div class="main-banner-2">
 
@@ -64,9 +88,7 @@
 		<div class="container py-xl-5 py-lg-3">
 			<div class="title-section text-center mb-md-5 mb-4">
 				<h3 class="w3ls-title mb-3">Conta<span>ctanos</span></h3>
-				<p class="titile-para-text mx-auto">Inventore veritatis et quasi architecto beatae vitae dicta sunt
-					explicabo.Nemo
-					enim totam rem aperiam.</p>
+				<p class="titile-para-text mx-auto">Contactate con nosotros a través de un correo electrónico. Puedes enviarnos sugerencias.</p>
 			</div>
 			<div class="row contact-agileinfo pt-lg-4">
 				<!-- contact address -->
@@ -105,22 +127,23 @@
 				<!-- //contact address -->
 				<!-- contact form -->
 				<div class="col-lg-7 contact-right mt-lg-0 mt-5">
-					<form action="#" method="post">
+					<form action="{{ route('contacto.store') }}" method="POST">
+						@csrf
 						<div class="row">
 							<div class="col-lg-6 form-group pr-lg-2">
-								<input type="text" class="form-control" name="Name" placeholder="Name" required="">
+								<input type="text" class="form-control" name="nombre" placeholder="Nombre" required="">
 							</div>
 							<div class="col-lg-6 form-group pl-lg-2">
-								<input type="email" class="form-control" name="Email" placeholder="Email" required="">
+								<input type="email" class="form-control" name="email" placeholder="Email" required="">
 							</div>
 						</div>
 						<div class="form-group">
-							<input type="text" class="form-control" name="Phone" placeholder="Phone" required="">
+							<input type="text" class="form-control" name="telefono" placeholder="Telefono o celular" required="">
 						</div>
 						<div class="form-group">
-							<textarea name="Message" class="form-control" placeholder="Message" required=""></textarea>
+							<textarea name="mensaje" class="form-control" placeholder="Mensaje" required=""></textarea>
 						</div>
-						<button type="submit" class="btn submit-contact-main ml-auto">Submit</button>
+						<button type="submit" class="btn submit-contact-main ml-auto">Enviar</button>
 					</form>
 				</div>
 				<!-- contact form -->

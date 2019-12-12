@@ -2,10 +2,11 @@
 
 namespace App\Http\Controllers;
 
+use App\Mail\ContactFormMail;
 use Illuminate\Http\Request;
-use Mailchimp;
+use Illuminate\Support\Facades\Mail;
 
-class UnsubscribeController extends Controller
+class ContactController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -15,7 +16,7 @@ class UnsubscribeController extends Controller
     public function index()
     {
         //
-        return view('unsubscribe');
+        return view('contact');
     }
 
     /**
@@ -37,6 +38,17 @@ class UnsubscribeController extends Controller
     public function store(Request $request)
     {
         //
+        $data = $request->validate([
+
+            'nombre' => 'required',
+            'email' => 'required|email',
+            'telefono' => 'required',
+            'mensaje' => 'required'
+
+        ]);
+
+        Mail::to('test@test.com')->send(new ContactFormMail($data));
+
     }
 
     /**
@@ -82,32 +94,5 @@ class UnsubscribeController extends Controller
     public function destroy($id)
     {
         //
-    }
-
-
-    public function unsubscribe(Request $request)
-    {
-        //
-        $request->validate([
-
-            'email' => 'required|email',
-
-        ]);
-
-        $listId = 'b022c2c7c4';
-        $email = $request->email;
-
-        if(!Mailchimp::check($listId, $email)){
-
-            return redirect()->route('unsubscribe')
-                             ->withErrors('El email ingresado no se encuentra registrado en nuestro sistema newsletter'); 
-        }
-
-
-        Mailchimp::unsubscribe($listId, $email);
-
-        return redirect()->route('unsubscribe')
-                        ->with('success','Has eliminado tu email de nuestro sistema newsletter');
-
     }
 }

@@ -20,9 +20,12 @@ Route::get('about', function () {
 /*Route::get('menu', function () {
     return view('menu');
 });*/
-Route::get('contact', function () {
+
+/*Route::get('contact', function () {
     return view('contact');
 });
+*/
+
 Route::get('administrador', function () {
     return view('administrador/index');
 });
@@ -30,10 +33,15 @@ Route::get('administrador', function () {
 
 Auth::routes();
 
+Route::resource('/contacto','ContactController');
+
 Route::get('/home', 'HomeController@index')->name('home');
 Route::post('/home', 'HomeController@subscribe')->name('home.subscribe');
+
 Route::get('/unsubscribe', 'UnsubscribeController@index')->name('unsubscribe');
+
 Route::post('/unsubscribe', 'UnsubscribeController@unsubscribe')->name('unsubscribe.unsubscribe');
+
 
 
 

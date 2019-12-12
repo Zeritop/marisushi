@@ -30,6 +30,12 @@ class HomeController extends Controller
     public function subscribe(Request $request)
     {
         //
+
+        $request->validate([
+            'email' => 'required|email',
+
+        ]);
+
         $listId = 'b022c2c7c4';
         $email = $request->email;
 

@@ -185,8 +185,8 @@
 								</ul>
 							</li>
 							<li><a href="menu">Menu</a></li>
-							<li><a href="personalizar">Personalizar Sushi</a></li>
-							<li><a href="contact">Contactanos</a></li>
+							<li><a href="personalizar">Personalizar</a></li>
+							<li><a href="contacto">Contactanos</a></li>
 						</ul>
 					</nav>
 				</div>
