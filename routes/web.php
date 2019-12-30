@@ -31,7 +31,7 @@ Route::get('administrador', function () {
 });
 
 
-Auth::routes();
+Auth::routes(['verify' => true]);
 
 Route::resource('/contacto','ContactController');
 
@@ -39,10 +39,7 @@ Route::get('/home', 'HomeController@index')->name('home');
 Route::post('/home', 'HomeController@subscribe')->name('home.subscribe');
 
 Route::get('/unsubscribe', 'UnsubscribeController@index')->name('unsubscribe');
-
 Route::post('/unsubscribe', 'UnsubscribeController@unsubscribe')->name('unsubscribe.unsubscribe');
-
-
 
 
 Route::resource('admin/products','ProductController');
@@ -53,3 +50,5 @@ Route::resource('menus','MenuController');
 Route::resource('menu','MeenuController');
 
 Route::resource('personalizar','PersonalizarController');
+
+//Route::resource('personalizar','PersonalizarController')->middleware('verified'); verificacion de correo

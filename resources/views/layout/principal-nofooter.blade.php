@@ -78,7 +78,7 @@
 								<!-- social icons -->
 								<ul class="top-right-info">
 									<li>
-										<p>Siguenos:</p>
+										<p>Follow Us:</p>
 									</li>
 									<li class="facebook-w3">
 										<a href="#facebook">
@@ -106,25 +106,24 @@
                         <!-- Authentication Links -->
                         @guest
                             <li class="nav-item">
-                                <a class="nav-link" href="{{ route('login') }}">{{ __('Iniciar Sesión') }}</a>
+                                <a class="nav-link" href="{{ route('login') }}">{{ __('Login') }}</a>
                             </li>
                             @if (Route::has('register'))
                                 <li class="nav-item">
-                                    <a class="nav-link" href="{{ route('register') }}">{{ __('Registrate') }}</a>
+                                    <a class="nav-link" href="{{ route('register') }}">{{ __('Register') }}</a>
                                 </li>
                             @endif
                         @else
                             <li class="nav-item dropdown">
                                 <a id="navbarDropdown" class="nav-link dropdown-toggle" href="#" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" v-pre>
-                                    {{ Auth::user()->name }} 
-                                    	<!-- <span class="caret"></span> -->
+                                    {{ Auth::user()->name }} <span class="caret"></span>
                                 </a>
 
                                 <div class="dropdown-menu dropdown-menu-right" aria-labelledby="navbarDropdown">
                                     <a class="dropdown-item" href="{{ route('logout') }}"
                                        onclick="event.preventDefault();
                                                      document.getElementById('logout-form').submit();">
-                                        {{ __('Cerrar Sesión') }}
+                                        {{ __('Logout') }}
                                     </a>
 
                                     <form id="logout-form" action="{{ route('logout') }}" method="POST" style="display: none;">
@@ -220,7 +219,7 @@
 					<!-- social icons -->
 					<ul class="top-right-info">
 						<li>
-							<p>Siguenos en:</p>
+							<p>Follow As:</p>
 						</li>
 						<li class="facebook-w3">
 							<a href="#facebbok">
@@ -247,15 +246,15 @@
 				</div>
 				<div class="col-lg-4 footer-grid_section_1its my-lg-0 my-sm-4 my-4">
 					<div class="footer-title">
-						<h3>Encuéntranos</h3>
+						<h3>Contact Us</h3>
 					</div>
 					<div class="footer-text mt-4">
-						<p>Direccion : Andalio Vigueras #200, Los Alamos, Región del Bío Bío</p>
+						<p>Direccion : Andalio Vigueras #264, Los Alamos, Región del Bío Bío</p>
 						<p class="my-2">Telefono : 9 7849 0869</p>
 						<p>Email : <a href="mailto:info@example.com">info@example.com</a></p>
 					</div>
 					<div class="footer-title mt-4 pt-md-2">
-						<h3>Métodos de Pago</h3>
+						<h3>Payment Method</h3>
 					</div>
 					<ul class="list-unstyled payment-links mt-4">
 						<li>
@@ -274,16 +273,16 @@
 				</div>
 				<div class="col-lg-4 footer-grid_section_1its">
 					<div class="footer-title">
-						<h3>Contactanos</h3>
+						<h3>Request Info</h3>
 					</div>
 					<div class="info-form-right mt-4 p-0">
 						<form action="#" method="post">
 							<div class="row">
 								<div class="col-lg-6 form-group mb-2 pr-lg-1">
-									<input type="text" class="form-control" name="Name" placeholder="Nombre" required="">
+									<input type="text" class="form-control" name="Name" placeholder="Name" required="">
 								</div>
 								<div class="col-lg-6 form-group mb-2 pl-lg-1">
-									<input type="text" class="form-control" name="Phone" placeholder="Telefono"
+									<input type="text" class="form-control" name="Phone" placeholder="Phone"
 										required="">
 								</div>
 							</div>
@@ -291,10 +290,10 @@
 								<input type="email" class="form-control" name="Email" placeholder="Email" required="">
 							</div>
 							<div class="form-group mb-2">
-								<textarea name="Comment" class="form-control" placeholder="Mensaje"
+								<textarea name="Comment" class="form-control" placeholder="Comment"
 									required=""></textarea>
 							</div>
-							<button type="submit" class="btn submit-contact ml-auto">Enviar</button>
+							<button type="submit" class="btn submit-contact ml-auto">Submit</button>
 						</form>
 					</div>
 				</div>
@@ -304,7 +303,7 @@
 	<!-- //footer -->
 	<!-- copyright -->
 	<div class="cpy-right text-center py-3">
-		<p>© 2019 Mari Sushi. Todos los derechos reservados | Design by
+		<p>© 2019 Tasty Burger. All rights reserved | Design by
 			<a href="http://w3layouts.com"> W3layouts.</a>
 		</p>
 	</div>
