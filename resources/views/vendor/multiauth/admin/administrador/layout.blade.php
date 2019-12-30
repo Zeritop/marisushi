@@ -67,9 +67,9 @@
                         </a>
                     </li>
                     <li>
-                        <a class="nav-link" href="./icons.html">
+                        <a class="nav-link" href="{{ url('admin/discounts') }}">
                             <i class="nc-icon nc-atom"></i>
-                            <p>Icons</p>
+                            <p>Descuentos</p>
                         </a>
                     </li>
                     <li>

@@ -8,6 +8,14 @@ use Illuminate\Support\Facades\DB;
 
 class IngredientController extends Controller
 {
+    public function __construct()
+    {
+        //
+        $this->middleware('auth:admin');
+        $this->middleware('role:super', ['only'=>'show']);
+    }
+
+
     /**
      * Display a listing of the resource.
      *
@@ -132,11 +140,4 @@ class IngredientController extends Controller
     }
 
 
-
-    public function __construct()
-    {
-        //
-        $this->middleware('auth:admin');
-        $this->middleware('role:super', ['only'=>'show']);
-    }
 }

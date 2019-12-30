@@ -44,6 +44,7 @@ Route::post('/unsubscribe', 'UnsubscribeController@unsubscribe')->name('unsubscr
 
 Route::resource('admin/products','ProductController');
 Route::resource('admin/ingredients','IngredientController');
+Route::resource('admin/discounts','DiscountController');
 
 
 Route::resource('menus','MenuController');
@@ -51,4 +52,4 @@ Route::resource('menu','MeenuController');
 
 Route::resource('personalizar','PersonalizarController');
 
-//Route::resource('personalizar','PersonalizarController')->middleware('verified'); verificacion de correo
+//Route::resource('/contacto','ContactController')->middleware('verified'); para verificacion de email requerida
