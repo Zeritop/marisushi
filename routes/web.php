@@ -45,9 +45,10 @@ Route::post('/unsubscribe', 'UnsubscribeController@unsubscribe')->name('unsubscr
 Route::resource('admin/products','ProductController');
 Route::resource('admin/ingredients','IngredientController');
 Route::resource('admin/discounts','DiscountController');
+Route::resource('admin/orders','OrderController');
 
 
-Route::resource('menus','MenuController');
+Route::resource('menus','MenuController');//admin
 Route::resource('menu','MeenuController');
 
 Route::resource('personalizar','PersonalizarController');

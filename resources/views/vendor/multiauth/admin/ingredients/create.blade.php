@@ -82,7 +82,6 @@
 
                     <option value=" {{ $category->name }} "> {{ $category->name }} </option>
 
-
                     @endforeach
 
                 </select>

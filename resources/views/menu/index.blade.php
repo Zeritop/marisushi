@@ -37,7 +37,7 @@
 	<!-- gallery model-->
 	<div class="container">
 		<div class="row mt-4">
-		@foreach($menus as ($index,$menu))
+		@foreach($menus as $key => $menu)
 				<div class="col-md-4">
 					<div class="gallery-demo">
 						<a href="#{{ $menu->index }}">
