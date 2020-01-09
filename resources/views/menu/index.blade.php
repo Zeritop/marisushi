@@ -8,6 +8,14 @@
 </head>
 <body>
 <!-- page details -->
+    <div class="container">
+        @if(session()->has('success'))
+        <div class="alert alert-success text-center">
+                {{ session()->get('success') }}
+        </div>
+    @endif
+    </div>
+    
 	<div class="breadcrumb-agile bg-light py-2">
 		<ol class="breadcrumb bg-light m-0">
 			<li class="breadcrumb-item">
@@ -37,10 +45,10 @@
 	<!-- gallery model-->
 	<div class="container">
 		<div class="row mt-4">
-		@foreach($menus as ($index,$menu))
+		@foreach($menus as $key => $menu)
 				<div class="col-md-4">
 					<div class="gallery-demo">
-						<a href="#{{ $menu->index }}">
+						<a href="#{{ $key }}">
 							<img src="/storage/{{$menu->foto}}" alt=" " class="img-fluid" />
 							<h4 class="p-mask"> {{ $menu->titulo }} - <span>${{ $menu->precio }}</span></h4>
 						</a>
@@ -52,13 +60,13 @@
 			
 
 	<!-- gallery popup 1 -->
-	@foreach($menus as $menu)
-	<div id="{{ $menu->index }}" class="pop-overlay">
+	@foreach($menus as $key => $menu)
+	<div id="{{ $key }}" class="pop-overlay">
 		<div class="popup">
 			<img class="img-fluid" src="/storage/{{$menu->foto}}" alt="">
 			<h4 class="p-mask">{{ $menu->titulo }} - - <span>${{ $menu->precio }}</span></h4>
 			<p>{{ $menu->descripcion }}</p>
-			<a href="login.html" class="button-w3ls active mt-3">Pedir Ahora
+			<a href="{{ route('cart.add', $menu->id)}}" class="button-w3ls active mt-3">Pedir Ahora
 				<span class="fa fa-caret-right ml-1" aria-hidden="true"></span>
 			</a>
 			<a class="close" href="#gallery">×</a>

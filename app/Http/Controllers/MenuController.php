@@ -3,8 +3,10 @@
 namespace App\Http\Controllers;
 
 use App\Menu;
+use App\Cart;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Storage;
+use Session;
 
 class MenuController extends Controller
 {
@@ -134,4 +136,15 @@ class MenuController extends Controller
 
                         ->with('success','Menu Eliminado Exitosamente');
     }
+    
+   /* public function add(Menu $menu){
+        if(session()->has('cart')){
+            $cart = new Cart(session()->get('cart'));
+        } else {
+            $cart = new Cart();
+        }
+        
+        $cart->add($menu);
+        dd($cart);
+    }*/
 }

@@ -175,7 +175,7 @@
 					<div class="card border-0 med-blog">
 						<div class="card-header p-0">
 							<a href="menu">
-								<img class="card-img-bottom" src="images/sushi4.jpeg" alt="Card image cap">
+								<img class="card-img-bottom" src="images/sushiEspecial2.jpg" alt="Card image cap">
 							</a>
 						</div>
 						<div class="card-body border border-top-0">
@@ -193,7 +193,7 @@
 					<div class="card border-0 med-blog">
 						<div class="card-header p-0">
 							<a href="menu">
-								<img class="card-img-bottom" src="images/sushi5.jpg" alt="Card image cap">
+								<img class="card-img-bottom" src="images/sushiEspecial1.jpg" alt="Card image cap">
 							</a>
 						</div>
 						<div class="card-body border border-top-0">
@@ -211,7 +211,7 @@
 					<div class="card border-0 med-blog">
 						<div class="card-header p-0">
 							<a href="menu">
-								<img class="card-img-bottom" src="images/sushi6.jpeg" alt="Card image cap">
+								<img class="card-img-bottom" src="images/sushiEspecial4.jpg" alt="Card image cap" style="height: 260px;">
 							</a>
 						</div>
 						<div class="card-body border border-top-0">

@@ -30,6 +30,15 @@ Route::get('administrador', function () {
     return view('administrador/index');
 });
 
+/*Route::get('/add-to-cart/{id}'[
+    'uses' => 'MenuController@getAddToCart', 
+    'as'  => 'menu.addToCart' 
+]);*/
+
+Route::get('/addToCart/{menu}', 'MeenuController@addToCart')->name('cart.add');
+Route::get('/shopping-cart', 'MeenuController@showCart')->name('cart.show');
+Route::delete('/menu/{menu}', 'MeenuController@destroy')->name('menu.destroy');
+Route::put('/menu/{menu}', 'MeenuController@update')->name('menu.update');
 
 Auth::routes(['verify' => true]);
 

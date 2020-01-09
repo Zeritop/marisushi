@@ -559,7 +559,7 @@ a.button-w3ls:hover {
 }
 
 .banner-top1 {
-    background: url(../images/sushi2.jpg) no-repeat bottom;
+    background: url(../images/sushiCa3.jpg) no-repeat bottom;
     background-size: cover;
     -webkit-background-size: cover;
     -moz-background-size: cover;
@@ -568,7 +568,7 @@ a.button-w3ls:hover {
 }
 
 .banner-top2 {
-    background: url(../images/makisushi.jpg) no-repeat bottom;
+    background: url(../images/sushiCa1.jpg) no-repeat bottom;
     background-size: cover;
     -webkit-background-size: cover;
     -moz-background-size: cover;
@@ -577,7 +577,7 @@ a.button-w3ls:hover {
 }
 
 .banner-top3 {
-    background: url(../images/sushi3.jpg) no-repeat bottom;
+    background: url(../images/sushiCa2.jpg) no-repeat bottom;
     background-size: cover;
     -webkit-background-size: cover;
     -moz-background-size: cover;
@@ -601,7 +601,7 @@ a.button-w3ls:hover {
 
 /* about */
 .about {
-    background: url(../images/sushi.jpg) no-repeat left;
+    background: url(../images/sushiAbout.jpg) no-repeat left;
     background-size: cover;
     -webkit-background-size: contain;
     -moz-background-size: cover;
@@ -750,7 +750,7 @@ img.img-blog {
 }
 
 .blog-sec-w3 {
-    background: url(../images/sushi7.jpeg) no-repeat center;
+    background: url(../images/sushiGrid1.jpg) no-repeat center;
     background-size: cover;
     -webkit-background-size: cover;
     -moz-background-size: cover;
@@ -759,7 +759,7 @@ img.img-blog {
 }
 
 .blog-sec-w3-2 {
-    background: url(../images/sushi8.jpg) no-repeat center;
+    background: url(../images/sushiGrid2.jpg) no-repeat center;
     background-size: cover;
     -webkit-background-size: cover;
     -moz-background-size: cover;
@@ -910,7 +910,7 @@ button.submit-contact:hover {
 
 /* inner pages */
 .main-banner-2 {
-    background: url(../images/inner-bg.jpg) no-repeat center;
+    background: url(../images/sushiFondo3.jpg) no-repeat center;
     background-size: cover;
     -webkit-background-size: cover;
     -moz-background-size: cover;
