@@ -55,7 +55,7 @@
                         </form>
                        <form action="{{ route('menu.destroy', $menu['id'])}}" method="post">
                             @csrf
-                            @method('delete')
+                            @method('DELETE')
                             <button type="submit" class="btn btn-danger btn-sm ml-4 float-right" style="margin-top: -30px;">Eliminar</button>
                         </form>
                     </div>

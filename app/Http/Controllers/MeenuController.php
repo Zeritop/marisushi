@@ -100,6 +100,7 @@ class MeenuController extends Controller
             session()->forget('cart');
         } else {
             session()->put('cart', $cart);
+            //dd($cart);
         }
         
         return redirect()->route('cart.show')->with('success', 'Menu eliminado');
