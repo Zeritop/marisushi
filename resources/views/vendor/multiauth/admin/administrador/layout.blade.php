@@ -7,7 +7,7 @@
     <link rel="apple-touch-icon" sizes="76x76" href="{{ asset('assets/img/apple-icon.png') }}">
     <link rel="icon" type="image/png" href="{{ asset('assets/img/favicon.ico') }}">
     <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
-    <title>Administración Maria Sushi</title>
+    <title>Administración Mari Sushi</title>
     <meta content='width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0, shrink-to-fit=no' name='viewport' />
     <!--     Fonts and icons     -->
     <link href="https://fonts.googleapis.com/css?family=Montserrat:400,700,200" rel="stylesheet" />
@@ -17,7 +17,14 @@
     <link href="{{ asset('assets/css/light-bootstrap-dashboard.css?v=2.0.0') }}" rel="stylesheet" />
     <!-- CSS Just for demo purpose, don't include it in your project -->
     <!-- <link href="{{ asset('assets/css/demo.css') }}" rel="stylesheet" /> -->
-    <link href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.0.0-alpha/css/bootstrap.css" rel="stylesheet">
+    
+
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/3.3.7/css/bootstrap.css" rel="stylesheet">
+
+<!-- recomendado usar este de abajo, probar si funciona el de arriba, que es el que viene con el layout 
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/3.3.7/css/bootstrap.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-datetimepicker/4.7.14/css/bootstrap-datetimepicker.min.css">
+-->    
 
 </head>
 
@@ -43,9 +50,9 @@
                         </a>
                     </li>
                     <li>
-                        <a class="nav-link" href="./user.html">
+                        <a class="nav-link" href="{{ url('admin/orders') }}">
                             <i class="nc-icon nc-circle-09"></i>
-                            <p>User Profile</p>
+                            <p>Pedidos</p>
                         </a>
                     </li>
                     <li>
@@ -75,7 +82,7 @@
                     <li>
                         <a class="nav-link" href="./maps.html">
                             <i class="nc-icon nc-pin-3"></i>
-                            <p>Maps</p>
+                            <p>Libro de Ventas</p>
                         </a>
                     </li>
                     <li>
@@ -301,5 +308,14 @@
 
     });
 </script> -->
+
+<!-- probar si no se cae datepicker -->
+
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.15.1/moment.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/3.3.7/js/bootstrap.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-datetimepicker/4.7.14/js/bootstrap-datetimepicker.min.js"></script>
+
 
 </html>

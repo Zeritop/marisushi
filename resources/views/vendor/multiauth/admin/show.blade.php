@@ -1,4 +1,4 @@
-@extends('administrador.layout') 
+@extends('vendor.multiauth.admin.administrador.layout') 
 @section('content')
 <br>
 <div class="container">
@@ -6,9 +6,9 @@
         <div class="col-md-8">
             <div class="card">
                 <div class="card-header">
-                    {{ ucfirst(config('multiauth.prefix')) }} List
+                    Lista de {{ ucfirst(config('multiauth.prefix')) }}
                     <span class="float-right">
-                        <a href="{{route('admin.register')}}" class="btn btn-sm btn-success">New {{ ucfirst(config('multiauth.prefix')) }}</a>
+                        <a href="{{route('admin.register')}}" class="btn btn-sm btn-success">Crear nueva cuenta {{ ucfirst(config('multiauth.prefix')) }}</a>
                     </span>
                 </div>
                 <div class="card-body">
@@ -34,7 +34,7 @@
                             </div>
                         </li>
                         @endforeach @if($admins->count()==0)
-                        <p>No {{ config('multiauth.prefix') }} created Yet, only super {{ config('multiauth.prefix') }} is available.</p>
+                        <p>No hay {{ config('multiauth.prefix') }} creado aún, solo el super {{ config('multiauth.prefix') }} esta activado.</p>
                         @endif
                     </ul>
                 </div>
