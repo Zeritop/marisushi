@@ -141,7 +141,7 @@
 <script type="text/javascript">
         $(function () {
             $('#datetimepicker').datetimepicker({
-                format: 'DD/MM/YYYY HH:mm',
+                //format: 'DD/MM/YYYY HH:mm',
                 minDate: new Date(),
                 daysOfWeekDisabled: [6]
 

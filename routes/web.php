@@ -54,7 +54,10 @@ Route::post('/unsubscribe', 'UnsubscribeController@unsubscribe')->name('unsubscr
 Route::resource('admin/products','ProductController');
 Route::resource('admin/ingredients','IngredientController');
 Route::resource('admin/discounts','DiscountController');
+
 Route::resource('admin/orders','OrderController');
+
+Route::post('admin/orders/{id}','OrderController@agregarItem')->name('orders.agregarItem');
 
 
 Route::resource('menus','MenuController');//admin

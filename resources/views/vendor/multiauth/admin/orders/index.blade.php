@@ -67,7 +67,7 @@
 
    
 
-                    <a class="btn btn-info">Ver</a>
+                    <a class="btn btn-info" href="{{ route('orders.show',$order->id) }}">Ver</a>
 
     
 
