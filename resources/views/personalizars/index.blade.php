@@ -107,12 +107,12 @@
 		                        <div class="tab-content">
 		                            <div class="tab-pane" id="esencial">
 		                            	<div class="row">
-											<h5 class="info-text">Elige 1 o más de nuestros ingredientes principales.</h5>
+											<h5 class="info-text">Ingrediente Base.</h5>
 											
 											
 											<div class="col-sm-10 col-sm-offset-1">
 												<div class="form-group">
-													<label>Primer ingrediente <small>(Arroz si o si)</small></label>
+													<label>Primer ingrediente</label>
 													
 													<select name="country" class="form-control" style="height: 40px;" disabled="">
 														@foreach($personalizars as $personalizar)
@@ -125,7 +125,7 @@
 		                                            
 												</div>
 											</div>
-											<div class="col-sm-10 col-sm-offset-1">
+											<!-- <div class="col-sm-10 col-sm-offset-1">
 												<div class="form-group">
 													<label>Segundo ingrediente <small>(required)</small></label>
 													
@@ -142,8 +142,8 @@
 		                                            </select>
 		                                            
 												</div>
-											</div>
-											<div class="col-sm-10 col-sm-offset-1">
+											</div>-->
+											<!-- <div class="col-sm-10 col-sm-offset-1">
 												<div class="form-group">
 													<label>Tercer ingrediente <small>(required)</small></label>
 													
@@ -160,7 +160,7 @@
 		                                            </select>
 		                                            
 												</div>
-											</div>
+											</div> -->
 											  
 										</div>
 		                            </div>

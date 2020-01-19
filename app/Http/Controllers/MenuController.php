@@ -7,6 +7,7 @@ use App\Cart;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Storage;
 use Session;
+use Illuminate\Support\Facades\DB;
 
 class MenuController extends Controller
 {
@@ -37,7 +38,8 @@ class MenuController extends Controller
      */
     public function create()
     {
-        return view('vendor.multiauth.admin.menus.create');
+        $ingredients = DB::table('ingredients')->select('name', 'categoria')->get();
+        return view('vendor.multiauth.admin.menus.create',compact('ingredients'));
     }
 
     /**
@@ -52,7 +54,11 @@ class MenuController extends Controller
             'precio' => 'required',
             'titulo' => 'required',
             'descripcion' => 'required',
-            'foto' => 'required',
+            'esencial' => 'required',
+            'principal' => 'required',
+            'secundario1' => 'required',
+            'secundario2' => 'required',
+            'envoltura' => 'required',
         ]);
 
         $menu = new Menu;
@@ -62,6 +68,16 @@ class MenuController extends Controller
         $menu->titulo = $request->titulo;
         $menu->precio = $request->precio;
         $menu->descripcion = $request->descripcion;
+        $menu->esencial = $request->esencial;
+        $menu->principal = $request->principal;
+        $menu->secundario1 = $request->secundario1;
+        $menu->secundario2 = $request->secundario2;
+        $menu->envoltura = $request->envoltura;
+        $menu->ingrediente1 = $request->ingrediente1;
+        $menu->ingrediente2 = $request->ingrediente2;
+        $menu->ingrediente3 = $request->ingrediente3;
+        $menu->ingrediente4 = $request->ingrediente4;
+        $menu->ingrediente5 = $request->ingrediente5;
         $menu->save();    
        
     

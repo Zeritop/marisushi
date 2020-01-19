@@ -63,7 +63,7 @@
 
                 <strong>Ingrediente:</strong>
 
-                <select class="form-control" name="name">
+                <select class="form-control" name="name" style="height: auto">
                     <option disabled selected>Selecciona una opción</option>
 
                     @foreach ($ingredients as $ingredient)

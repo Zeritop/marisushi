@@ -15,10 +15,20 @@ class CreateMenusTable extends Migration
     {
         Schema::create('menus', function (Blueprint $table) {
             $table->bigIncrements('id');
-            $table->string('foto');
+            $table->string('foto')->nullable();
             $table->string('titulo');
             $table->string('descripcion');
             $table->integer('precio');
+            $table->string('esencial');
+            $table->string('principal');
+            $table->string('secundario1');
+            $table->string('secundario2');
+            $table->string('envoltura');
+            $table->string('ingrediente1')->nullable();
+            $table->string('ingrediente2')->nullable();
+            $table->string('ingrediente3')->nullable();
+            $table->string('ingrediente4')->nullable();
+            $table->string('ingrediente5')->nullable();
             $table->timestamps();
         });
     }

@@ -38,13 +38,13 @@
     -->
             <div class="sidebar-wrapper">
                 <div class="logo">
-                    <a href="home" class="simple-text">
+                    <a href="{{ url('admin/home') }}" class="simple-text">
                         Administracion Maria Sushi
                     </a>
                 </div>
                 <ul class="nav">
                     <li class="nav-item active">
-                        <a class="nav-link" href="dashboard.html">
+                        <a class="nav-link" href="{{ url('admin/home') }}">
                             <i class="nc-icon nc-chart-pie-35"></i>
                             <p>Dashboard</p>
                         </a>
