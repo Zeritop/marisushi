@@ -63,26 +63,7 @@
 
             <td>
 
-                <form method="POST">
-
-   
-
-                    <a class="btn btn-info" href="{{ route('orders.show',$order->id) }}">Ver</a>
-
-    
-
-                    <a class="btn btn-primary" >Editar</a>
-
-
-                    @csrf
-
-                    @method('DELETE')
-
-      
-
-                    <button type="submit" class="btn btn-danger">Eliminar</button>
-
-                </form>
+                <a class="btn btn-info" href="{{ route('orders.show',$order->id) }}">Ver</a>
 
             </td>
 

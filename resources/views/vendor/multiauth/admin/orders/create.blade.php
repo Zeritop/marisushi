@@ -97,6 +97,11 @@
           </div>
 
           <div class="form-group">
+            <label for="message-text" class="col-form-label">Porcentaje de descuento(Opcional)</label>
+            <input type="number" class="form-control" name="descuento" placeholder="Ejemplo: 10 (sin el signo %)">
+          </div>
+
+          <div class="form-group">
             <label for="message-text" class="col-form-label">Numero de Telefono</label>
             <input type="number" class="form-control" name="telefono">
           </div>
@@ -113,7 +118,7 @@
         </div>
 
         <div class="form-group">
-            <label for="message-text" class="col-form-label">observacion</label>
+            <label for="message-text" class="col-form-label">Observación</label>
             <textarea class="form-control" style="height:150px" name="descripcion" placeholder="Opcional"></textarea>
           </div>
 

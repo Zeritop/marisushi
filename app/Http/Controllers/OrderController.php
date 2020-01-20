@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Order;
 use App\Order_MenuItem;
 use App\Menu;
+use App\Discount;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Auth;
@@ -54,16 +55,17 @@ class OrderController extends Controller
      * @return \Illuminate\Http\Response
      */
     public function store(Request $request)
-    {
+    {   
+        //item del menu personalizado(falta hacerlo)
+
+
+        //item del menu estandar(esta hecho)
         // se usa mas adeltante para buscar correo de user, cuando registra pedido seccion cliente
         //para enviar comprobante de compra/pago
         $id_user_registra_compra = Auth::user()->id; 
-
         $nombre_registra_compra = Auth::user()->name;
         $estado = 'Pendiente';
         $seccion = 'Administración';
-        $descuento_aplicado = false;
-        $descuento = 0;
 
         $request->validate([
 
@@ -93,19 +95,41 @@ class OrderController extends Controller
         $pedido->telefono = $request->telefono;
         $pedido->fecha_entrega = $fecha_entrega;
         $pedido->estado = $estado;
+
         if($request->observacion === ''){
             $pedido->observacion = '';
+
         }else{
             $pedido->observacion = $request->observacion;
+
         }
-        $pedido->precio_total_sin_descuento = $precio;
-        $pedido->descuento = $descuento;
-        $pedido->descuento_aplicado = $descuento_aplicado;
-        $pedido->precio_total_con_descuento = $precio;
+
+        if($request->descuento === ''){
+            $pedido->descuento = 0;
+            $pedido->descuento_aplicado  = false;
+            $pedido->precio_total_sin_descuento = $precio;
+            $pedido->precio_total_con_descuento = $precio;
+
+
+        }else{
+            $pedido->descuento = $request->descuento;
+            $pedido->descuento_aplicado  = true;
+
+            $porcentaje = $request->descuento / 100;
+            $precio_con_descuento = $precio - ($precio * $porcentaje);
+
+            $pedido->precio_total_sin_descuento = $precio;
+            $pedido->precio_total_con_descuento = $precio_con_descuento;
+
+        }
+
+        //$pedido->precio_total_sin_descuento = $precio;
+
         $pedido->seccion = $seccion;
         $pedido->save();
+
         
-        $pedidos = $pedido; 
+        $id_pedido = DB::table('orders')->select('id')->where('id',$pedido->id)->first()->id;
         
 
         //pedido con item del menu
@@ -117,9 +141,13 @@ class OrderController extends Controller
         $pedido_menuItem->id_pedido = $pedido->id;  //id del pedido de arriba
         $pedido_menuItem->save();
 
+        //
         
-        return 'hecho';
-        //return view('vendor.multiauth.admin.orders.show',compact('pedidos'));
+        $order= $pedido;        
+        $menuItemsLists = DB::table('menus')->get();
+        $menuItems = DB::table('orders_menuItems')->where('id_pedido',$order->id)->get();
+        
+        return view('vendor.multiauth.admin.orders.show',compact('order','menuItems','menuItemsLists'));
     }
 
     /**
@@ -166,19 +194,33 @@ class OrderController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function destroy($id)
+    public function destroy(Order $order)
     {
         //
+        $order->delete();
+
+        return redirect()->route('orders.index')
+
+                        ->with('success','Pedido Eliminado Exitosamente');
     }
+
 
     public function agregarItem(Request $request)
     {
         //Agregar item del menu estandar a un pedido previamente creado 
+        $request->validate([
+
+            'menuItem' => 'required',
+            'cantidad' => 'required',
+
+
+        ]);
         
         $titulo = DB::table('menus')->select('titulo')->where('id',$request->menuItem)->first()->titulo;
         $precio_item = DB::table('menus')->select('precio')->where('id',$request->menuItem)->first()->precio;
         $cantidad = $request->cantidad;
         $agregarPrecio = $precio_item * $cantidad;
+
 
         $nuevoItem = new Order_MenuItem;
         $nuevoItem->id_menu_item = $request->menuItem;
@@ -188,31 +230,91 @@ class OrderController extends Controller
         $nuevoItem->id_pedido = $request->order_id;
         $nuevoItem->save();
     
-    
 
-        //ajustar el precio del pedido
+        //actualizar precio si es con o sin descuento
         $precio_total_sin_descuento = DB::table('orders')->select('precio_total_sin_descuento')->where('id',$request->order_id)->first()->precio_total_sin_descuento;
         $nuevo_precio_total_sin_descuento = $precio_total_sin_descuento + $agregarPrecio;
         
 
         $actualizarPedido = Order::find($request->order_id);
-        $actualizarPedido->precio_total_sin_descuento = $nuevo_precio_total_sin_descuento;
+        $actualizarPedido->precio_total_sin_descuento = $nuevo_precio_total_sin_descuento; //esta bien
 
-   /*
-   //cuando se agregue la parte de descuento, se descomentara y completara
+   
        if($actualizarPedido->descuento_aplicado == true){
+        
+        $porcentaje = $actualizarPedido->descuento / 100;
+        $agregar_precio_con_descuento = $agregarPrecio - ($agregarPrecio * $porcentaje);
+
+        $actualizarPedido->precio_total_sin_descuento = $nuevo_precio_total_sin_descuento;
+        $actualizarPedido->precio_total_con_descuento = $actualizarPedido->precio_total_con_descuento + $agregar_precio_con_descuento;
+
 
         }else{
+            $actualizarPedido->precio_total_sin_descuento = $nuevo_precio_total_sin_descuento;
             $actualizarPedido->precio_total_con_descuento = $nuevo_precio_total_sin_descuento;
         }
-    */ 
-        $actualizarPedido->precio_total_con_descuento = $nuevo_precio_total_sin_descuento;
+
         $actualizarPedido->save();
 
 
 
         //retornar
-        return 'hecho';
+        $order = DB::table('orders')->where('id',$request->order_id)->first();
+        $menuItemsLists = DB::table('menus')->get();
+        $menuItems = DB::table('orders_menuItems')->where('id_pedido',$order->id)->get();
+        
+        return view('vendor.multiauth.admin.orders.show',compact('order','menuItems','menuItemsLists'));
         
     }
+
+    public function quitarItem(Request $request)
+    {   
+        
+        $precioItem = DB::table('orders_menuItems')->where('id',$request->menuItem_id)
+                            ->where('id_pedido',$request->order_id)->first()->precio;
+
+        $cantidad = DB::table('orders_menuItems')->where('id',$request->menuItem_id)
+                            ->where('id_pedido',$request->order_id)->first()->cantidad;
+
+
+        $actualizarPedido = DB::table('orders_menuItems')->where('id',$request->menuItem_id)
+                            ->where('id_pedido',$request->order_id)->delete();        
+
+        //actualizar precio
+        $quitarPrecio = $precioItem * $cantidad;
+
+        $actualizarPrecioPedido = Order::find($request->order_id);
+
+        if($actualizarPrecioPedido->descuento_aplicado == true){
+            $porcentaje = $actualizarPrecioPedido->descuento / 100;
+            $quitarPrecioConDescuento = $quitarPrecio - ($quitarPrecio * $porcentaje);
+
+            $actualizarPrecioPedido->precio_total_sin_descuento = $actualizarPrecioPedido->precio_total_sin_descuento - $quitarPrecio;
+            $actualizarPrecioPedido->precio_total_con_descuento = $actualizarPrecioPedido->precio_total_con_descuento - $quitarPrecioConDescuento;
+
+        }else{
+            $actualizarPrecioPedido->precio_total_sin_descuento = $actualizarPrecioPedido->precio_total_sin_descuento - $quitarPrecio;
+            $actualizarPrecioPedido->precio_total_con_descuento = $actualizarPrecioPedido->precio_total_con_descuento - $quitarPrecio;
+
+        }
+
+        $actualizarPrecioPedido->save();
+
+        //retornar
+
+        $order = DB::table('orders')->where('id',$request->order_id)->first();
+        $menuItemsLists = DB::table('menus')->get();
+        $menuItems = DB::table('orders_menuItems')->where('id_pedido',$order->id)->get();
+        
+        return view('vendor.multiauth.admin.orders.show',compact('order','menuItems','menuItemsLists'));
+
+        
+
+    }
+    public function quitarItem2(Request $request)
+    {
+
+    }
+
+
 }

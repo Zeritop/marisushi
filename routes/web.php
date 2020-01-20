@@ -58,6 +58,8 @@ Route::resource('admin/discounts','DiscountController');
 Route::resource('admin/orders','OrderController');
 
 Route::post('admin/orders/{id}','OrderController@agregarItem')->name('orders.agregarItem');
+Route::post('admin/orders}','OrderController@quitarItem')->name('orders.quitarItem');
+
 
 
 Route::resource('menus','MenuController');//admin
@@ -65,4 +67,4 @@ Route::resource('menu','MeenuController');
 
 Route::resource('personalizar','PersonalizarController');
 
-//Route::resource('/contacto','ContactController')->middleware('verified'); para verificacion de email requerida
+//Route::resource('/contacto','ContactController')->middleware('verified'); ejemplo para verificacion de email requerida

@@ -12,6 +12,7 @@
 
                 <h2>Ver Pedido #000{{ $order->id }}</h2>
                 <h5>Este pedido fue realizado desde la sección de {{ $order->seccion }}</h5>
+                <a class="btn btn-primary" href="{{ route('orders.edit',$order->id) }}">Editar</a>
 
             </div>
 
@@ -146,9 +147,11 @@
 
             <td>
 
-                <form method="POST">
-      
+                <form action="{{ route('orders.quitarItem') }}" method="POST">
+                    @csrf
 
+                    <input type="hidden"  name="order_id" value="{{ $order->id }}">
+                    <input type="hidden"  name="menuItem_id" value="{{ $menuItem->id }}">
                     <button type="submit" class="btn btn-danger">Quitar</button>
 
                 </form>
@@ -163,10 +166,11 @@
 
     <br>
 
+
     <div class="row">
 
         <div class="col-xs-12 col-sm-12 col-md-12">
-
+            
             <div class="pull-right">
 
                 <strong>Precio sin descuento: $</strong>
@@ -201,7 +205,26 @@
             </div>
 
         </div>
+
     </div>
+
+    <br><br>
+
+        <div class="col-xs-12 col-sm-12 col-md-12">
+            <div class="pull-right">
+
+                <form action="{{ route('orders.destroy',$order->id) }}" method="POST">
+
+                    @csrf
+
+                    @method('DELETE')
+
+                    <button type="submit" class="btn btn-danger">ELIMINAR PEDIDO</button>
+
+                </form>
+            </div>
+
+        </div>
 
 
 
