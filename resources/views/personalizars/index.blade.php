@@ -57,7 +57,8 @@
 		            <div class="wizard-container">
 
 		                <div class="card wizard-card" data-color="red" id="wizardProfile">
-		                    <form action="" method="">
+		                    <form action="{{ route('personalizar.addToCart') }}" method="POST">
+		                    	@csrf
 		                <!--        You can switch " data-color="orange" "  with one of the next bright colors: "blue", "green", "orange", "red", "azure"          -->
 
 		                    	<div class="wizard-header text-center">
@@ -114,10 +115,10 @@
 												<div class="form-group">
 													<label>Primer ingrediente</label>
 													
-													<select name="country" class="form-control" style="height: 40px;" disabled="">
+													<select name="esencial" class="form-control" style="height: 40px;">
 														@foreach($personalizars as $personalizar)
 														@if($personalizar->categoria == 'Esencial')
-		                                                <option value=""> {{ $personalizar->name}} </option>
+		                                                <option value=" {{ $personalizar->name}} "> {{ $personalizar->name}} </option>
 		                                                @endif
 		                                                @endforeach
 
@@ -171,11 +172,11 @@
 												<div class="form-group">
 													<label>Ingrediente <small>(required)</small></label>
 													
-													<select name="country" class="form-control" style="height: 40px;">
-														<option value="" selected="">...</option>
+													<select name="principal" class="form-control" style="height: 40px;">
+													<!--	<option value="" selected="">...</option> -->
 														@foreach($personalizars as $personalizar)
 														@if($personalizar->categoria == 'Principal')
-		                                                <option value=""> {{ $personalizar->name}} </option>
+		                                                <option value="{{ $personalizar->name}}"> {{ $personalizar->name}} </option>
 		                                                @endif
 		                                                @endforeach
 
@@ -194,11 +195,11 @@
 												<div class="form-group">
 													<label>Primer ingrediente <small>(required)</small></label>
 													
-													<select name="country" class="form-control" style="height: 40px;">
-														<option value="" selected="">...</option>
+													<select name="secundario1" class="form-control" style="height: 40px;">
+												<!--		<option value="" selected="">...</option> -->
 														@foreach($personalizars as $personalizar)
 														@if($personalizar->categoria == 'Secundarios')
-		                                                <option value=""> {{ $personalizar->name}} </option>
+		                                                <option value=" {{ $personalizar->name}} "> {{ $personalizar->name}} </option>
 		                                                @endif
 		                                                @endforeach
 
@@ -210,11 +211,11 @@
 												<div class="form-group">
 													<label>Segundo ingrediente <small>(required)</small></label>
 													
-													<select name="country" class="form-control" style="height: 40px;">
-														<option value="" selected="">...</option>
+													<select name="secundario2" class="form-control" style="height: 40px;">
+												<!--		<option value="" selected="">...</option> -->
 														@foreach($personalizars as $personalizar)
 														@if($personalizar->categoria == 'Secundarios')
-		                                                <option value=""> {{ $personalizar->name}} </option>
+		                                                <option value=" {{ $personalizar->name}} "> {{ $personalizar->name}} </option>
 		                                                @endif
 		                                                @endforeach
 
@@ -231,11 +232,11 @@
 												<div class="form-group">
 													<label>Envoltura <small>(required)</small></label>
 													
-													<select name="country" class="form-control" style="height: 40px;">
-														<option value="" selected="">...</option>
+													<select name="envoltura" class="form-control" style="height: 40px;">
+												<!--		<option value="" selected="">...</option> -->
 														@foreach($personalizars as $personalizar)
 														@if($personalizar->categoria == 'Envoltura')
-		                                                <option value=""> {{ $personalizar->name}} </option>
+		                                                <option value=" {{ $personalizar->name}} "> {{ $personalizar->name}} </option>
 		                                                @endif
 		                                                @endforeach
 
@@ -249,7 +250,8 @@
 		                        <div class="wizard-footer">
 		                            <div class="pull-right">
 		                                <input type='button' class='btn btn-next btn-fill btn-danger btn-wd' name='next' value='Next' />
-		                                <input type='button' class='btn btn-finish btn-fill btn-danger btn-wd' name='finish' value='Finish' />
+		                               
+		                                <button type="submit" class="btn btn-finish btn-fill btn-danger btn-wd">Agregar</button>
 		                            </div>
 
 		                            <div class="pull-left">

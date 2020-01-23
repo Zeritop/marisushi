@@ -65,6 +65,8 @@ Route::post('admin/orders}','OrderController@quitarItem')->name('orders.quitarIt
 Route::resource('menus','MenuController');//admin
 Route::resource('menu','MeenuController');
 
+
 Route::resource('personalizar','PersonalizarController');
+Route::post('personalizar','PersonalizarController@addToCart')->name('personalizar.addToCart');
 
 //Route::resource('/contacto','ContactController')->middleware('verified'); ejemplo para verificacion de email requerida

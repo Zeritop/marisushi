@@ -3,6 +3,9 @@
 namespace App\Http\Controllers;
 
 use App\Personalizar;
+use App\Menu;
+use App\Cart;
+use Session;
 use Illuminate\Http\Request;
 use App\Ingredient;
 use Illuminate\Support\Facades\DB;
@@ -88,4 +91,36 @@ class PersonalizarController extends Controller
     {
         //
     }
+
+    
+    public function addToCart(Request $request){
+
+       $menu = new Menu;
+       $menu->titulo = 'Sushi Personalizado';
+       $menu->descripcion = 'Descripcion';
+       $menu->precio = 2000;
+       $menu->esencial = $request->esencial;
+       $menu->principal = $request->principal;
+       $menu->secundario1 = $request->secundario1;
+       $menu->secundario2 = $request->secundario2;
+       $menu->envoltura = $request->envoltura;
+       $menu->save();
+
+       
+
+       if(session()->has('cart')){
+            $cart = new Cart(session()->get('cart'));
+        } else {
+            $cart = new Cart();
+        } 
+        
+        
+        $cart->add($menu);
+        //dd($cart);
+        session()->put('cart', $cart);
+        return redirect()->route('menu.index')->with('success', 'Menu añadido');
+        
+    }
+
+
 }
