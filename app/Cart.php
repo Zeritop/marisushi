@@ -31,8 +31,11 @@ class Cart extends Model
             'precio' => $menu->precio,
             'qty' => 0,
             'image' => $menu->foto,
-            'titulo_per' => 'Personalizado',
-            'precio_per' => 2000,
+            'esencial' => $menu->esencial,
+            'principal' => $menu->principal,
+            'secundario1' => $menu->secundario1,
+            'secundario2' => $menu->secundario2,
+            'envoltura' => $menu->envoltura,
         ];
         
         if(!array_key_exists($menu->id, $this->items)){

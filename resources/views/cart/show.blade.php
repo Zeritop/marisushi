@@ -58,6 +58,14 @@
                             @method('DELETE')
                             <button type="submit" class="btn btn-danger btn-sm ml-4 float-right" style="margin-top: -30px;">Eliminar</button>
                         </form>
+                        <hr>
+                        @if($menu['title'] != "Sushi Personalizado")
+                         <img src="/storage/{{ $menu['image'] }}">
+                        @endif
+                        <br>
+                        Ingredientes:
+                        <p>{{ $menu['esencial'] }} - {{ $menu['principal'] }} - {{ $menu['secundario1'] }} - {{ $menu['secundario2'] }} - {{ $menu['envoltura'] }}</p>
+                        
                     </div>
                 </div>
             </div>
