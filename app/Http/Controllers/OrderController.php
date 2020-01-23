@@ -44,7 +44,7 @@ class OrderController extends Controller
     public function create()
     {
         //
-        $menuItems = DB::table('menus')->get();
+        $menuItems = DB::table('menus')->where('titulo','not like','Sushi Personalizado')->get();
         return view('vendor.multiauth.admin.orders.create',compact('menuItems'));
     }
 
@@ -57,11 +57,17 @@ class OrderController extends Controller
     public function store(Request $request)
     {   
         //item del menu personalizado(falta hacerlo)
+        if($request->tipo === 'personalizado'){
+            return 'personalizado';
+
+        }
+
+        //item de menu estandar(el que viene de la base de datos)
+        if($request->tipo === 'estandar'){
 
 
         //item del menu estandar(esta hecho)
-        // se usa mas adeltante para buscar correo de user, cuando registra pedido seccion cliente
-        //para enviar comprobante de compra/pago
+    
         $id_user_registra_compra = Auth::user()->id; 
         $nombre_registra_compra = Auth::user()->name;
         $estado = 'Pendiente';
@@ -144,10 +150,12 @@ class OrderController extends Controller
         //
         
         $order= $pedido;        
-        $menuItemsLists = DB::table('menus')->get();
+        $menuItemsLists = DB::table('menus')->where('titulo','not like','Sushi Personalizado')->get();
         $menuItems = DB::table('orders_menuItems')->where('id_pedido',$order->id)->get();
         
         return view('vendor.multiauth.admin.orders.show',compact('order','menuItems','menuItemsLists'));
+
+        } //termino if estandar
     }
 
     /**
@@ -159,7 +167,7 @@ class OrderController extends Controller
     public function show(Order $order)
     {
         //
-        $menuItemsLists = DB::table('menus')->get();
+        $menuItemsLists = DB::table('menus')->where('titulo','not like','Sushi Personalizado')->get();
         $menuItems = DB::table('orders_menuItems')->where('id_pedido',$order->id)->get();
 
         return view('vendor.multiauth.admin.orders.show',compact('order','menuItems','menuItemsLists'));
@@ -260,7 +268,7 @@ class OrderController extends Controller
 
         //retornar
         $order = DB::table('orders')->where('id',$request->order_id)->first();
-        $menuItemsLists = DB::table('menus')->get();
+        $menuItemsLists = DB::table('menus')->where('titulo','not like','Sushi Personalizado')->get();
         $menuItems = DB::table('orders_menuItems')->where('id_pedido',$order->id)->get();
         
         return view('vendor.multiauth.admin.orders.show',compact('order','menuItems','menuItemsLists'));
@@ -303,7 +311,7 @@ class OrderController extends Controller
         //retornar
 
         $order = DB::table('orders')->where('id',$request->order_id)->first();
-        $menuItemsLists = DB::table('menus')->get();
+        $menuItemsLists = DB::table('menus')->where('titulo','not like','Sushi Personalizado')->get();
         $menuItems = DB::table('orders_menuItems')->where('id_pedido',$order->id)->get();
         
         return view('vendor.multiauth.admin.orders.show',compact('order','menuItems','menuItemsLists'));

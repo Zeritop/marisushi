@@ -59,7 +59,7 @@
 
             <td>{{ $order->estado }}</td>
 
-            <td>{{ $order->fecha_entrega}}</td>
+            <td>{{ $order->fecha_entrega->format('d/m/Y H:i') }}</td>
 
             <td>
 
