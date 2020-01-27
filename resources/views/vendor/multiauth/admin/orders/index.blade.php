@@ -64,6 +64,8 @@
             <td>
 
                 <a class="btn btn-info" href="{{ route('orders.show',$order->id) }}">Ver</a>
+                
+                <a class="btn btn-primary" href="{{ route('orders.edit',$order->id) }}">Editar</a>
 
             </td>
 

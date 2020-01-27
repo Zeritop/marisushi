@@ -251,7 +251,7 @@
 		                            <div class="pull-right">
 		                                <input type='button' class='btn btn-next btn-fill btn-danger btn-wd' name='next' value='Next' />
 		                               
-		                                <button type="submit" class="btn btn-finish btn-fill btn-danger btn-wd">Agregar</button>
+		                                <button type="submit" class="btn btn-finish btn-fill btn-danger btn-wd">Agregar al carrito</button>
 		                            </div>
 
 		                            <div class="pull-left">

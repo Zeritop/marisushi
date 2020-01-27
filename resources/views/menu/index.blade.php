@@ -68,7 +68,23 @@
 			<img class="img-fluid" src="/storage/{{$menu->foto}}" alt="">
 			<h4 class="p-mask">{{ $menu->titulo }} - - <span>${{ $menu->precio }}</span></h4>
 			<p>{{ $menu->descripcion }}</p>
-			<a href="{{ route('cart.add', $menu->id)}}" class="button-w3ls active mt-3">Pedir Ahora
+            <p>{{ $menu->esencial }} - {{ $menu->principal }} -  {{ $menu->secundario1 }} - {{ $menu->secundario2 }} - {{ $menu->envoltura }}</p>
+            @if($menu->ingrediente1 != null)
+            <p>- {{ $menu->ingrediente1 }}</p>
+            @endif
+            @if($menu->ingrediente2 != null)
+            <p>- {{ $menu->ingrediente2 }}</p>
+            @endif
+            @if($menu->ingrediente3 != null)
+            <p>- {{ $menu->ingrediente3 }}</p>
+            @endif
+            @if($menu->ingrediente4 != null)
+            <p>- {{ $menu->ingrediente4 }}</p>
+            @endif
+            @if($menu->ingrediente5 != null)
+            <p>- {{ $menu->ingrediente5 }}</p>
+            @endif
+			<a href="{{ route('cart.add', $menu->id)}}" class="button-w3ls active mt-3">Añadir al carrito
 				<span class="fa fa-caret-right ml-1" aria-hidden="true"></span>
 			</a>
 			<a class="close" href="#gallery">×</a>

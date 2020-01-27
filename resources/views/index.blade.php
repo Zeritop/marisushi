@@ -92,10 +92,10 @@
 							<h5>Solamente Sushi Fresco</h5>
 							<h3 class="text-da mb-4">Sushi <span>Al Momento</span> </h3>
 							<p>El sushi lo hacemos en el mismo instante que es pedido, manteniendo su frescura y sabor</p>
-							<a href="about" class="button-w3ls active mt-5">Read More
+							<a href="about" class="button-w3ls active mt-5">Leer Más..
 								<span class="fa fa-caret-right ml-1" aria-hidden="true"></span>
 							</a>
-							<a href="menu" class="button-w3ls mt-5 ml-2">Order Now
+							<a href="menu" class="button-w3ls mt-5 ml-2">Ver Más
 								<span class="fa fa-caret-right ml-1" aria-hidden="true"></span>
 							</a>
 						</div>
@@ -153,7 +153,7 @@
 					</div>
 					<p class="about-text" style="color: white;">Ofrecemos un sushi fresco y al instante para que
 					puedas disfrutar de todo su sabor en el mejor momento.</p>
-					<a href="about" class="button-w3ls mt-5" style="color: white;">Read More
+					<a href="about" class="button-w3ls mt-5" style="color: white;">Ver Más
 						<span class="fa fa-caret-right ml-1" aria-hidden="true"></span>
 					</a>
 				</div>
@@ -181,7 +181,7 @@
 						<div class="card-body border border-top-0">
 							<h5 class="blog-title card-title m-0"><a href="menu">French Burger</a></h5>
 							<p class="mt-3">Cras ultricies ligula sed magna dictum porta auris blandita.</p>
-							<a href="menu" class="btn button-w3ls mt-4 mb-3">View More
+							<a href="menu" class="btn button-w3ls mt-4 mb-3">Ver Más
 								<span class="fa fa-caret-right ml-1" aria-hidden="true"></span>
 							</a>
 						</div>
@@ -199,7 +199,7 @@
 						<div class="card-body border border-top-0">
 							<h5 class="blog-title card-title m-0"><a href="menu">Veg Muffin</a></h5>
 							<p class="mt-3">Cras ultricies ligula sed magna dictum porta auris blandita.</p>
-							<a href="menu" class="button-w3ls active mt-4 mb-3">View More
+							<a href="menu" class="button-w3ls active mt-4 mb-3">Ver Más
 								<span class="fa fa-caret-right ml-1" aria-hidden="true"></span>
 							</a>
 						</div>
@@ -217,7 +217,7 @@
 						<div class="card-body border border-top-0">
 							<h5 class="blog-title card-title m-0"><a href="menu">Hashbrown Brioche</a></h5>
 							<p class="mt-3">Cras ultricies ligula sed magna dictum porta auris blandita.</p>
-							<a href="menu" class="button-w3ls mt-4 mb-3">View More
+							<a href="menu" class="button-w3ls mt-4 mb-3">Ver Más
 								<span class="fa fa-caret-right ml-1" aria-hidden="true"></span>
 							</a>
 						</div>
@@ -239,7 +239,7 @@
 						<p class="text-li">Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris Sed
 							ut perspiciatis
 							unde omnis iste natus error.</p>
-						<a href="menu" class="button-w3ls active mt-5">Order Now
+						<a href="menu" class="button-w3ls active mt-5">Ver Más
 							<span class="fa fa-caret-right ml-1" aria-hidden="true"></span>
 						</a>
 					</div>
@@ -252,7 +252,7 @@
 						<p class="text-li">Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris Sed
 							ut perspiciatis
 							unde omnis iste natus error.</p>
-						<a href="menu" class="button-w3ls active mt-5">Order Now
+						<a href="menu" class="button-w3ls active mt-5">Ver Más
 							<span class="fa fa-caret-right ml-1" aria-hidden="true"></span>
 						</a>
 					</div>

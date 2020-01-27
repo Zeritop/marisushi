@@ -36,6 +36,11 @@ class Cart extends Model
             'secundario1' => $menu->secundario1,
             'secundario2' => $menu->secundario2,
             'envoltura' => $menu->envoltura,
+            'ingrediente1' => $menu->ingrediente1,
+            'ingrediente2' => $menu->ingrediente2,
+            'ingrediente3' => $menu->ingrediente3,
+            'ingrediente4' => $menu->ingrediente4,
+            'ingrediente5' => $menu->ingrediente5,
         ];
         
         if(!array_key_exists($menu->id, $this->items)){

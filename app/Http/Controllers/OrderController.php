@@ -31,9 +31,9 @@ class OrderController extends Controller
     public function index()
     {
         //
-        $orders = Order::orderBy('created_at', 'ASC')->paginate(5);
+        $orders = Order::orderBy('created_at', 'ASC')->paginate(15);
         return view('vendor.multiauth.admin.orders.index',compact('orders'))
-                    ->with('i', (request()->input('page', 1) - 1) * 5);
+                    ->with('i', (request()->input('page', 1) - 1) * 15);
     }
 
     /**

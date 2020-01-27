@@ -59,12 +59,34 @@
                             <button type="submit" class="btn btn-danger btn-sm ml-4 float-right" style="margin-top: -30px;">Eliminar</button>
                         </form>
                         <hr>
-                        @if($menu['title'] != "Sushi Personalizado")
-                         <img src="/storage/{{ $menu['image'] }}">
-                        @endif
+                        <div class="row">
+                            <div class="col-md-4">
+                                @if($menu['title'] != "Sushi Personalizado")
+                                    <img src="/storage/{{ $menu['image'] }}" style="height: 200px; width: 200px;">
+                                @endif    
+                            </div>
+                            <div class="col-md-8">
+                            Ingredientes:
+                                <p>{{ $menu['esencial'] }} - {{ $menu['principal'] }} - {{ $menu['secundario1'] }} - {{ $menu['secundario2'] }} - {{ $menu['envoltura'] }}</p>
+                                @if($menu['ingrediente1'] != null)
+                                    <p>- {{ $menu['ingrediente1'] }}</p>
+                                @endif
+                                @if($menu['ingrediente2'] != null)
+                                    <p>- {{ $menu['ingrediente2'] }}</p>
+                                @endif
+                                @if($menu['ingrediente3'] != null)
+                                    <p>- {{ $menu['ingrediente3'] }}</p>
+                                @endif
+                                @if($menu['ingrediente4'] != null)
+                                    <p>- {{ $menu['ingrediente4'] }}</p>
+                                @endif
+                                @if($menu['ingrediente5'] != null)
+                                    <p>- {{ $menu['ingrediente5'] }}</p>
+                                @endif
+                            </div>
+                        </div>
+                        
                         <br>
-                        Ingredientes:
-                        <p>{{ $menu['esencial'] }} - {{ $menu['principal'] }} - {{ $menu['secundario1'] }} - {{ $menu['secundario2'] }} - {{ $menu['envoltura'] }}</p>
                         
                     </div>
                 </div>
@@ -84,7 +106,7 @@
                     <div class="card-text">
                         <p>Monto Total: ${{ $cart->totalPrice }}</p>
                         <p>Cantidad Total: {{ $cart->totalQty }}</p>
-                        <a class="btn btn-info">Pedir</a>
+                        <a href="" class="btn btn-info">Pedir</a>
                     </div>    
                 </div>
             </div>
