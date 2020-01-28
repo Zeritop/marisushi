@@ -106,7 +106,7 @@
                     <div class="card-text">
                         <p>Monto Total: ${{ $cart->totalPrice }}</p>
                         <p>Cantidad Total: {{ $cart->totalQty }}</p>
-                        <a href="" class="btn btn-info">Pedir</a>
+                        <a href="{{ route('cart.detalles') }}" class="btn btn-info">Pedir</a>
                     </div>    
                 </div>
             </div>

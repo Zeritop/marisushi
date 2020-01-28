@@ -39,6 +39,7 @@ Route::get('/addToCart/{menu}', 'MeenuController@addToCart')->name('cart.add');
 Route::get('/shopping-cart', 'MeenuController@showCart')->name('cart.show');
 Route::delete('/menu/{menu}', 'MeenuController@destroy')->name('menu.destroy');
 Route::put('/menu/{menu}', 'MeenuController@update')->name('menu.update');
+Route::get('/detalles', 'MeenuController@detallesCart')->name('cart.detalles');
 
 Auth::routes(['verify' => true]);
 

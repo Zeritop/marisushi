@@ -141,4 +141,16 @@ class MeenuController extends Controller
         
         return view('cart.show', compact('cart'));
     }
+    
+    public function detallesCart(){
+        
+        
+        if(session()->has('cart')){
+            $cart = new Cart(session()->get('cart'));
+        } else {
+            $cart = null;
+        }
+        
+        return view('cart.detalles', compact('cart'))->with('i', (request()->input('page', 1) - 1) * 5);
+    }
 }
