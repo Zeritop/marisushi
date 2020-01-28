@@ -148,11 +148,12 @@ class OrderController extends Controller
         $pedido_menuItem->save();
 
         //retornar con los strings  
-        $order= $pedido;        
+        $order= $pedido;
+        $personalizars = DB::table('ingredients')->select('name', 'categoria')->get();
         $menuItemsLists = DB::table('menus')->where('titulo','not like','Sushi Personalizado')->get();
         $menuItems = DB::table('orders_menuItems')->where('id_pedido',$order->id)->get();
         
-        return view('vendor.multiauth.admin.orders.show',compact('order','menuItems','menuItemsLists'));
+        return view('vendor.multiauth.admin.orders.show',compact('order','menuItems','menuItemsLists','personalizars'));
 
 
         }//end if personalizar
@@ -233,11 +234,12 @@ class OrderController extends Controller
         $pedido_menuItem->save();
 
         //retornar con los strings     
-        $order= $pedido;        
+        $order= $pedido;
+        $personalizars = DB::table('ingredients')->select('name', 'categoria')->get();
         $menuItemsLists = DB::table('menus')->where('titulo','not like','Sushi Personalizado')->get();
         $menuItems = DB::table('orders_menuItems')->where('id_pedido',$order->id)->get();
         
-        return view('vendor.multiauth.admin.orders.show',compact('order','menuItems','menuItemsLists'));
+        return view('vendor.multiauth.admin.orders.show',compact('order','menuItems','menuItemsLists','personalizars'));
 
         } //termino if estandar
     }
@@ -251,10 +253,11 @@ class OrderController extends Controller
     public function show(Order $order)
     {
         //
+        $personalizars = DB::table('ingredients')->select('name', 'categoria')->get();
         $menuItemsLists = DB::table('menus')->where('titulo','not like','Sushi Personalizado')->get();
         $menuItems = DB::table('orders_menuItems')->where('id_pedido',$order->id)->get();
 
-        return view('vendor.multiauth.admin.orders.show',compact('order','menuItems','menuItemsLists'));
+        return view('vendor.multiauth.admin.orders.show',compact('order','menuItems','menuItemsLists','personalizars'));
     }
 
     /**
@@ -299,6 +302,81 @@ class OrderController extends Controller
 
     public function agregarItem(Request $request)
     {
+        if($request->tipo === 'personalizado'){
+        
+        $precio_item = 2000;
+        $titulo = 'Sushi Personalizado';
+
+        $request->validate([
+
+        'esencial' => 'required',
+        'principal' => 'required',
+        'secundario1' => 'required',
+        'secundario2' => 'required',
+        'envoltura' => 'required',
+        'cantidad' => 'required',
+        ]);
+
+        $cantidad = $request->cantidad;
+        $agregarPrecio = $precio_item * $cantidad;
+
+        //registrar el menu personalizado en la tabla menu
+        $menu = new Menu;
+        $menu->titulo = $titulo;
+        $menu->descripcion = 'Descripcion';
+        $menu->precio = 2000;
+        $menu->esencial = $request->esencial;
+        $menu->principal = $request->principal;
+        $menu->secundario1 = $request->secundario1;
+        $menu->secundario2 = $request->secundario2;
+        $menu->envoltura = $request->envoltura;
+        $menu->save();
+
+        //registrar el menu de arriba en la tabla pedidos-menu
+        $pedido_menuItem = new Order_MenuItem;
+        $pedido_menuItem->id_menu_item = $menu->id;  //item que se eligio del menu
+        $pedido_menuItem->titulo = $titulo;
+        $pedido_menuItem->cantidad = $cantidad;
+        $pedido_menuItem->precio = $precio_item;
+        $pedido_menuItem->id_pedido = $request->order_id;;  //id del pedido de arriba
+        $pedido_menuItem->save();
+
+        //actualizar el precio
+        $precio_total_sin_descuento = DB::table('orders')->select('precio_total_sin_descuento')->where('id',$request->order_id)->first()->precio_total_sin_descuento;
+        $nuevo_precio_total_sin_descuento = $precio_total_sin_descuento + $agregarPrecio;
+
+        $actualizarPedido = Order::find($request->order_id);
+        $actualizarPedido->precio_total_sin_descuento = $nuevo_precio_total_sin_descuento;
+
+        if($actualizarPedido->descuento_aplicado == true){
+        
+        $porcentaje = $actualizarPedido->descuento / 100;
+        $agregar_precio_con_descuento = $agregarPrecio - ($agregarPrecio * $porcentaje);
+
+        $actualizarPedido->precio_total_sin_descuento = $nuevo_precio_total_sin_descuento;
+        $actualizarPedido->precio_total_con_descuento = $actualizarPedido->precio_total_con_descuento + $agregar_precio_con_descuento;
+
+
+        }else{
+            $actualizarPedido->precio_total_sin_descuento = $nuevo_precio_total_sin_descuento;
+            $actualizarPedido->precio_total_con_descuento = $nuevo_precio_total_sin_descuento;
+        }
+
+        $actualizarPedido->save();
+        
+
+        //retornar con los strings
+        $order = DB::table('orders')->where('id',$request->order_id)->first();
+        $personalizars = DB::table('ingredients')->select('name', 'categoria')->get();
+        $menuItemsLists = DB::table('menus')->where('titulo','not like','Sushi Personalizado')->get();
+        $menuItems = DB::table('orders_menuItems')->where('id_pedido',$order->id)->get();
+        
+        return view('vendor.multiauth.admin.orders.show',compact('order','menuItems','menuItemsLists','personalizars'));
+
+        }//termino if personalizado
+
+
+        if($request->tipo === 'estandar'){
         //Agregar item del menu estandar a un pedido previamente creado 
         $request->validate([
 
@@ -329,7 +407,7 @@ class OrderController extends Controller
         
 
         $actualizarPedido = Order::find($request->order_id);
-        $actualizarPedido->precio_total_sin_descuento = $nuevo_precio_total_sin_descuento; //esta bien
+        $actualizarPedido->precio_total_sin_descuento = $nuevo_precio_total_sin_descuento; 
 
    
        if($actualizarPedido->descuento_aplicado == true){
@@ -350,12 +428,15 @@ class OrderController extends Controller
 
 
 
-        //retornar
+        //retornar con los strings
         $order = DB::table('orders')->where('id',$request->order_id)->first();
+        $personalizars = DB::table('ingredients')->select('name', 'categoria')->get();
         $menuItemsLists = DB::table('menus')->where('titulo','not like','Sushi Personalizado')->get();
         $menuItems = DB::table('orders_menuItems')->where('id_pedido',$order->id)->get();
         
-        return view('vendor.multiauth.admin.orders.show',compact('order','menuItems','menuItemsLists'));
+        return view('vendor.multiauth.admin.orders.show',compact('order','menuItems','menuItemsLists','personalizars'));
+
+        }// termino if estandar
         
     }
 
@@ -395,10 +476,11 @@ class OrderController extends Controller
         //retornar
 
         $order = DB::table('orders')->where('id',$request->order_id)->first();
+        $personalizars = DB::table('ingredients')->select('name', 'categoria')->get();
         $menuItemsLists = DB::table('menus')->where('titulo','not like','Sushi Personalizado')->get();
         $menuItems = DB::table('orders_menuItems')->where('id_pedido',$order->id)->get();
         
-        return view('vendor.multiauth.admin.orders.show',compact('order','menuItems','menuItemsLists'));
+        return view('vendor.multiauth.admin.orders.show',compact('order','menuItems','menuItemsLists','personalizars'));
 
         
 

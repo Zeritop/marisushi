@@ -17,8 +17,9 @@
             </div>
 
             <div class="pull-right">
+                <button type="button" class="btn btn-success" data-toggle="modal" data-target="#personalizado" data-whatever="@personalizado">Agregar Personalizado</button>
 
-                <button type="button" class="btn btn-success" data-toggle="modal" data-target="#exampleModal" data-whatever="@fat">Agregar Item</button>
+                <button type="button" class="btn btn-success" data-toggle="modal" data-target="#estandar" data-whatever="@estandar">Agregar Item Menu</button>
 
                 <a class="btn btn-primary" href="{{ route('orders.index') }}"> Atras</a>
 
@@ -229,18 +230,120 @@
 
 
 
+<!-- modal  personalizado -->
+<div class="form-group"> 
 
-
-</div> <!-- fin container -->
-
-<div class="form-group"> <!--modal -->
-
-<div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+<div class="modal fade" id="personalizado" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
   <div class="modal-dialog" role="document">
     <div class="modal-content">
       
       <div class="modal-header">
-        <h5 class="modal-title" id="exampleModalLabel">Agregar Item</h5>
+        <h5 class="modal-title" id="exampleModalLabel">Agregar Item Personalizado</h5>
+      </div>
+
+      <div class="modal-body">
+        <form action="{{ route('orders.agregarItem',$order->id) }}" method="POST">
+            @csrf
+          <div class="form-group">
+            <label for="recipient-name" class="col-form-label">Ingrediente Esencial</label>
+              <select name="esencial" class="form-control" style="height: 40px;">
+                    @foreach($personalizars as $personalizar)
+                        @if($personalizar->categoria == 'Esencial')
+                            <option value=" {{ $personalizar->name}} "> {{ $personalizar->name}} </option>
+                        @endif
+                    @endforeach
+
+              </select>
+          </div>
+
+
+          <div class="form-group">
+            <label for="recipient-name" class="col-form-label">Ingrediente Principal</label>
+            <select name="principal" class="form-control" style="height: 40px;">
+                    <!--  <option value="" selected="">...</option> -->
+              <option disabled selected>Selecciona el ingrediente principal</option>
+                  @foreach($personalizars as $personalizar)
+                      @if($personalizar->categoria == 'Principal')
+                          <option value="{{ $personalizar->name}}"> {{ $personalizar->name}} </option>
+                      @endif
+                  @endforeach
+              </select>
+          </div>
+
+          <div class="form-group">
+            <label for="recipient-name" class="col-form-label">Primer Ingrediente Secundario</label>
+            <select name="secundario1" class="form-control" style="height: 40px;">
+                    <!--  <option value="" selected="">...</option> -->
+              <option disabled selected>Selecciona el primer ingrediente</option>
+                  @foreach($personalizars as $personalizar)
+                      @if($personalizar->categoria == 'Secundarios')
+                          <option value=" {{ $personalizar->name}} "> {{ $personalizar->name}} </option>
+                      @endif
+                  @endforeach
+              </select>
+          </div>
+
+          <div class="form-group">
+            <label for="recipient-name" class="col-form-label">Segundo Ingrediente Secundario</label>
+            <select name="secundario2" class="form-control" style="height: 40px;">
+                    <!--  <option value="" selected="">...</option> -->
+              <option disabled selected>Selecciona el segundo ingrediente</option>
+                  @foreach($personalizars as $personalizar)
+                      @if($personalizar->categoria == 'Secundarios')
+                          <option value=" {{ $personalizar->name}} "> {{ $personalizar->name}} </option>
+                      @endif
+                  @endforeach
+              </select>
+          </div>
+
+          <div class="form-group">
+            <label for="recipient-name" class="col-form-label">Envoltura</label>
+            <select name="envoltura" class="form-control" style="height: 40px;">
+                    <!--  <option value="" selected="">...</option> -->
+              <option disabled selected>Selecciona una envoltura</option>
+                  @foreach($personalizars as $personalizar)
+                      @if($personalizar->categoria == 'Envoltura')
+                          <option value=" {{ $personalizar->name}} "> {{ $personalizar->name}} </option>
+                      @endif
+                  @endforeach
+              </select>
+          </div>
+        
+          <div class="form-group">
+            <label for="message-text" class="col-form-label">Cantidad</label>
+            <input type="number" min="1" class="form-control" name="cantidad">
+             <input type="hidden"  name="order_id" value="{{ $order->id }}">
+             <input type="hidden"  name="tipo" value="personalizado">
+          </div>
+
+      </div>
+
+
+      <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" data-dismiss="modal">Cerrar</button>
+        <button type="submit" class="btn btn-primary">Agregar Item</button>
+      </div>
+
+</form>
+
+    </div>
+  </div>
+</div>
+
+</div>
+
+</div><!-- fin modal personalizado-->
+
+
+<!-- modal estandar-->
+<div class="form-group"> 
+
+<div class="modal fade" id="estandar" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      
+      <div class="modal-header">
+        <h5 class="modal-title" id="exampleModalLabel">Agregar Item del Menú</h5>
       </div>
 
       <div class="modal-body">
@@ -265,6 +368,7 @@
             <label for="message-text" class="col-form-label">Cantidad</label>
             <input type="number" min="1" class="form-control" name="cantidad">
              <input type="hidden"  name="order_id" value="{{ $order->id }}">
+             <input type="hidden"  name="tipo" value="estandar">
           </div>
 
       </div>
@@ -283,6 +387,9 @@
 
 </div>
 
+</div><!-- fin modal estandar-->
 
+
+</div> <!-- fin container -->
 
 @endsection
