@@ -40,6 +40,8 @@ Route::get('/shopping-cart', 'MeenuController@showCart')->name('cart.show');
 Route::delete('/menu/{menu}', 'MeenuController@destroy')->name('menu.destroy');
 Route::put('/menu/{menu}', 'MeenuController@update')->name('menu.update');
 Route::get('/detalles', 'MeenuController@detallesCart')->name('cart.detalles');
+Route::post('/storeCart', 'MeenuController@storeCart')->name('cart.store');
+
 
 Auth::routes(['verify' => true]);
 

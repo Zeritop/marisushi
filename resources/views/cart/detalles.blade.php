@@ -53,6 +53,8 @@
             <th>Titulo</th>
 
             <th>Precio</th>
+            
+            <th>Cantidad</th>
 
         </tr>
 
@@ -65,7 +67,9 @@
             <td>{{ $menu['title'] }}</td>
 
 
-            <td>{{ $menu['precio'] }}</td>
+            <td>{{ $cart->totalPrice }}</td>
+            
+            <td>{{ $cart->totalQty }}</td>
 
 
         </tr>
@@ -80,11 +84,11 @@
             Formulario de entrega
             <hr>
         </h3>
-        <div class="card-text">
-        <form>
+        <div class="card-text">    
+        <form action="{{ route('cart.store') }}" method="post">
   <div class="form-group">
     <label for="exampleInputEmail1">Persona que retira</label>
-    <input type="email" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" name="nombre_retira">
+    <input type="text" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" name="nombre_retira">
   </div>
   <div class="form-group">
     <label for="exampleInputPassword1">Telefono</label>

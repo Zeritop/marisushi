@@ -5,6 +5,8 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use App\Menu;
 use App\Cart;
+use App\Order;
+use App\Order_MenuItem;
 use Session;
 
 class MeenuController extends Controller
@@ -41,7 +43,7 @@ class MeenuController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        
     }
 
     /**
@@ -152,5 +154,195 @@ class MeenuController extends Controller
         }
         
         return view('cart.detalles', compact('cart'))->with('i', (request()->input('page', 1) - 1) * 5);
+    }
+    
+    public function storeCart(Request $request){
+        dd($request); 
+        //item del menu personalizado
+        if($request->tipo === 'personalizado'){
+            
+        $id_user_registra_compra = Auth::user()->id; 
+        $nombre_registra_compra = Auth::user()->name;
+        $estado = 'Pendiente';
+        $seccion = 'Administración';
+        $precio_item = 2000;
+        $titulo = 'Sushi Personalizado';
+
+        $request->validate([
+
+            'esencial' => 'required',
+            'principal' => 'required',
+            'secundario1' => 'required',
+            'secundario2' => 'required',
+            'envoltura' => 'required',
+            'cantidad' => 'required',
+            'nombre_retira' => 'required|min:2',
+            'telefono' => 'required|min:5',
+            'fecha_entrega' => 'required|after:yesterday'
+
+        ]);
+           
+
+        $cantidad = $request->cantidad;
+        $precio = $precio_item * $cantidad;
+
+        $fecha_entrega = Carbon::parse($request->fechaEntrega);
+
+
+        //registrar el pedido
+        $pedido = new Order;
+        $pedido->id_user_registra_compra = $id_user_registra_compra;
+        $pedido->nombre_registra_compra = $nombre_registra_compra;
+        $pedido->nombre_retira = $request->nombreRetira;
+        $pedido->telefono = $request->telefono;
+        $pedido->fecha_entrega = $fecha_entrega;
+        $pedido->estado = $estado;
+
+        if($request->observacion === ''){
+            $pedido->observacion = '';
+
+        }else{
+            $pedido->observacion = $request->observacion;
+
+        }
+
+        if($request->descuento === ''){
+            $pedido->descuento = 0;
+            $pedido->descuento_aplicado  = false;
+            $pedido->precio_total_sin_descuento = $precio;
+            $pedido->precio_total_con_descuento = $precio;
+
+
+        }else{
+            $pedido->descuento = $request->descuento;
+            $pedido->descuento_aplicado  = true;
+
+            $porcentaje = $request->descuento / 100;
+            $precio_con_descuento = $precio - ($precio * $porcentaje);
+
+            $pedido->precio_total_sin_descuento = $precio;
+            $pedido->precio_total_con_descuento = $precio_con_descuento;
+
+        }
+
+        $pedido->seccion = $seccion;
+        $pedido->save();
+
+        //registrar el menu personalizado en la tabla menu
+        $menu = new Menu;
+        $menu->titulo = 'Sushi Personalizado';
+        $menu->descripcion = 'Descripcion';
+        $menu->precio = 2000;
+        $menu->esencial = $request->esencial;
+        $menu->principal = $request->principal;
+        $menu->secundario1 = $request->secundario1;
+        $menu->secundario2 = $request->secundario2;
+        $menu->envoltura = $request->envoltura;
+        $menu->save();
+
+        //registrar el menu de arriba en la tabla pedidos-menu
+        $pedido_menuItem = new Order_MenuItem;
+        $pedido_menuItem->id_menu_item = $menu->id;  //item que se eligio del menu
+        $pedido_menuItem->titulo = $titulo;
+        $pedido_menuItem->cantidad = $cantidad;
+        $pedido_menuItem->precio = $precio_item;
+        $pedido_menuItem->id_pedido = $pedido->id;  //id del pedido de arriba
+        $pedido_menuItem->save();
+
+        //retornar con los strings  
+        $order= $pedido;
+        $personalizars = DB::table('ingredients')->select('name', 'categoria')->get();
+        $menuItemsLists = DB::table('menus')->where('titulo','not like','Sushi Personalizado')->get();
+        $menuItems = DB::table('orders_menuItems')->where('id_pedido',$order->id)->get();
+        
+        return view('cart.detalles',compact('order','menuItems','menuItemsLists','personalizars'));
+
+
+        }//end if personalizar
+
+      /*  //item de menu estandar(el que viene de la base de datos)
+        if($request->tipo === 'estandar'){
+    
+        $id_user_registra_compra = Auth::user()->id; 
+        $nombre_registra_compra = Auth::user()->name;
+        $estado = 'Pendiente';
+        $seccion = 'Administración';
+
+        $request->validate([
+
+            'menuItem' => 'required',
+            'cantidad' => 'required',
+            'nombreRetira' => 'required|min:2',
+            'telefono' => 'required|min:5',
+            'fechaEntrega' => 'required|after:yesterday'
+
+        ]);
+
+        //crear pedido cuando no existe uno previo
+        $titulo = DB::table('menus')->select('titulo')->where('id',$request->menuItem)->first()->titulo;
+
+        $precio_item = DB::table('menus')->select('precio')->where('id',$request->menuItem)->first()->precio;
+
+        $cantidad = $request->cantidad;
+        $precio = $precio_item * $cantidad;
+
+        $fecha_entrega = Carbon::parse($request->fechaEntrega);
+
+        $pedido = new Order;
+        $pedido->id_user_registra_compra = $id_user_registra_compra;
+        $pedido->nombre_registra_compra = $nombre_registra_compra;
+        $pedido->nombre_retira = $request->nombreRetira;
+        $pedido->telefono = $request->telefono;
+        $pedido->fecha_entrega = $fecha_entrega;
+        $pedido->estado = $estado;
+
+        if($request->observacion === ''){
+            $pedido->observacion = '';
+
+        }else{
+            $pedido->observacion = $request->observacion;
+
+        }
+
+        if($request->descuento === ''){
+            $pedido->descuento = 0;
+            $pedido->descuento_aplicado  = false;
+            $pedido->precio_total_sin_descuento = $precio;
+            $pedido->precio_total_con_descuento = $precio;
+
+
+        }else{
+            $pedido->descuento = $request->descuento;
+            $pedido->descuento_aplicado  = true;
+
+            $porcentaje = $request->descuento / 100;
+            $precio_con_descuento = $precio - ($precio * $porcentaje);
+
+            $pedido->precio_total_sin_descuento = $precio;
+            $pedido->precio_total_con_descuento = $precio_con_descuento;
+
+        }
+
+        $pedido->seccion = $seccion;
+        $pedido->save();        
+
+        //asociar el item al pedido
+        $pedido_menuItem = new Order_MenuItem;
+        $pedido_menuItem->id_menu_item = $request->menuItem;  //item que se eligio del menu
+        $pedido_menuItem->titulo = $titulo;
+        $pedido_menuItem->cantidad = $cantidad;
+        $pedido_menuItem->precio = $precio_item;
+        $pedido_menuItem->id_pedido = $pedido->id;  //id del pedido de arriba
+        $pedido_menuItem->save();
+
+        //retornar con los strings     
+        $order= $pedido;
+        $personalizars = DB::table('ingredients')->select('name', 'categoria')->get();
+        $menuItemsLists = DB::table('menus')->where('titulo','not like','Sushi Personalizado')->get();
+        $menuItems = DB::table('orders_menuItems')->where('id_pedido',$order->id)->get();
+        
+        return view('cart.detalles',compact('order','menuItems','menuItemsLists','personalizars'));
+
+        } //termino if estandar */
     }
 }
