@@ -151,25 +151,77 @@
     <div class="modal-content">
       
       <div class="modal-header">
-        <h5 class="modal-title" id="exampleModalLabel">Nuevo Pedido per</h5>
+        <h5 class="modal-title" id="exampleModalLabel">Nuevo Pedido Personalizado</h5>
       </div>
 
       <div class="modal-body">
         <form action="{{ route('orders.store') }}" method="POST">
             @csrf
             <input type="hidden"  name="tipo" value="personalizado">
+
           <div class="form-group">
-            <label for="recipient-name" class="col-form-label">Item del menu</label>
-            <select class="form-control" name="menuItem" style="height: 50px;">
-                    <option disabled selected>Selecciona una opción</option>
-
-                    @foreach ($menuItems as $menuItem)
-
-                    <option value=" {{ $menuItem->id }} "> {{ $menuItem->titulo }} </option>
-
+            <label for="recipient-name" class="col-form-label">Ingrediente Esencial</label>
+              <select name="esencial" class="form-control" style="height: 40px;">
+                    @foreach($personalizars as $personalizar)
+                        @if($personalizar->categoria == 'Esencial')
+                            <option value=" {{ $personalizar->name}} "> {{ $personalizar->name}} </option>
+                        @endif
                     @endforeach
 
-            </select>
+              </select>
+          </div>
+
+
+          <div class="form-group">
+            <label for="recipient-name" class="col-form-label">Ingrediente Principal</label>
+            <select name="principal" class="form-control" style="height: 40px;">
+                    <!--  <option value="" selected="">...</option> -->
+              <option disabled selected>Selecciona el ingrediente principal</option>
+                  @foreach($personalizars as $personalizar)
+                      @if($personalizar->categoria == 'Principal')
+                          <option value="{{ $personalizar->name}}"> {{ $personalizar->name}} </option>
+                      @endif
+                  @endforeach
+              </select>
+          </div>
+
+          <div class="form-group">
+            <label for="recipient-name" class="col-form-label">Primer Ingrediente Secundario</label>
+            <select name="secundario1" class="form-control" style="height: 40px;">
+                    <!--  <option value="" selected="">...</option> -->
+              <option disabled selected>Selecciona el primer ingrediente</option>
+                  @foreach($personalizars as $personalizar)
+                      @if($personalizar->categoria == 'Secundarios')
+                          <option value=" {{ $personalizar->name}} "> {{ $personalizar->name}} </option>
+                      @endif
+                  @endforeach
+              </select>
+          </div>
+
+          <div class="form-group">
+            <label for="recipient-name" class="col-form-label">Segundo Ingrediente Secundario</label>
+            <select name="secundario2" class="form-control" style="height: 40px;">
+                    <!--  <option value="" selected="">...</option> -->
+              <option disabled selected>Selecciona el segundo ingrediente</option>
+                  @foreach($personalizars as $personalizar)
+                      @if($personalizar->categoria == 'Secundarios')
+                          <option value=" {{ $personalizar->name}} "> {{ $personalizar->name}} </option>
+                      @endif
+                  @endforeach
+              </select>
+          </div>
+
+          <div class="form-group">
+            <label for="recipient-name" class="col-form-label">Envoltura</label>
+            <select name="envoltura" class="form-control" style="height: 40px;">
+                    <!--  <option value="" selected="">...</option> -->
+              <option disabled selected>Selecciona una envoltura</option>
+                  @foreach($personalizars as $personalizar)
+                      @if($personalizar->categoria == 'Envoltura')
+                          <option value=" {{ $personalizar->name}} "> {{ $personalizar->name}} </option>
+                      @endif
+                  @endforeach
+              </select>
           </div>
         
           <div class="form-group">

@@ -45,7 +45,8 @@ class OrderController extends Controller
     {
         //
         $menuItems = DB::table('menus')->where('titulo','not like','Sushi Personalizado')->get();
-        return view('vendor.multiauth.admin.orders.create',compact('menuItems'));
+        $personalizars = DB::table('ingredients')->select('name', 'categoria')->get();
+        return view('vendor.multiauth.admin.orders.create',compact('menuItems','personalizars'));
     }
 
     /**
@@ -56,17 +57,108 @@ class OrderController extends Controller
      */
     public function store(Request $request)
     {   
-        //item del menu personalizado(falta hacerlo)
+        //item del menu personalizado
         if($request->tipo === 'personalizado'){
-            return 'personalizado';
+
+        $id_user_registra_compra = Auth::user()->id; 
+        $nombre_registra_compra = Auth::user()->name;
+        $estado = 'Pendiente';
+        $seccion = 'Administración';
+        $precio_item = 2000;
+        $titulo = 'Sushi Personalizado';
+
+        $request->validate([
+
+            'esencial' => 'required',
+            'principal' => 'required',
+            'secundario1' => 'required',
+            'secundario2' => 'required',
+            'envoltura' => 'required',
+            'cantidad' => 'required',
+            'nombreRetira' => 'required|min:2',
+            'telefono' => 'required|min:5',
+            'fechaEntrega' => 'required|after:yesterday'
+
+        ]);
+
+        $cantidad = $request->cantidad;
+        $precio = $precio_item * $cantidad;
+
+        $fecha_entrega = Carbon::parse($request->fechaEntrega);
+
+
+        //registrar el pedido
+        $pedido = new Order;
+        $pedido->id_user_registra_compra = $id_user_registra_compra;
+        $pedido->nombre_registra_compra = $nombre_registra_compra;
+        $pedido->nombre_retira = $request->nombreRetira;
+        $pedido->telefono = $request->telefono;
+        $pedido->fecha_entrega = $fecha_entrega;
+        $pedido->estado = $estado;
+
+        if($request->observacion === ''){
+            $pedido->observacion = '';
+
+        }else{
+            $pedido->observacion = $request->observacion;
 
         }
 
+        if($request->descuento === ''){
+            $pedido->descuento = 0;
+            $pedido->descuento_aplicado  = false;
+            $pedido->precio_total_sin_descuento = $precio;
+            $pedido->precio_total_con_descuento = $precio;
+
+
+        }else{
+            $pedido->descuento = $request->descuento;
+            $pedido->descuento_aplicado  = true;
+
+            $porcentaje = $request->descuento / 100;
+            $precio_con_descuento = $precio - ($precio * $porcentaje);
+
+            $pedido->precio_total_sin_descuento = $precio;
+            $pedido->precio_total_con_descuento = $precio_con_descuento;
+
+        }
+
+        $pedido->seccion = $seccion;
+        $pedido->save();
+
+        //registrar el menu personalizado en la tabla menu
+        $menu = new Menu;
+        $menu->titulo = 'Sushi Personalizado';
+        $menu->descripcion = 'Descripcion';
+        $menu->precio = 2000;
+        $menu->esencial = $request->esencial;
+        $menu->principal = $request->principal;
+        $menu->secundario1 = $request->secundario1;
+        $menu->secundario2 = $request->secundario2;
+        $menu->envoltura = $request->envoltura;
+        $menu->save();
+
+        //registrar el menu de arriba en la tabla pedidos-menu
+        $pedido_menuItem = new Order_MenuItem;
+        $pedido_menuItem->id_menu_item = $menu->id;  //item que se eligio del menu
+        $pedido_menuItem->titulo = $titulo;
+        $pedido_menuItem->cantidad = $cantidad;
+        $pedido_menuItem->precio = $precio_item;
+        $pedido_menuItem->id_pedido = $pedido->id;  //id del pedido de arriba
+        $pedido_menuItem->save();
+
+        //retornar con los strings  
+        $order= $pedido;        
+        $menuItemsLists = DB::table('menus')->where('titulo','not like','Sushi Personalizado')->get();
+        $menuItems = DB::table('orders_menuItems')->where('id_pedido',$order->id)->get();
+        
+        return view('vendor.multiauth.admin.orders.show',compact('order','menuItems','menuItemsLists'));
+
+
+        }//end if personalizar
+
         //item de menu estandar(el que viene de la base de datos)
         if($request->tipo === 'estandar'){
-
-
-        //item del menu estandar(esta hecho)
     
         $id_user_registra_compra = Auth::user()->id; 
         $nombre_registra_compra = Auth::user()->name;
@@ -90,7 +182,6 @@ class OrderController extends Controller
 
         $cantidad = $request->cantidad;
         $precio = $precio_item * $cantidad;
-
 
         $fecha_entrega = Carbon::parse($request->fechaEntrega);
 
@@ -129,16 +220,10 @@ class OrderController extends Controller
 
         }
 
-        //$pedido->precio_total_sin_descuento = $precio;
-
         $pedido->seccion = $seccion;
-        $pedido->save();
+        $pedido->save();        
 
-        
-        $id_pedido = DB::table('orders')->select('id')->where('id',$pedido->id)->first()->id;
-        
-
-        //pedido con item del menu
+        //asociar el item al pedido
         $pedido_menuItem = new Order_MenuItem;
         $pedido_menuItem->id_menu_item = $request->menuItem;  //item que se eligio del menu
         $pedido_menuItem->titulo = $titulo;
@@ -147,8 +232,7 @@ class OrderController extends Controller
         $pedido_menuItem->id_pedido = $pedido->id;  //id del pedido de arriba
         $pedido_menuItem->save();
 
-        //
-        
+        //retornar con los strings     
         $order= $pedido;        
         $menuItemsLists = DB::table('menus')->where('titulo','not like','Sushi Personalizado')->get();
         $menuItems = DB::table('orders_menuItems')->where('id_pedido',$order->id)->get();
