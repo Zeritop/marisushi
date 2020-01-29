@@ -163,38 +163,14 @@ class MeenuController extends Controller
     
     
     public function storeCart(Request $request){
-        
-        if(session()->has('cart')){
-            $cart = new Cart(session()->get('cart'));
-        } else {
-            $cart = null;
-        }
-    foreach($cart->items as $key => $menu){
-       $id_user_registra_compra = Auth::user()->id; 
+        //
+        $id_user_registra_compra = Auth::user()->id; 
         $nombre_registra_compra = Auth::user()->name;
         $estado = 'Pendiente';
         $seccion = 'Usuario';
-        $precio_item = $menu['precio'];
-        $titulo = $menu['title'];
-    
-            
-        
+        $precio = 7500;
 
-      /*  $request->validate([
-
-            'nombre_retira' => 'required|min:2',
-            'telefono' => 'required|min:5',
-            'fecha_entrega' => 'required|after:yesterday'
-
-        ]); */
-         
-           
-        $cantidad = $menu['qty'];
-        //dd($request);
-        $precio = $precio_item * $cantidad;
-        
         $fecha_entrega = Carbon::parse($request->fecha_entrega);
-    
 
         //registrar el pedido
         $pedido = new Order;
@@ -234,6 +210,38 @@ class MeenuController extends Controller
 
         $pedido->seccion = $seccion;
         $pedido->save();
+
+
+
+
+
+        //
+        if(session()->has('cart')){
+            $cart = new Cart(session()->get('cart'));
+        } else {
+            $cart = null;
+        }
+    foreach($cart->items as $key => $menu){
+        $precio_item = $menu['precio'];
+        $titulo = $menu['title'];
+    
+            
+        
+
+      /*  $request->validate([
+
+            'nombre_retira' => 'required|min:2',
+            'telefono' => 'required|min:5',
+            'fecha_entrega' => 'required|after:yesterday'
+
+        ]); */
+         
+           
+        $cantidad = $menu['qty'];
+        //dd($request);
+        //$precio = $precio_item * $cantidad;
+        
+    
     
         
     foreach($cart->items as $key => $menu){

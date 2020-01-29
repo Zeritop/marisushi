@@ -15,10 +15,6 @@ class Order extends Model
 
     ];
 
-   // protected $casts = [
-   // 'fecha_entrega' => 'datetime:DD/MM/YYYY HH:mm'
-   //	];
-
     protected $dates = ['fecha_entrega'];
 
 }
