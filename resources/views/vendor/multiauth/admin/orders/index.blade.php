@@ -60,6 +60,8 @@
             <td>{{ $order->estado }}</td>
 
             <td>{{ $order->fecha_entrega->format('d/m/Y H:i') }}</td>
+            
+            <td>{{ $order->id }}</td>
 
             <td>
 

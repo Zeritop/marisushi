@@ -169,14 +169,14 @@ class MeenuController extends Controller
         } else {
             $cart = null;
         }
-    foreach($cart->items as $menu){
+    foreach($cart->items as $key => $menu){
        $id_user_registra_compra = Auth::user()->id; 
         $nombre_registra_compra = Auth::user()->name;
         $estado = 'Pendiente';
         $seccion = 'Usuario';
         $precio_item = $menu['precio'];
         $titulo = $menu['title'];
-    }
+    
             
         
 
@@ -189,12 +189,12 @@ class MeenuController extends Controller
         ]); */
          
            
-        $cantidad = $cart->totalQty;
+        $cantidad = $menu['qty'];
         //dd($request);
         $precio = $precio_item * $cantidad;
-
-        $fecha_entrega = Carbon::parse($request->fecha_entrega);
         
+        $fecha_entrega = Carbon::parse($request->fecha_entrega);
+    
 
         //registrar el pedido
         $pedido = new Order;
@@ -234,17 +234,20 @@ class MeenuController extends Controller
 
         $pedido->seccion = $seccion;
         $pedido->save();
+    
         
+    foreach($cart->items as $key => $menu){
         //asociar el item al pedido
         $pedido_menuItem = new Order_MenuItem;
-        $pedido_menuItem->id_menu_item = 7;  //item que se eligio del menu
+        $pedido_menuItem->id_menu_item = $key;  //item que se eligio del menu
         $pedido_menuItem->titulo = $titulo;
         $pedido_menuItem->cantidad = $cantidad;
         $pedido_menuItem->precio = $precio_item;
         $pedido_menuItem->id_pedido = $pedido->id;  //id del pedido de arriba
         $pedido_menuItem->save();
 
-        
+    }
+    }
         //retornar con los strings  
         $order= $pedido;
        $personalizars = DB::table('ingredients')->select('name', 'categoria')->get();
