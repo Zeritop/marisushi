@@ -257,7 +257,7 @@ class OrderController extends Controller
         $menuItemsLists = DB::table('menus')->where('titulo','not like','Sushi Personalizado')->get();
         $menuItems = DB::table('orders_menuItems')->where('id_pedido',$order->id)->get();
 
-        return view('vendor.multiauth.admin.orders.show',compact('order','menuItems','menuItemsLists','personalizars'));
+        return view('vendor.multiauth.admin.orders.show',compact('order','menuItems','menuItemsLists','personalizars'))->with('i', (request()->input('page', 1) - 1) * 5);
     }
 
     /**

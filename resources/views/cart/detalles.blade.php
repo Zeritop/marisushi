@@ -6,10 +6,11 @@
 <script src="//cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/3.3.7/js/bootstrap.js"></script>
 <script src="//cdnjs.cloudflare.com/ajax/libs/bootstrap-datetimepicker/4.17.37/js/bootstrap-datetimepicker.min.js"></script>
     
-        <link href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/3.3.7/css/bootstrap.css" rel="stylesheet">
+<link href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/3.3.7/css/bootstrap.css" rel="stylesheet">
+      
 </head>
 
-@extends('layout.principal')
+@extends('layout.principal1')
 
 @section('content')
 
@@ -67,16 +68,21 @@
             <td>{{ $menu['title'] }}</td>
 
 
-            <td>{{ $cart->totalPrice }}</td>
+            <td>{{ $menu['precio'] }}</td>
             
-            <td>{{ $cart->totalQty }}</td>
-
+            <td>{{ $menu['qty'] }}</td>
+            
 
         </tr>
 
         @endforeach
-
+        
     </table>
+    <div class="pull-right">
+    <h4>Precio Total:  ${{ $cart->totalPrice}} -  Cantidad Total:  {{ $cart->totalQty }}</h4>
+    </div>
+    
+    <br><br>
     <div class="col-md-4"> 
     <div class="card">
     <div class="card-body">
@@ -86,6 +92,7 @@
         </h3>
         <div class="card-text">    
         <form action="{{ route('cart.store') }}" method="post">
+            @csrf
   <div class="form-group">
     <label for="exampleInputEmail1">Persona que retira</label>
     <input type="text" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" name="nombre_retira">
@@ -119,6 +126,7 @@
       
 
 @endsection
+
 
 <script type="text/javascript">
         $(function () {

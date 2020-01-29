@@ -136,7 +136,7 @@
 
         <tr>
 
-            <td>numero</td>
+            <td>{{ ++$i }} </td>
 
             <td> {{ $menuItem->titulo }}</td>
 
