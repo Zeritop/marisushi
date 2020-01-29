@@ -164,11 +164,18 @@ class MeenuController extends Controller
     
     public function storeCart(Request $request){
         //
+        if(session()->has('cart')){
+            $cart = new Cart(session()->get('cart'));
+            $precio = $cart->totalPrice;
+        } else {
+            $cart = null;
+        }
+        
         $id_user_registra_compra = Auth::user()->id; 
         $nombre_registra_compra = Auth::user()->name;
         $estado = 'Pendiente';
         $seccion = 'Usuario';
-        $precio = 7500;
+        $precio = $cart->totalPrice;
 
         $fecha_entrega = Carbon::parse($request->fecha_entrega);
 
@@ -215,18 +222,11 @@ class MeenuController extends Controller
 
 
 
-        //
-        if(session()->has('cart')){
-            $cart = new Cart(session()->get('cart'));
-        } else {
-            $cart = null;
-        }
     foreach($cart->items as $key => $menu){
         $precio_item = $menu['precio'];
         $titulo = $menu['title'];
     
-            
-        
+                 
 
       /*  $request->validate([
 
@@ -242,9 +242,6 @@ class MeenuController extends Controller
         //$precio = $precio_item * $cantidad;
         
     
-    
-        
-    foreach($cart->items as $key => $menu){
         //asociar el item al pedido
         $pedido_menuItem = new Order_MenuItem;
         $pedido_menuItem->id_menu_item = $key;  //item que se eligio del menu
@@ -254,7 +251,6 @@ class MeenuController extends Controller
         $pedido_menuItem->id_pedido = $pedido->id;  //id del pedido de arriba
         $pedido_menuItem->save();
 
-    }
     }
         //retornar con los strings  
         $order= $pedido;

@@ -47,7 +47,7 @@
 
             <th>Fecha y Hora de Entrega</th>
 
-            <th width="280px">Action</th>
+            <th width="280px">Acción</th>
 
         </tr>
 
@@ -61,7 +61,6 @@
 
             <td>{{ $order->fecha_entrega->format('d/m/Y H:i') }}</td>
             
-            <td>{{ $order->id }}</td>
 
             <td>
 

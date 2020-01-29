@@ -150,7 +150,7 @@
 
             <td>
 
-                <form action="{{ route('orders.quitarItem') }}" method="POST">
+                <form action="{{ route('orders.quitarItem',$order->id) }}" method="POST">
                     @csrf
 
                     <input type="hidden"  name="order_id" value="{{ $order->id }}">

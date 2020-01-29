@@ -440,7 +440,7 @@ class OrderController extends Controller
         
     }
 
-    public function quitarItem(Request $request)
+    public function quitarItem(Request $request, Order $order)
     {   
         
         $precioItem = DB::table('orders_menuItems')->where('id',$request->menuItem_id)
