@@ -41,6 +41,9 @@ Route::delete('/menu/{menu}', 'MeenuController@destroy')->name('menu.destroy');
 Route::put('/menu/{menu}', 'MeenuController@update')->name('menu.update');
 Route::get('/detalles', 'MeenuController@detallesCart')->name('cart.detalles');
 Route::post('/storeCart', 'MeenuController@storeCart')->name('cart.store');
+    //->middleware('verified');
+Route::get('/historial', 'HistorialController@index')->name('cart.historial')->middleware('auth');
+Route::get('/ver-historial/{order}', 'HistorialController@show')->name('cart.verhistorial')->middleware('auth');
 
 
 Auth::routes(['verify' => true]);

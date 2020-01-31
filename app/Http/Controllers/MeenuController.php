@@ -258,9 +258,10 @@ class MeenuController extends Controller
         $menuItemsLists = DB::table('menus')->where('titulo','not like','Sushi Personalizado')->get();
         $menuItems = DB::table('orders_menuItems')->where('id_pedido',$order->id)->get(); 
         
-        return view('cart.detalles',compact('order','menuItems','menuItemsLists','personalizars', 'cart'))->with('i', (request()->input('page', 1) - 1) * 5);
+        //return view('cart.show',compact('order','menuItems','menuItemsLists','personalizars', 'cart'))->with('i', (request()->input('page', 1) - 1) * 5);
 
-
+        return redirect()->route('cart.detalles')->with('success', 'Pedido realizo exitosamente' );
+        
         //end if personalizar
 
        //item de menu estandar(el que viene de la base de datos)

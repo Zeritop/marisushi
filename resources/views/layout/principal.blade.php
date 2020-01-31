@@ -20,13 +20,13 @@
 	<!--// Meta tag Keywords -->
 
 	<!-- Custom-Files -->
-	<link rel="stylesheet" href="css/bootstrap.css">
+	<link rel="stylesheet" href="{{ asset('css/bootstrap.css') }}">
 	<!-- Bootstrap-Core-CSS -->
-	<link href="css/css_slider.css" type="text/css" rel="stylesheet" media="all">
+	<link href=" {{ asset('css/css_slider.css') }} " type="text/css" rel="stylesheet" media="all">
 	<!-- css slider -->
-	<link rel="stylesheet" href="css/style.css" type="text/css" media="all" />
+	<link rel="stylesheet" href="{{ asset('css/style.css') }} " type="text/css" media="all" />
 	<!-- Style-CSS -->
-	<link href="css/font-awesome.min.css" rel="stylesheet">
+	<link href="{{ asset('css/font-awesome.min.css') }} " rel="stylesheet">
 	<!-- Font-Awesome-Icons-CSS -->
 	<!-- //Custom-Files -->
 
@@ -37,13 +37,13 @@
 	<link
 		href="//fonts.googleapis.com/css?family=Barlow+Semi+Condensed:100,100i,200,200i,300,300i,400,400i,500,500i,600,600i,700,700i,800,800i,900,900i"
 		rel="stylesheet">
-		  <link href="assetss/css/bootstrap.min.css" rel="stylesheet" />
-	<link href="assetss/css/paper-bootstrap-wizard.css" rel="stylesheet" />
+		  <link href="{{ asset('assetss/css/bootstrap.min.css') }} " rel="stylesheet" />
+	<link href="{{ asset('assetss/css/paper-bootstrap-wizard.css') }} " rel="stylesheet" />
 
 	<!-- Fonts and Icons -->
     <link href="https://netdna.bootstrapcdn.com/font-awesome/4.4.0/css/font-awesome.css" rel="stylesheet">
 	<link href='https://fonts.googleapis.com/css?family=Muli:400,300' rel='stylesheet' type='text/css'>
-	<link href="assetss/css/themify-icons.css" rel="stylesheet">
+	<link href="{{ asset('assetss/css/themify-icons.css') }} " rel="stylesheet">
 	<!-- //Web-Fonts -->
  
 </head>
@@ -190,6 +190,7 @@
 							<li><a href="personalizar">Personalizar</a></li>
 							<li><a href="contacto">Contactanos</a></li>
                             <li><a href="{{ route('cart.show') }}"><span class="fa fa-shopping-cart">My cart ({{ session()->has('cart') ? session()->get('cart')->totalQty : '0'}})</span></a></li>
+                            <li><a href="{{ route('cart.historial') }}">Historial</a></li>
 						</ul>
 					</nav>
 				</div>
