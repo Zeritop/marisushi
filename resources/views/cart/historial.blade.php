@@ -46,7 +46,7 @@
         </tr>
 
         @foreach ($orders as $order)
-            @if($order->id_user_registra_compra == auth()->user()->id)
+            @if($order->id_user_registra_compra == auth()->user()->id && $order->seccion == 'Usuario')
         <tr>
 
             <td>{{ ++$i }}</td>

@@ -74,13 +74,10 @@
 
 					<div class="col-xl-5 col-md-7 top-social-agile text-md-right text-center pr-sm-0 mt-md-0 mt-2">
 						<div class="row middle-flex">
-								
-							<div class="col-lg-7 col-8 social-grid-w3">
+							<div class="pull-left"> 
+                            <div class="col-lg-7 col-8 social-grid-w3">
 								<!-- social icons -->
 								<ul class="top-right-info">
-									<li>
-										<p>Siguenos:</p>
-									</li>
 									<li class="facebook-w3">
 										<a href="#facebook">
 											<span class="fa fa-facebook-f"></span>
@@ -102,6 +99,8 @@
 
 								<!-- //social icons -->
 							</div>
+                            </div>	
+							
 					<nav class="navbar navbar-expand-md navbar-light bg-white shadow-sm">
 						<ul class="navbar-nav ml-auto">
                         <!-- Authentication Links -->
@@ -134,6 +133,9 @@
                                 </div>
                             </li>
                         @endguest
+                            @if(Auth::user())
+                            <li><a href="{{ route('cart.historial') }}">Mis Pedidos</a></li>
+                            @endif
                     </ul>
 					</nav>		
 						
@@ -190,7 +192,7 @@
 							<li><a href="personalizar">Personalizar</a></li>
 							<li><a href="contacto">Contactanos</a></li>
                             <li><a href="{{ route('cart.show') }}"><span class="fa fa-shopping-cart">My cart ({{ session()->has('cart') ? session()->get('cart')->totalQty : '0'}})</span></a></li>
-                            <li><a href="{{ route('cart.historial') }}">Historial</a></li>
+                            
 						</ul>
 					</nav>
 				</div>
