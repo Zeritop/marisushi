@@ -61,7 +61,7 @@ class MenuController extends Controller
             'envoltura' => 'required',
         ]);
 
-        $menu = new Menu;
+    
         $menu = new Menu;
         $menu->foto = Storage::putFile('public', $request->file('foto'));
         $menu->foto = basename(Storage::putFile('public', $request->file('foto')));   

@@ -63,10 +63,9 @@ Route::resource('admin/discounts','DiscountController');
 
 Route::resource('admin/orders','OrderController');
 
-Route::post('admin/orders/{id}','OrderController@agregarItem')->name('orders.agregarItem');
-//Route::post('admin/orders}','OrderController@quitarItem')->name('orders.quitarItem');
-
+Route::post('admin/orders/{id}/agregarItem','OrderController@agregarItem')->name('orders.agregarItem');
 Route::post('admin/orders/{id}/quitarItem','OrderController@quitarItem')->name('orders.quitarItem');
+Route::post('admin/orders/{id}/registrarPago','OrderController@registrarPago')->name('orders.registrarPago');
 
 
 

@@ -12,9 +12,46 @@
 
                 <h2>Ver Pedido #000{{ $order->id }}</h2>
                 <h5>Este pedido fue realizado desde la sección de {{ $order->seccion }}</h5>
-                <a class="btn btn-primary" href="{{ route('orders.edit',$order->id) }}">Editar</a>
-                <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#exampleModal">
+
+
+                @if ($errors->any())
+                    <div class="alert alert-danger">
+                        <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                            <span aria-hidden="true">&times;</span>
+                        </button>
+
+                        <strong>Whoops!</strong> Parece que encontramos un problema.<br><br>
+                    
+                        <ul>
+                        @foreach ($errors->all() as $error)
+
+                            <li>{{ $error }}</li>
+
+                        @endforeach
+                        </ul>
+                    </div>
+
+                @endif
+
+                @if ($message = Session::get('success'))
+                    <div class="alert alert-success">
+                        <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                            <span aria-hidden="true">&times;</span>
+                        </button>
+
+                        <p class="mb-0">{{ $message }}</p>
+
+                    </div>
+
+                @endif
+
+                @if($order->estado === 'Listo para Retirar')
+                <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#registrarPago" data-whatever="@registrarPago">
                 Registrar Pago</button>
+                @endif
+
+                
+                <a class="btn btn-primary" href="{{ route('orders.edit',$order->id) }}">Editar</a>
 
             </div>
 
@@ -97,6 +134,19 @@
             </div>
 
         </div>
+
+        <div class="col-xs-12 col-sm-12 col-md-12">
+
+            <div class="form-group">
+
+                <strong>Descuento: %</strong>
+
+                {{ $order->descuento }}
+
+            </div>
+
+        </div>
+
         <div class="col-xs-12 col-sm-12 col-md-12">
 
             <div class="form-group">
@@ -124,6 +174,8 @@
 
             <th>Item</th>
 
+            <th>Ingredientes</th>
+
             <th>Precio</th>
 
             <th>Cantidad</th>
@@ -142,6 +194,8 @@
 
             <td> {{ $menuItem->titulo }}</td>
 
+            <td> ingredienteskkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkk</td>
+
             <td> {{ $menuItem->precio }}</td>
 
             <td> {{ $menuItem->cantidad }}</td>
@@ -149,7 +203,7 @@
             <td> imagen</td>
 
             <td>
-
+              @if($order->estado === 'Pendiente')
                 <form action="{{ route('orders.quitarItem',$order->id) }}" method="POST">
                     @csrf
 
@@ -158,7 +212,7 @@
                     <button type="submit" class="btn btn-danger">Quitar</button>
 
                 </form>
-
+              @endif
             </td>
 
         </tr>
@@ -215,7 +269,7 @@
 
         <div class="col-xs-12 col-sm-12 col-md-12">
             <div class="pull-right">
-
+              @if($order->estado === 'Pendiente')
                 <form action="{{ route('orders.destroy',$order->id) }}" method="POST">
 
                     @csrf
@@ -225,6 +279,7 @@
                     <button type="submit" class="btn btn-danger">ELIMINAR PEDIDO</button>
 
                 </form>
+              @endif
             </div>
 
         </div>
@@ -388,45 +443,155 @@
 </div>
 
 
-</div><!-- fin modal estandar-->
+</div>
+<!-- fin modal estandar-->
 
 
-<!-- Modal -->
-<div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+<!-- Modal de Pago-->
+<div class="modal fade" id="registrarPago" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
   <div class="modal-dialog" role="document">
     <div class="modal-content">
       <div class="modal-header">
-        <h5 class="modal-title" id="exampleModalLabel">Modal title</h5>
-        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-          <span aria-hidden="true">&times;</span>
-        </button>
+        <h5 class="modal-title" id="exampleModalLabel">Registrar Pago</h5>
       </div>
       <div class="modal-body">
-        <form action="{{ route('orders.agregarItem',$order->id) }}" method="POST">
+        <p><strong>Precio Total: </strong>$ {{ $order->precio_total_con_descuento }} </p>
+        <form action="{{ route('orders.registrarPago',$order->id) }}" method="POST">
             @csrf
-          <div class="form-group">
-            <label for="recipient-name" class="col-form-label">Ingrediente Esencial</label>
-              <select name="esencial" class="form-control" style="height: 40px;">
-                    @foreach($personalizars as $personalizar)
-                        @if($personalizar->categoria == 'Esencial')
-                            <option value=" {{ $personalizar->name}} "> {{ $personalizar->name}} </option>
-                        @endif
-                    @endforeach
 
+                          <!-- METODO DE PAGO -->
+          <input type="hidden"  name="order_id" value=" {{ $order->id }} ">
+          <input type="hidden"  name="precio_total" value=" {{ $order->precio_total_con_descuento }} ">
+
+          <div class="form-group">
+            <label for="recipient-name" class="col-form-label">Metodo de Pago</label>
+              <select name="metodo_pago" class="form-control" style="height: 40px;" onchange="yesnoCheckMetodo(this);">
+                  <option disabled selected>Selecciona un Método de Pago</option>
+                  <option value="Efectivo">Efectivo</option>
+                  <option value="Tarjeta">Tarjeta de Crédito o Débito</option>
+                  <option value="Transferencia">Transferencia Electronica</option>
               </select>
           </div>
-        </form>
+
+          <div class="form-group" id="ifTransferencia" style="display: none;">
+                  <label for="recipient-name" class="col-form-label">Rut: (Opcional)</label> 
+                  <input type="text" class="form-control" id="txt_rut" name="rut" onblur="onRutBlur(this);" placeholder="Ejemplo: 11111111-1">               
+                  <h5 class="text-primary" id="msgValidator"></h5>
+                  
+          </div>
+
+                        <!-- TIPO DE DOCUMENTO-->
+
+          <div class="form-group">
+            <label for="recipient-name" class="col-form-label">Tipo de Documento</label>
+              <select name="tipo_documento" class="form-control" style="height: 40px;" onchange="yesnoCheck2(this);">
+                  <option disabled selected>Selecciona un tipo de Documento</option>
+                  <option value="Boleta">Boleta</option>
+                  <option value="Factura">Factura</option>
+              </select>
+          </div>
+
+          <div class="form-group" id="ifFactura" style="display: none;">
+                  <label for="recipient-name" class="col-form-label">Nombre de Empresa: (Opcional)</label> 
+                  <input type="text" class="form-control" id="txt_nombre_empresa" name="nombre_empresa" placeholder="Nombre de Empresa">
+          </div>
+
+          <div class="form-group" id="ifFactura2" style="display: none;">
+                  <label for="recipient-name" class="col-form-label">Rut Empresa: (Opcional)</label> 
+                  <input type="text" class="form-control" id="txt_rut_empresa" name="rut_empresa" placeholder="Ejemplo: 111111111-1">
+          </div>
+
       </div>
       <div class="modal-footer">
         <button type="button" class="btn btn-secondary" data-dismiss="modal">Cancelar</button>
-        <button type="button" class="btn btn-primary">Registrar Pago</button>
+        <button type="submit" class="btn btn-primary">Registrar Pago</button>
       </div>
+      </form>
     </div>
   </div>
 </div>
 
-<!-- FIN Modal Ejemplo-->
+<!-- Fin Modal Pago-->
 
 </div> <!-- fin container -->
+
+<script type="text/javascript">
+function yesnoCheckMetodo(that) {
+    if (that.value == "Transferencia") {
+        document.getElementById("ifTransferencia").style.display = "block";
+    } else {
+        document.getElementById("ifTransferencia").style.display = "none";
+        document.getElementById("txt_rut").value = "";
+    }
+
+}
+
+function yesnoCheck2(that) {
+    if (that.value == "Factura") {
+        document.getElementById("ifFactura").style.display = "block";
+        document.getElementById("ifFactura2").style.display = "block";
+    } 
+
+    if (that.value == "Boleta") {
+        document.getElementById("ifFactura").style.display = "none";
+        document.getElementById("ifFactura2").style.display = "none";
+        document.getElementById("txt_nombre_empresa").value = "";
+        document.getElementById("txt_rut_empresa").value = "";
+    } 
+}
+
+function onRutBlur(obj) {
+        if (VerificaRut(obj.value))
+          $("#msgValidator").html("El Rut Ingresado es Válido");
+        else 
+          $("#msgValidator").html("El Rut Ingresado es Invalido");
+      }
+
+
+function VerificaRut(rut) {
+    if (rut.toString().trim() != '' && rut.toString().indexOf('-') > 0) {
+        var caracteres = new Array();
+        var serie = new Array(2, 3, 4, 5, 6, 7);
+        var dig = rut.toString().substr(rut.toString().length - 1, 1);
+        rut = rut.toString().substr(0, rut.toString().length - 2);
+
+        for (var i = 0; i < rut.length; i++) {
+            caracteres[i] = parseInt(rut.charAt((rut.length - (i + 1))));
+        }
+
+        var sumatoria = 0;
+        var k = 0;
+        var resto = 0;
+
+        for (var j = 0; j < caracteres.length; j++) {
+            if (k == 6) {
+                k = 0;
+            }
+            sumatoria += parseInt(caracteres[j]) * parseInt(serie[k]);
+            k++;
+        }
+
+        resto = sumatoria % 11;
+        dv = 11 - resto;
+
+        if (dv == 10) {
+            dv = "K";
+        }
+        else if (dv == 11) {
+            dv = 0;
+        }
+
+        if (dv.toString().trim().toUpperCase() == dig.toString().trim().toUpperCase())
+            return true;
+        else
+            return false;
+    }
+    else {
+        return false;
+    }
+}
+
+
+</script>
 
 @endsection

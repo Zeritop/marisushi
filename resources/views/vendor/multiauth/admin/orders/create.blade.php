@@ -214,7 +214,6 @@
           <div class="form-group">
             <label for="recipient-name" class="col-form-label">Envoltura</label>
             <select name="envoltura" class="form-control" style="height: 40px;">
-                    <!--  <option value="" selected="">...</option> -->
               <option disabled selected>Selecciona una envoltura</option>
                   @foreach($personalizars as $personalizar)
                       @if($personalizar->categoria == 'Envoltura')
@@ -235,13 +234,13 @@
           </div>
 
           <div class="form-group">
-            <label for="message-text" class="col-form-label">Porcentaje de descuento(Opcional)</label>
-            <input type="number" class="form-control" name="descuento" placeholder="Ejemplo: 10 (sin el signo %)">
+            <label for="message-text" class="col-form-label">Numero de Telefono</label>
+            <input type="number" class="form-control" name="telefono">
           </div>
 
           <div class="form-group">
-            <label for="message-text" class="col-form-label">Numero de Telefono</label>
-            <input type="number" class="form-control" name="telefono">
+            <label for="message-text" class="col-form-label">Porcentaje de descuento(Opcional)</label>
+            <input type="number" class="form-control" name="descuento" placeholder="Ejemplo: 10 (sin el signo %)">
           </div>
 
            <div class="form-group">

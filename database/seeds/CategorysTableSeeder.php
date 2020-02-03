@@ -32,5 +32,6 @@ class CategorysTableSeeder extends Seeder
             'name' => 'Otros',
         ]);
 
+
     }
 }

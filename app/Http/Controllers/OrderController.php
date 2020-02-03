@@ -6,6 +6,7 @@ use App\Order;
 use App\Order_MenuItem;
 use App\Menu;
 use App\Discount;
+use App\Sale;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Auth;
@@ -153,7 +154,12 @@ class OrderController extends Controller
         $menuItemsLists = DB::table('menus')->where('titulo','not like','Sushi Personalizado')->get();
         $menuItems = DB::table('orders_menuItems')->where('id_pedido',$order->id)->get();
         
-        return view('vendor.multiauth.admin.orders.show',compact('order','menuItems','menuItemsLists','personalizars'));
+
+        return redirect('admin/orders/'. $order->id )
+                        ->with('order')->with('menuItems')->with('menuItemsLists')->with('personalizars')
+                        ->with('success','Pedido creado exitosamente')
+                        ->with('i', (request()->input('page', 1) - 1) * 5);
+        //return view('vendor.multiauth.admin.orders.show',compact('order','menuItems','menuItemsLists','personalizars'));
 
 
         }//end if personalizar
@@ -239,7 +245,12 @@ class OrderController extends Controller
         $menuItemsLists = DB::table('menus')->where('titulo','not like','Sushi Personalizado')->get();
         $menuItems = DB::table('orders_menuItems')->where('id_pedido',$order->id)->get();
         
-        return view('vendor.multiauth.admin.orders.show',compact('order','menuItems','menuItemsLists','personalizars'))->with('i', (request()->input('page', 1) - 1) * 5);
+
+        return redirect('admin/orders/'. $order->id )
+                        ->with('order')->with('menuItems')->with('menuItemsLists')->with('personalizars')
+                        ->with('success','Pedido creado exitosamente')
+                        ->with('i', (request()->input('page', 1) - 1) * 5);
+        //return view('vendor.multiauth.admin.orders.show',compact('order','menuItems','menuItemsLists','personalizars'))->with('i', (request()->input('page', 1) - 1) * 5);
 
         } //termino if estandar
     }
@@ -266,9 +277,11 @@ class OrderController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function edit($id)
+    public function edit(Order $order)
     {
         //
+        $estados = DB::table('statuses')->select('name')->where('name','not like','Pagado')->get();
+        return view('vendor.multiauth.admin.orders.edit',compact('order','estados'));
     }
 
     /**
@@ -278,9 +291,47 @@ class OrderController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, $id)
+    public function update(Request $request, Order $order)
     {
         //
+        $request->validate([
+
+            'nombreRetira' => 'required|min:2',
+            'telefono' => 'required|min:5',
+            //'fechaEntrega' => 'required|after:yesterday',
+            'estado' => 'required',
+            'descuento' => 'required'
+
+        ]);
+
+        $fecha_entrega = Carbon::parse($request->fechaEntrega);
+        
+        $precio_total_sin_descuento = DB::table('orders')->select('precio_total_sin_descuento')->where('id',$request->order_id)->first()->precio_total_sin_descuento;
+        $porcentaje = $request->descuento / 100;
+        $precio_descuento = $precio_total_sin_descuento * $porcentaje;
+        $precio_total_con_descuento = $precio_total_sin_descuento - $precio_descuento;
+
+        //Actualizar los datos del pedido
+
+        $actualizarPedido = Order::find($order->id);
+        $actualizarPedido->nombre_retira = $request->nombreRetira;
+        $actualizarPedido->telefono = $request->telefono;
+        $actualizarPedido->estado = $request->estado;
+        $actualizarPedido->descuento = $request->descuento;
+        $actualizarPedido->descuento_aplicado = true;
+        $actualizarPedido->precio_total_con_descuento = $precio_total_con_descuento;
+        $actualizarPedido->save();
+
+        //retornar
+        $order = DB::table('orders')->where('id',$request->order_id)->first();
+        $personalizars = DB::table('ingredients')->select('name', 'categoria')->get();
+        $menuItemsLists = DB::table('menus')->where('titulo','not like','Sushi Personalizado')->get();
+        $menuItems = DB::table('orders_menuItems')->where('id_pedido',$order->id)->get();
+        
+        return redirect('admin/orders/'. $order->id )
+                        ->with('order')->with('menuItems')->with('menuItemsLists')->with('personalizars')
+                        ->with('success','Pedido Actualizado correctamente')
+                        ->with('i', (request()->input('page', 1) - 1) * 5);
     }
 
     /**
@@ -371,7 +422,10 @@ class OrderController extends Controller
         $menuItemsLists = DB::table('menus')->where('titulo','not like','Sushi Personalizado')->get();
         $menuItems = DB::table('orders_menuItems')->where('id_pedido',$order->id)->get();
         
-        return view('vendor.multiauth.admin.orders.show',compact('order','menuItems','menuItemsLists','personalizars'))->with('i', (request()->input('page', 1) - 1) * 5);
+        return redirect('admin/orders/'. $order->id )
+                        ->with('order')->with('menuItems')->with('menuItemsLists')->with('personalizars')
+                        ->with('success','Item agregado correctamente')
+                        ->with('i', (request()->input('page', 1) - 1) * 5);
 
         }//termino if personalizado
 
@@ -434,7 +488,10 @@ class OrderController extends Controller
         $menuItemsLists = DB::table('menus')->where('titulo','not like','Sushi Personalizado')->get();
         $menuItems = DB::table('orders_menuItems')->where('id_pedido',$order->id)->get();
         
-        return view('vendor.multiauth.admin.orders.show',compact('order','menuItems','menuItemsLists','personalizars'))->with('i', (request()->input('page', 1) - 1) * 5);
+        return redirect('admin/orders/'. $order->id )
+                        ->with('order')->with('menuItems')->with('menuItemsLists')->with('personalizars')
+                        ->with('success','Item agregado correctamente')
+                        ->with('i', (request()->input('page', 1) - 1) * 5);
 
         }// termino if estandar
         
@@ -480,13 +537,79 @@ class OrderController extends Controller
         $menuItemsLists = DB::table('menus')->where('titulo','not like','Sushi Personalizado')->get();
         $menuItems = DB::table('orders_menuItems')->where('id_pedido',$order->id)->get();
         
-        return view('vendor.multiauth.admin.orders.show',compact('order','menuItems','menuItemsLists','personalizars'))->with('i', (request()->input('page', 1) - 1) * 5);
+        return redirect('admin/orders/'. $order->id )
+                        ->with('order')->with('menuItems')->with('menuItemsLists')->with('personalizars')
+                        ->with('success','Item eliminado del pedido')
+                        ->with('i', (request()->input('page', 1) - 1) * 5);
+
+        //return view('vendor.multiauth.admin.orders.show',compact('order','menuItems','menuItemsLists','personalizars'))->with('i', (request()->input('page', 1) - 1) * 5);
 
         
 
     }
-    public function quitarItem2(Request $request)
+    public function registrarPago(Request $request, Order $order)
     {
+        //
+
+        $request->validate([
+
+        'metodo_pago' => 'required',
+        'tipo_documento' => 'required',
+
+        ]);
+
+        //Actualizar estado de pedido
+        $actualizarPedido = Order::find($request->order_id);
+        $actualizarPedido->estado = 'Pagado';
+        $actualizarPedido->save();
+
+        //Registrar el Pago
+        $pago = new Sale;
+        $pago->fecha_pago = Carbon::now();
+        $pago->metodo_pago = $request->metodo_pago;
+
+        if($request->rut=== ''){
+            $pago->rut = '';
+
+        }else{
+            $pago->rut = $request->rut;
+
+        }
+
+        $pago->tipo_documento = $request->tipo_documento;
+
+        if($request->nombre_empresa=== ''){
+            $pago->nombre_empresa = '';
+
+        }else{
+            $pago->nombre_empresa = $request->nombre_empresa;
+
+        }
+
+        if($request->rut_empresa=== ''){
+            $pago->rut_empresa = '';
+
+        }else{
+            $pago->rut_empresa = $request->rut_empresa;
+
+        }
+
+        $pago->precio_total = $request->precio_total;
+        $pago->id_pedido = $request->order_id;
+
+        $pago->save();
+
+        //retornar
+        $order = DB::table('orders')->where('id',$request->order_id)->first();
+        $personalizars = DB::table('ingredients')->select('name', 'categoria')->get();
+        $menuItemsLists = DB::table('menus')->where('titulo','not like','Sushi Personalizado')->get();
+        $menuItems = DB::table('orders_menuItems')->where('id_pedido',$order->id)->get();
+        
+        return redirect('admin/orders/'. $order->id )
+                        ->with('order')->with('menuItems')->with('menuItemsLists')->with('personalizars')
+                        ->with('success','El pago del pedido ha sido registrado')
+                        ->with('i', (request()->input('page', 1) - 1) * 5);
+        
 
     }
 
