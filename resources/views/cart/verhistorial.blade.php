@@ -5,7 +5,15 @@
 <br>
 <div class="container">
     <div class="row">
-       
+        @if ($message = Session::get('success'))
+
+        <div class="alert alert-success">
+
+            <p>{{ $message }}</p>
+
+        </div>
+
+    @endif
         <div class="col-lg-12 margin-tb">
 
             <div class="pull-left">
@@ -121,9 +129,6 @@
 
             <th>Cantidad</th>
 
-            <th>Imagen</th>
-
-            <th width="280px">Acción</th>
 
         </tr>
 
@@ -139,12 +144,6 @@
 
             <td> {{ $menuItem->cantidad }}</td>
 
-            <td> imagen</td>
-
-            <td>
-
-
-            </td>
 
         </tr>
 

@@ -29,10 +29,17 @@ class OrderController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function index()
+    public function index(Request $request)
     {
         //
-        $orders = Order::orderBy('created_at', 'ASC')->paginate(15);
+        $estado = $request->get('estado');
+        $fecha = $request->get('fecha_entrega');
+        
+        $orders = Order::orderBy('created_at', 'ASC')
+            ->estado($estado)
+            ->fecha($fecha)
+            ->paginate(15);
+        
         return view('vendor.multiauth.admin.orders.index',compact('orders'))
                     ->with('i', (request()->input('page', 1) - 1) * 15);
     }

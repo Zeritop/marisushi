@@ -11,4 +11,18 @@ class Menu extends Model
         'titulo', 'descripcion', 'precio', 'foto'
 
     ];
+    
+     //Scopes
+    
+    public function scopeTitulo($query, $titulo){
+        if($titulo){
+            return $query->where('titulo', 'LIKE', "%$titulo%");
+        }
+    }
+    
+    public function scopeDescripcion($query, $descripcion){
+        if($descripcion){
+            return $query->where('descripcion', 'LIKE', "%$descripcion%");
+        }
+    }
 }

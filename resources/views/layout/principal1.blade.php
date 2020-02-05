@@ -126,6 +126,7 @@
                                 </a>
 
                                 <div class="dropdown-menu dropdown-menu-right" aria-labelledby="navbarDropdown">
+                                    <a class="dropdown-item" href="{{ route('cart.historial') }}">Mis Pedidos</a>
                                     <a class="dropdown-item" href="{{ route('logout') }}"
                                        onclick="event.preventDefault();
                                                      document.getElementById('logout-form').submit();">
@@ -194,7 +195,6 @@
 							<li><a href="personalizar">Personalizar</a></li>
 							<li><a href="contacto">Contactanos</a></li>
                             <li><a href="{{ route('cart.show') }}"><span class="fa fa-shopping-cart">My cart ({{ session()->has('cart') ? session()->get('cart')->totalQty : '0'}})</span></a></li>
-                            <li><a href="{{ route('cart.historial') }}">Historial</a></li>
 						</ul>
 					</nav>
 				</div>

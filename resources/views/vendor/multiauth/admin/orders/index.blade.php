@@ -1,4 +1,14 @@
 <head>
+    
+<link href="//cdnjs.cloudflare.com/ajax/libs/bootstrap-datetimepicker/4.17.37/css/bootstrap-datetimepicker.css" rel="stylesheet"/>
+       
+
+<script src="//cdnjs.cloudflare.com/ajax/libs/jquery/2.1.3/jquery.js"></script>
+<script src="//cdnjs.cloudflare.com/ajax/libs/moment.js/2.15.2/moment.min.js"></script>
+<script src="//cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/3.3.7/js/bootstrap.js"></script>
+<script src="//cdnjs.cloudflare.com/ajax/libs/bootstrap-datetimepicker/4.17.37/js/bootstrap-datetimepicker.min.js"></script>
+
+
     <script type="text/javascript" src="https://www.gstatic.com/charts/loader.js"></script>
     <script type="text/javascript">
       google.charts.load("current", {packages:["corechart"]});
@@ -29,9 +39,8 @@
 <br>
 <div class="container">
     <div class="row">
-
         <div class="col-lg-12 margin-tb">
-
+ 
             <div class="pull-left">
 
                 <h2>Sección de Pedidos</h2>
@@ -59,7 +68,29 @@
         </div>
 
     @endif
-
+    <form action="orders" method="get">
+        
+        <div class="row">
+        <div class="col-md-3">
+            <div class="form-group">
+                <input type="text" class="form-control" name="estado" placeholder="Estado">
+            </div>  
+            
+        </div>
+            <div class="col-md-3">
+             <div class="form-group">
+              <input type="date" class="form-control" name="fecha_entrega" placeholder="Fecha">
+                 
+            </div>
+            </div>
+           
+            <div class="form-group">
+                <button type="submit" class="btn btn-primary" style="height: 35px;"><i class="glyphicon glyphicon-search"></i></button>
+            </div>
+        </div>
+        
+    </form>
+    
    
 
     <table class="table table-hover">
@@ -110,4 +141,33 @@
       
 
 @endsection
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.15.1/moment.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/3.3.7/js/bootstrap.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-datetimepicker/4.7.14/js/bootstrap-datetimepicker.min.js"></script>
+<script type="text/javascript">
+        $(function () {
+            $('#datetimepicker').datetimepicker({
+                //format: 'DD/MM/YYYY HH:mm',
+                minDate: new Date(),
+                daysOfWeekDisabled: [6]
+
+
+
+
+            });
+        });
+        $(function () {
+            $('#datetimepicker2').datetimepicker({
+                //format: 'DD/MM/YYYY HH:mm',
+                minDate: new Date(),
+                daysOfWeekDisabled: [6]
+
+
+
+
+            });
+        });
+    
+    </script>
 

@@ -35,7 +35,28 @@
 
     @endif
 
-   
+   <form action="menus" method="get">
+        
+        <div class="row">
+        <div class="col-md-3">
+            <div class="form-group">
+                <input type="text" class="form-control" name="titulo" placeholder="Titulo">
+            </div>  
+            
+        </div>
+            <div class="col-md-3">
+             <div class="form-group">
+              <input type="text" class="form-control" name="descripcion" placeholder="Descripcion">
+                 
+            </div>
+            </div>
+           
+            <div class="form-group">
+                <button type="submit" class="btn btn-primary" style="height: 35px;"><i class="glyphicon glyphicon-search"></i></button>
+            </div>
+        </div>
+        
+    </form>
 
     <table class="table table-hover">
 

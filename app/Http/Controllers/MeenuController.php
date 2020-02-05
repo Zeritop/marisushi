@@ -248,9 +248,9 @@ class MeenuController extends Controller
         $pedido_menuItem->titulo = $titulo;
         $pedido_menuItem->cantidad = $cantidad;
         $pedido_menuItem->precio = $precio_item;
-        $pedido_menuItem->id_pedido = $pedido->id;  //id del pedido de arriba
-        $pedido_menuItem->save();
-
+        $pedido_menuItem->id_pedido = $pedido->id;  //id del pedido de arribas
+        $pedido_menuItem->save();        
+        
     }
         //retornar con los strings  
         $order= $pedido;
@@ -258,9 +258,15 @@ class MeenuController extends Controller
         $menuItemsLists = DB::table('menus')->where('titulo','not like','Sushi Personalizado')->get();
         $menuItems = DB::table('orders_menuItems')->where('id_pedido',$order->id)->get(); 
         
+     
+        if(session()->has('cart')){
+            
+            session()->forget('cart');
+                
+        }
         //return view('cart.show',compact('order','menuItems','menuItemsLists','personalizars', 'cart'))->with('i', (request()->input('page', 1) - 1) * 5);
-
-        return redirect()->route('cart.detalles')->with('success', 'Pedido realizo exitosamente' );
+        
+        return redirect()->route('cart.historial')->with('success', 'Pedido realizo exitosamente' );
         
         //end if personalizar
 

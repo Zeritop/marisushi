@@ -22,9 +22,15 @@ class MenuController extends Controller
         $this->middleware('role:super', ['only'=>'show']);
     }
 
-    public function index()
+    public function index(Request $request)
     {
+        
+        $titulo = $request->get('titulo');
+        $descripcion = $request->get('descripcion');
+        
         $menus = Menu::orderBy('created_at', 'ASC')
+        ->titulo($titulo) 
+        ->descripcion($descripcion)    
         ->paginate(5);
   
         return view('vendor.multiauth.admin.menus.index',compact('menus'))
