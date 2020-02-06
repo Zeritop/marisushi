@@ -56,10 +56,12 @@
             </div>
 
             <div class="pull-right">
+              
+              @if(!$order->estado === 'Pagado')
                 <button type="button" class="btn btn-success" data-toggle="modal" data-target="#personalizado" data-whatever="@personalizado">Agregar Personalizado</button>
 
                 <button type="button" class="btn btn-success" data-toggle="modal" data-target="#estandar" data-whatever="@estandar">Agregar Item Menu</button>
-
+              @endif
                 <a class="btn btn-primary" href="{{ route('orders.index') }}"> Atras</a>
 
             </div>

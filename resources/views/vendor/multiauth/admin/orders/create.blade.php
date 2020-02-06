@@ -327,9 +327,6 @@
                 minDate: new Date(),
                 daysOfWeekDisabled: [6]
 
-
-
-
             });
         });
     

@@ -74,21 +74,21 @@
                         </a>
                     </li>
                     <li>
+                        <a class="nav-link" href="{{ url('admin/sales') }}">
+                            <i class="nc-icon nc-pin-3"></i>
+                            <p>Libro de Ventas</p>
+                        </a>
+                    </li>
+                    <li>
                         <a class="nav-link" href="{{ url('admin/discounts') }}">
                             <i class="nc-icon nc-atom"></i>
                             <p>Descuentos</p>
                         </a>
                     </li>
                     <li>
-                        <a class="nav-link" href="./maps.html">
-                            <i class="nc-icon nc-pin-3"></i>
-                            <p>Libro de Ventas</p>
-                        </a>
-                    </li>
-                    <li>
                         <a class="nav-link" href="./notifications.html">
                             <i class="nc-icon nc-bell-55"></i>
-                            <p>Notifications</p>
+                            <p>algo?</p>
                         </a>
                     </li>
 

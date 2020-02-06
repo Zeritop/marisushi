@@ -177,6 +177,7 @@ return [
 
 
         NZTim\Mailchimp\MailchimpServiceProvider::class,
+        Barryvdh\DomPDF\ServiceProvider::class,
 
     ],
 
@@ -230,6 +231,7 @@ return [
         'View' => Illuminate\Support\Facades\View::class,
 
         'Mailchimp' => NZTim\Mailchimp\MailchimpFacade::class,
+        'PDF' => Barryvdh\DomPDF\Facade::class,
 
     ],
 

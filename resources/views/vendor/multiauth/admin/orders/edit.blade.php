@@ -80,10 +80,12 @@
             <input type="text" class="form-control" value="{{ $order->nombre_retira }}" name="nombreRetira"> 
           </div>
 
+          @if(!($order->estado === 'Pagado'))
           <div class="form-group">
             <label for="message-text" class="col-form-label">Porcentaje de descuento(Para eliminar un descuento, ingresar el valor 0)</label>
             <input type="number" class="form-control" value="{{ $order->descuento }}" name="descuento" placeholder="Ejemplo: 10 (sin el signo %)">
           </div>
+          @endif
 
           <div class="form-group">
             <label for="message-text" class="col-form-label">Numero de Telefono</label>
@@ -93,7 +95,7 @@
            <div class="form-group">
             <label for="message-text" class="col-form-label">Fecha y Hora de Retiro del Pedido</label>
             <div class='input-group date' id='datetimepicker'>
-                <input type='text' class="form-control" value="{{ $order->fechaEntrega }}"name="fechaEntrega"/>
+                <input type='date' class="form-control" value="{{ $order->fechaEntrega }}"name="fechaEntrega"/>
                 <span class="input-group-addon">
                     <span class="glyphicon glyphicon-calendar">
                     </span>

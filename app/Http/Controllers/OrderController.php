@@ -303,6 +303,8 @@ class OrderController extends Controller
         //
         $request->validate([
 
+            //sacar descuento obligatorio
+
             'nombreRetira' => 'required|min:2',
             'telefono' => 'required|min:5',
             //'fechaEntrega' => 'required|after:yesterday',

@@ -28,6 +28,10 @@ class StatusesTableSeeder extends Seeder
             'name' => 'Pagado',
         ]);
 
+        DB::table('statuses')->insert([
+            'name' => 'Entregado',
+        ]);
+
         
     }
 }

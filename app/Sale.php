@@ -12,4 +12,6 @@ class Sale extends Model
         'metodo_pago'
 
     ];
+
+    protected $dates = ['fecha_pago'];
 }

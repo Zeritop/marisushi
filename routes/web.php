@@ -61,6 +61,9 @@ Route::resource('admin/products','ProductController');
 Route::resource('admin/ingredients','IngredientController');
 Route::resource('admin/discounts','DiscountController');
 
+Route::resource('admin/sales','SaleController');
+Route::post('admin/sales/generarInforme','SaleController@generarInforme')->name('sales.generarInforme');
+
 Route::resource('admin/orders','OrderController');
 
 Route::post('admin/orders/{id}/agregarItem','OrderController@agregarItem')->name('orders.agregarItem');
@@ -76,4 +79,4 @@ Route::resource('menu','MeenuController');
 Route::resource('personalizar','PersonalizarController');
 Route::post('personalizar','PersonalizarController@addToCart')->name('personalizar.addToCart');
 
-//Route::resource('/contacto','ContactController')->middleware('verified'); ejemplo para verificacion de email requerida
+//Route::resource('/contacto','ContactController')->middleware('verified'); 
