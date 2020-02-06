@@ -1,4 +1,4 @@
-@extends('vendor.multiauth.admin.administrador.layout')
+@extends('vendor.multiauth.admin.administrador.layoutDTpicker')
 
 
 @section('content')
@@ -46,7 +46,7 @@
                 @endif
 
                 @if($order->estado === 'Listo para Retirar')
-                <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#registrarPago" data-whatever="@registrarPago">
+                <button type="button" class="btn btn-success" data-toggle="modal" data-target="#registrarPago" data-whatever="@registrarPago">
                 Registrar Pago</button>
                 @endif
 
@@ -57,10 +57,12 @@
 
             <div class="pull-right">
               
-              @if(!$order->estado === 'Pagado')
-                <button type="button" class="btn btn-success" data-toggle="modal" data-target="#personalizado" data-whatever="@personalizado">Agregar Personalizado</button>
+              @if($order->estado === 'Pendiente')
+                <button type="button" class="btn btn-success" data-toggle="modal" data-target="#personalizado" data-whatever="@personalizado">
+                Agregar Item Personalizado</button>
 
-                <button type="button" class="btn btn-success" data-toggle="modal" data-target="#estandar" data-whatever="@estandar">Agregar Item Menu</button>
+                <button type="button" class="btn btn-success" data-toggle="modal" data-target="#estandar" data-whatever="@estandar">
+                Agregar Item Menu</button>
               @endif
                 <a class="btn btn-primary" href="{{ route('orders.index') }}"> Atras</a>
 
@@ -196,7 +198,7 @@
 
             <td> {{ $menuItem->titulo }}</td>
 
-            <td> ingredienteskkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkk</td>
+            <td> ingredientesk</td>
 
             <td> {{ $menuItem->precio }}</td>
 
@@ -288,20 +290,89 @@
 
 
 
+</div> <!-- fin container -->
+</div>
 
-<!-- modal  personalizado -->
-<div class="form-group"> 
 
+<!-- Modal de Pago-->
+<div class="modal fade" id="registrarPago" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="exampleModalLabel">Registrar Pago</h5>
+      </div>
+      <div class="modal-body">
+        <p><strong>Precio Total: </strong>$ {{ $order->precio_total_con_descuento }} </p>
+        <form action="{{ route('orders.registrarPago',$order->id) }}" method="POST">
+            @csrf
+
+                          <!-- METODO DE PAGO -->
+          <input type="hidden"  name="order_id" value=" {{ $order->id }} ">
+          <input type="hidden"  name="precio_total" value=" {{ $order->precio_total_con_descuento }} ">
+
+          <div class="form-group">
+            <label for="recipient-name" class="col-form-label">Metodo de Pago</label>
+              <select name="metodo_pago" class="form-control" style="height: 40px;" onchange="yesnoCheckMetodo(this);">
+                  <option disabled selected>Selecciona un Método de Pago</option>
+                  <option value="Efectivo">Efectivo</option>
+                  <option value="Tarjeta">Tarjeta de Crédito o Débito</option>
+                  <option value="Transferencia">Transferencia Electronica</option>
+              </select>
+          </div>
+
+          <div class="form-group" id="ifTransferencia" style="display: none;">
+                  <label for="recipient-name" class="col-form-label">Rut: (Opcional)</label> 
+                  <input type="text" class="form-control" id="txt_rut" name="rut" onblur="onRutBlur(this);" placeholder="Ejemplo: 11111111-1">               
+                  <h5 class="text-primary" id="msgValidator"></h5>
+                  
+          </div>
+
+                        <!-- TIPO DE DOCUMENTO-->
+
+          <div class="form-group">
+            <label for="recipient-name" class="col-form-label">Tipo de Documento</label>
+              <select name="tipo_documento" class="form-control" style="height: 40px;" onchange="yesnoCheck2(this);">
+                  <option disabled selected>Selecciona un tipo de Documento</option>
+                  <option value="Boleta">Boleta</option>
+                  <option value="Factura">Factura</option>
+              </select>
+          </div>
+
+          <div class="form-group" id="ifFactura" style="display: none;">
+                  <label for="recipient-name" class="col-form-label">Nombre de Empresa: (Opcional)</label> 
+                  <input type="text" class="form-control" id="txt_nombre_empresa" name="nombre_empresa" placeholder="Nombre de Empresa">
+          </div>
+
+          <div class="form-group" id="ifFactura2" style="display: none;">
+                  <label for="recipient-name" class="col-form-label">Rut Empresa: (Opcional)</label> 
+                  <input type="text" class="form-control" id="txt_rut_empresa" name="rut_empresa"  onblur="onRutEmpresaBlur(this);" placeholder="Ejemplo: 111111111-1">
+                  <h5 class="text-primary" id="msgValidatorE"></h5>
+          </div>
+
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" data-dismiss="modal">Cancelar</button>
+        <button type="submit" class="btn btn-primary">Registrar Pago</button>
+      </div>
+      </form>
+    </div>
+  </div>
+</div>
+
+</div>
+
+<!-- Fin Modal Pago-->
+
+
+<!-- MODAL PERSONALIZAR-->
 <div class="modal fade" id="personalizado" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
   <div class="modal-dialog" role="document">
     <div class="modal-content">
-      
       <div class="modal-header">
-        <h5 class="modal-title" id="exampleModalLabel">Agregar Item Personalizado</h5>
+        <h5 class="modal-title" id="exampleModalLabel">Agregar Item con Ingredientes Personalizado</h5>
       </div>
-
       <div class="modal-body">
-        <form action="{{ route('orders.agregarItem',$order->id) }}" method="POST">
+          <form action="{{ route('orders.agregarItem',$order->id) }}" method="POST">
             @csrf
           <div class="form-group">
             <label for="recipient-name" class="col-form-label">Ingrediente Esencial</label>
@@ -376,37 +447,29 @@
           </div>
 
       </div>
-
-
       <div class="modal-footer">
-        <button type="button" class="btn btn-secondary" data-dismiss="modal">Cerrar</button>
-        <button type="submit" class="btn btn-primary">Agregar Item</button>
+        <button type="button" class="btn btn-secondary" data-dismiss="modal">Cancelar</button>
+        <button type="submit" class="btn btn-primary">Registrar Pago</button>
       </div>
-
-</form>
-
+      </form>
     </div>
   </div>
 </div>
 
 </div>
 
-</div><!-- fin modal personalizado-->
+<!-- Fin Modal NUEVO PERSONALIZAR-->
 
-
-<!-- modal estandar-->
-
+<!-- Nuevo modal ESTANDAR-->
 
 <div class="modal fade" id="estandar" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
   <div class="modal-dialog" role="document">
     <div class="modal-content">
-      
       <div class="modal-header">
         <h5 class="modal-title" id="exampleModalLabel">Agregar Item del Menú</h5>
       </div>
-
       <div class="modal-body">
-        <form action="{{ route('orders.agregarItem',$order->id) }}" method="POST">
+          <form action="{{ route('orders.agregarItem',$order->id) }}" method="POST">
             @csrf
           <div class="form-group">
             <label for="recipient-name" class="col-form-label">Item del menu</label>
@@ -431,79 +494,6 @@
           </div>
 
       </div>
-
-
-      <div class="modal-footer">
-        <button type="button" class="btn btn-secondary" data-dismiss="modal">Cerrar</button>
-        <button type="submit" class="btn btn-primary">Agregar Item</button>
-      </div>
-
-</form>
-
-    </div>
-  </div>
-</div>
-
-
-</div>
-<!-- fin modal estandar-->
-
-
-<!-- Modal de Pago-->
-<div class="modal fade" id="registrarPago" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
-  <div class="modal-dialog" role="document">
-    <div class="modal-content">
-      <div class="modal-header">
-        <h5 class="modal-title" id="exampleModalLabel">Registrar Pago</h5>
-      </div>
-      <div class="modal-body">
-        <p><strong>Precio Total: </strong>$ {{ $order->precio_total_con_descuento }} </p>
-        <form action="{{ route('orders.registrarPago',$order->id) }}" method="POST">
-            @csrf
-
-                          <!-- METODO DE PAGO -->
-          <input type="hidden"  name="order_id" value=" {{ $order->id }} ">
-          <input type="hidden"  name="precio_total" value=" {{ $order->precio_total_con_descuento }} ">
-
-          <div class="form-group">
-            <label for="recipient-name" class="col-form-label">Metodo de Pago</label>
-              <select name="metodo_pago" class="form-control" style="height: 40px;" onchange="yesnoCheckMetodo(this);">
-                  <option disabled selected>Selecciona un Método de Pago</option>
-                  <option value="Efectivo">Efectivo</option>
-                  <option value="Tarjeta">Tarjeta de Crédito o Débito</option>
-                  <option value="Transferencia">Transferencia Electronica</option>
-              </select>
-          </div>
-
-          <div class="form-group" id="ifTransferencia" style="display: none;">
-                  <label for="recipient-name" class="col-form-label">Rut: (Opcional)</label> 
-                  <input type="text" class="form-control" id="txt_rut" name="rut" onblur="onRutBlur(this);" placeholder="Ejemplo: 11111111-1">               
-                  <h5 class="text-primary" id="msgValidator"></h5>
-                  
-          </div>
-
-                        <!-- TIPO DE DOCUMENTO-->
-
-          <div class="form-group">
-            <label for="recipient-name" class="col-form-label">Tipo de Documento</label>
-              <select name="tipo_documento" class="form-control" style="height: 40px;" onchange="yesnoCheck2(this);">
-                  <option disabled selected>Selecciona un tipo de Documento</option>
-                  <option value="Boleta">Boleta</option>
-                  <option value="Factura">Factura</option>
-              </select>
-          </div>
-
-          <div class="form-group" id="ifFactura" style="display: none;">
-                  <label for="recipient-name" class="col-form-label">Nombre de Empresa: (Opcional)</label> 
-                  <input type="text" class="form-control" id="txt_nombre_empresa" name="nombre_empresa" placeholder="Nombre de Empresa">
-          </div>
-
-          <div class="form-group" id="ifFactura2" style="display: none;">
-                  <label for="recipient-name" class="col-form-label">Rut Empresa: (Opcional)</label> 
-                  <input type="text" class="form-control" id="txt_rut_empresa" name="rut_empresa" placeholder="Ejemplo: 111111111-1">
-          </div>
-
-      </div>
       <div class="modal-footer">
         <button type="button" class="btn btn-secondary" data-dismiss="modal">Cancelar</button>
         <button type="submit" class="btn btn-primary">Registrar Pago</button>
@@ -513,9 +503,13 @@
   </div>
 </div>
 
-<!-- Fin Modal Pago-->
+</div>
 
-</div> <!-- fin container -->
+<!-- Fin modal NUEVO ESTANDAR-->
+
+
+
+@endsection
 
 <script type="text/javascript">
 function yesnoCheckMetodo(that) {
@@ -547,6 +541,13 @@ function onRutBlur(obj) {
           $("#msgValidator").html("El Rut Ingresado es Válido");
         else 
           $("#msgValidator").html("El Rut Ingresado es Invalido");
+      }
+
+function onRutEmpresaBlur(obj) {
+        if (VerificaRut(obj.value))
+          $("#msgValidatorE").html("El Rut Ingresado es Válido");
+        else 
+          $("#msgValidatorE").html("El Rut Ingresado es Invalido");
       }
 
 
@@ -594,6 +595,7 @@ function VerificaRut(rut) {
 }
 
 
+
+
 </script>
 
-@endsection

@@ -112,7 +112,7 @@ class OrderController extends Controller
 
         }
 
-        if($request->descuento === ''){
+        if($request->descuento === NULL){
             $pedido->descuento = 0;
             $pedido->descuento_aplicado  = false;
             $pedido->precio_total_sin_descuento = $precio;
@@ -215,7 +215,7 @@ class OrderController extends Controller
 
         }
 
-        if($request->descuento === ''){
+        if($request->descuento === NULL){
             $pedido->descuento = 0;
             $pedido->descuento_aplicado  = false;
             $pedido->precio_total_sin_descuento = $precio;
@@ -302,8 +302,6 @@ class OrderController extends Controller
     {
         //
         $request->validate([
-
-            //sacar descuento obligatorio
 
             'nombreRetira' => 'required|min:2',
             'telefono' => 'required|min:5',

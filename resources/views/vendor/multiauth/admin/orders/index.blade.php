@@ -1,14 +1,4 @@
 <head>
-    
-<link href="//cdnjs.cloudflare.com/ajax/libs/bootstrap-datetimepicker/4.17.37/css/bootstrap-datetimepicker.css" rel="stylesheet"/>
-       
-
-<script src="//cdnjs.cloudflare.com/ajax/libs/jquery/2.1.3/jquery.js"></script>
-<script src="//cdnjs.cloudflare.com/ajax/libs/moment.js/2.15.2/moment.min.js"></script>
-<script src="//cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/3.3.7/js/bootstrap.js"></script>
-<script src="//cdnjs.cloudflare.com/ajax/libs/bootstrap-datetimepicker/4.17.37/js/bootstrap-datetimepicker.min.js"></script>
-
-
     <script type="text/javascript" src="https://www.gstatic.com/charts/loader.js"></script>
     <script type="text/javascript">
       google.charts.load("current", {packages:["corechart"]});
@@ -141,33 +131,5 @@
       
 
 @endsection
-<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
-<script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.15.1/moment.min.js"></script>
-<script src="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/3.3.7/js/bootstrap.min.js"></script>
-<script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-datetimepicker/4.7.14/js/bootstrap-datetimepicker.min.js"></script>
-<script type="text/javascript">
-        $(function () {
-            $('#datetimepicker').datetimepicker({
-                //format: 'DD/MM/YYYY HH:mm',
-                minDate: new Date(),
-                daysOfWeekDisabled: [6]
 
-
-
-
-            });
-        });
-        $(function () {
-            $('#datetimepicker2').datetimepicker({
-                //format: 'DD/MM/YYYY HH:mm',
-                minDate: new Date(),
-                daysOfWeekDisabled: [6]
-
-
-
-
-            });
-        });
-    
-    </script>
 

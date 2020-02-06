@@ -7,7 +7,7 @@
 <script src="//cdnjs.cloudflare.com/ajax/libs/bootstrap-datetimepicker/4.17.37/js/bootstrap-datetimepicker.min.js"></script>
 </head>
 
-@extends('vendor.multiauth.admin.administrador.layout')
+@extends('vendor.multiauth.admin.administrador.layoutDTpicker')
 
 @section('content')
 <br>
@@ -54,108 +54,27 @@
 
 @endif
 
-<button type="button" class="btn btn-primary" data-toggle="modal" data-target="#personalizado" data-whatever="@personalizado">Agregar menu personalizado</button>
-<button type="button" class="btn btn-primary" data-toggle="modal" data-target="#estandar" data-whatever="@estandar">Agregar item desde menu</button>
+<button type="button" class="btn btn-success" data-toggle="modal" data-target="#personalizado" data-whatever="@personalizado">
+                Agregar Item Personalizado</button>
+
+<button type="button" class="btn btn-success" data-toggle="modal" data-target="#estandar" data-whatever="@estandar">Agregar item desde menu</button>
 
 
 
-<div class="form-group">
-
-<div class="modal fade" id="estandar" tabindex="-1" role="dialog" aria-labelledby="estandarLabel" aria-hidden="true">
-  <div class="modal-dialog" role="document">
-    <div class="modal-content">
-      
-      <div class="modal-header">
-        <h5 class="modal-title" id="exampleModalLabel">Nuevo Pedido</h5>
-      </div>
-
-      <div class="modal-body">
-        <form action="{{ route('orders.store') }}" method="POST">
-            @csrf
-            <input type="hidden"  name="tipo" value="estandar">
-          <div class="form-group">
-            <label for="recipient-name" class="col-form-label">Item del menu</label>
-            <select class="form-control" name="menuItem" style="height: 50px;">
-                    <option disabled selected>Selecciona una opción</option>
-
-                    @foreach ($menuItems as $menuItem)
-
-                    <option value=" {{ $menuItem->id }} "> {{ $menuItem->titulo }} </option>
-
-                    @endforeach
-
-            </select>
-          </div>
-        
-          <div class="form-group">
-            <label for="message-text" class="col-form-label">Cantidad</label>
-            <input type="number" min="1" class="form-control" name="cantidad">
-          </div>
-
-          <div class="form-group">
-            <label for="message-text" class="col-form-label">Nombre de Quien Retira el Pedido</label>
-            <input type="text" class="form-control" name="nombreRetira">
-          </div>
-
-          <div class="form-group">
-            <label for="message-text" class="col-form-label">Porcentaje de descuento(Opcional)</label>
-            <input type="number" class="form-control" name="descuento" placeholder="Ejemplo: 10 (sin el signo %)">
-          </div>
-
-          <div class="form-group">
-            <label for="message-text" class="col-form-label">Numero de Telefono</label>
-            <input type="number" class="form-control" name="telefono">
-          </div>
-
-           <div class="form-group">
-            <label for="message-text" class="col-form-label">Fecha y Hora de Retiro del Pedido</label>
-            <div class='input-group date' id='datetimepicker'>
-                <input type='text' class="form-control" name="fechaEntrega"/>
-                <span class="input-group-addon">
-                    <span class="glyphicon glyphicon-calendar">
-                    </span>
-                </span>
-            </div>
-        </div>
-
-        <div class="form-group">
-            <label for="message-text" class="col-form-label">Observación</label>
-            <textarea class="form-control" style="height:150px" name="descripcion" placeholder="Opcional"></textarea>
-          </div>
-
-
-      </div>
-
-
-      <div class="modal-footer">
-        <button type="button" class="btn btn-secondary" data-dismiss="modal">Cerrar</button>
-        <button type="submit" class="btn btn-primary">Realizar Pedido</button>
-      </div>
-
-</form>
-
-    </div>
-  </div>
-</div>
-
-</div><!-- form group -->
+</div><!-- container -->
 
 </div>
 
-<!-- modal de personalizado -->
 
-<div class="form-group">
-
-<div class="modal fade" id="personalizado" tabindex="-1" role="dialog" aria-labelledby="personalizadoLabel" aria-hidden="true">
+<!-- MODAL PERSONALIZAR-->
+<div class="modal fade" id="personalizado" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
   <div class="modal-dialog" role="document">
     <div class="modal-content">
-      
       <div class="modal-header">
-        <h5 class="modal-title" id="exampleModalLabel">Nuevo Pedido Personalizado</h5>
+        <h5 class="modal-title" id="exampleModalLabel">Agregar Item con Ingredientes Personalizado</h5>
       </div>
-
       <div class="modal-body">
-        <form action="{{ route('orders.store') }}" method="POST">
+          <form action="{{ route('orders.store') }}" method="POST">
             @csrf
             <input type="hidden"  name="tipo" value="personalizado">
 
@@ -259,54 +178,97 @@
             <textarea class="form-control" style="height:150px" name="descripcion" placeholder="Opcional"></textarea>
           </div>
 
-
       </div>
-
-
       <div class="modal-footer">
-        <button type="button" class="btn btn-secondary" data-dismiss="modal">Cerrar</button>
-        <button type="submit" class="btn btn-primary">Realizar Pedido</button>
+        <button type="button" class="btn btn-secondary" data-dismiss="modal">Cancelar</button>
+        <button type="submit" class="btn btn-primary">Registrar Pago</button>
       </div>
-
-</form>
-
+      </form>
     </div>
   </div>
 </div>
 
-</div><!-- form group -->
-
 </div>
 
-</div>
-<br>
+<!-- Fin Modal NUEVO PERSONALIZAR-->
 
-<!-- ejemplo modal -->
-<!-- Button trigger modal -->
-<button type="button" class="btn btn-primary" data-toggle="modal" data-target="#exampleModal">
-  Launch demo modal
-</button>
-
-<!-- Modal -->
-<div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+<!-- MODAL PERSONALIZAR-->
+<div class="modal fade" id="estandar" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
   <div class="modal-dialog" role="document">
     <div class="modal-content">
       <div class="modal-header">
-        <h5 class="modal-title" id="exampleModalLabel">Modal title</h5>
-        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-          <span aria-hidden="true">&times;</span>
-        </button>
+        <h5 class="modal-title" id="exampleModalLabel">Agregar Item del Menú</h5>
       </div>
       <div class="modal-body">
-        ...
+          <form action="{{ route('orders.store') }}" method="POST">
+            @csrf
+            <input type="hidden"  name="tipo" value="estandar">
+          <div class="form-group">
+            <label for="recipient-name" class="col-form-label">Item del menu</label>
+            <select class="form-control" name="menuItem" style="height: 50px;">
+                    <option disabled selected>Selecciona una opción</option>
+
+                    @foreach ($menuItems as $menuItem)
+
+                    <option value=" {{ $menuItem->id }} "> {{ $menuItem->titulo }} </option>
+
+                    @endforeach
+
+            </select>
+          </div>
+        
+          <div class="form-group">
+            <label for="message-text" class="col-form-label">Cantidad</label>
+            <input type="number" min="1" class="form-control" name="cantidad">
+          </div>
+
+          <div class="form-group">
+            <label for="message-text" class="col-form-label">Nombre de Quien Retira el Pedido</label>
+            <input type="text" class="form-control" name="nombreRetira">
+          </div>
+
+          <div class="form-group">
+            <label for="message-text" class="col-form-label">Porcentaje de descuento(Opcional)</label>
+            <input type="number" class="form-control" name="descuento" placeholder="Ejemplo: 10 (sin el signo %)">
+          </div>
+
+          <div class="form-group">
+            <label for="message-text" class="col-form-label">Numero de Telefono</label>
+            <input type="number" class="form-control" name="telefono">
+          </div>
+
+           <div class="form-group">
+            <label for="message-text" class="col-form-label">Fecha y Hora de Retiro del Pedido</label>
+            <div class='input-group date' id='datetimepicker'>
+                <input type='text' class="form-control" name="fechaEntrega"/>
+                <span class="input-group-addon">
+                    <span class="glyphicon glyphicon-calendar">
+                    </span>
+                </span>
+            </div>
+          </div>
+
+        <div class="form-group">
+            <label for="message-text" class="col-form-label">Observación</label>
+            <textarea class="form-control" style="height:150px" name="descripcion" placeholder="Opcional"></textarea>
+          </div>
+
       </div>
       <div class="modal-footer">
-        <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-        <button type="button" class="btn btn-primary">Save changes</button>
+        <button type="button" class="btn btn-secondary" data-dismiss="modal">Cancelar</button>
+        <button type="submit" class="btn btn-primary">Registrar Pago</button>
       </div>
+      </form>
     </div>
   </div>
 </div>
+
+</div>
+
+<!-- Fin Modal NUEVO ESTANDAR-->
+
+
+
 @endsection
 
 <script type="text/javascript">

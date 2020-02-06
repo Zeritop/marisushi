@@ -11,7 +11,7 @@
 
             <div class="pull-left">
 
-                <h2>Editar algo(Ingresar nombre producto aqui, no se como,aiuda)</h2>
+                <h2>Editar {{$product->name}}</h2>
 
             </div>
 
@@ -65,7 +65,7 @@
 
                     <strong>Cantidad:</strong>
 
-                    <input type="text" name="cantidad" value="{{ $product->cantidad }}" class="form-control" placeholder="Cantidad">
+                    <input type="number" name="cantidad" value="{{ $product->cantidad }}" class="form-control" placeholder="Cantidad">
 
                 </div>
 
@@ -77,7 +77,7 @@
 
                     <strong>Precio Inicial:</strong>
 
-                    <input type="text" name="precio_inicial" value="{{ $product->precio_inicial }}" class="form-control" placeholder="Precio inicial">
+                    <input type="number" name="precio_inicial" value="{{ $product->precio_inicial }}" class="form-control" placeholder="Precio inicial">
 
                 </div>
 
@@ -89,7 +89,7 @@
 
                     <strong>Precio Actual:</strong>
 
-                    <input type="text" name="precio_actual" value="{{ $product->precio_actual }}" class="form-control" placeholder="Precio Actual">
+                    <input type="number" name="precio_actual" value="{{ $product->precio_actual }}" class="form-control" placeholder="Precio Actual">
 
                 </div>
 
