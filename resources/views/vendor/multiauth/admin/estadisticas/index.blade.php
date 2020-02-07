@@ -90,6 +90,29 @@
       }
     </script>
     <!-- FIN GRAFICO INGREDIENTES -->
+    
+    <!-- GRAFICO VENTAS -->
+      <script type="text/javascript">
+      google.charts.load("current", {packages:["corechart"]});
+      google.charts.setOnLoadCallback(drawChart);
+      function drawChart() {
+        var data = google.visualization.arrayToDataTable([
+          ['Task', 'Hours per Day'],
+        @foreach ($contador_ventas as $cont)
+          ['{{ $cont->estado }}',    {{ $cont->contador }} ],
+        @endforeach    
+        ]);
+
+        var options = {
+          title: 'Ventas',
+          is3D: true,
+        };
+
+        var chart = new google.visualization.PieChart(document.getElementById('piechart_3d3'));
+        chart.draw(data, options);
+      }
+    </script>
+    <!-- FIN GRAFICO VENTAS -->
   </head>
 
 @extends('vendor.multiauth.admin.administrador.layout')
@@ -122,24 +145,11 @@
         <input type="text" name="ano_estado" class="form-control" placeholder="Año">
       </div>
         <div class="col-md-4">
-            <button type="submit" class="btn btn-default">Buscar</button>
+            <button type="submit" class="btn btn-primary">Buscar</button>
         </div>
         
     </form>
-      
-       <form action="{{ route('estadisticas') }}" method="get">
-      <div class="col-md-4">
-         <input type="text" name="mes_pedido" class="form-control" placeholder="Mes">
-      </div>
-      <div class="col-md-4">
-        <input type="text" name="ano_pedido" class="form-control" placeholder="Año">
-      </div>
-        <div class="col-md-4">
-            <button type="submit" class="btn btn-default">Buscar</button>
-        </div>
-        
-    </form>
-        
+              
     </div>
        <br>
     <div class="row">  

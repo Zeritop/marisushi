@@ -18,10 +18,7 @@
     <!-- CSS Just for demo purpose, don't include it in your project -->
     <!-- <link href="{{ asset('assets/css/demo.css') }}" rel="stylesheet" /> -->
     
-   <link href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.0.0-alpha/css/bootstrap.css" rel="stylesheet">
-
-
-
+   <link href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/3.3.7/css/bootstrap.css" rel="stylesheet">
     
 <!-- <link href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.0.0-alpha/css/bootstrap.css" rel="stylesheet"> -->
 
@@ -48,7 +45,7 @@
                 <ul class="nav">
                     <li class="nav-item active">
                         <a class="nav-link" href="{{ url('admin/home') }}">
-                            <i class="nc-icon nc-chart-pie-35"></i>
+                            <i class="nc-icon nc-grid-45"></i>
                             <p>Dashboard</p>
                         </a>
                     </li>
@@ -66,7 +63,7 @@
                     </li>
                     <li>
                         <a class="nav-link" href="{{ url('admin/products') }}">
-                            <i class="nc-icon nc-notes"></i>
+                            <i class="nc-icon nc-bag"></i>
                             <p>Inventario</p>
                         </a>
                     </li>
@@ -78,19 +75,19 @@
                     </li>
                     <li>
                         <a class="nav-link" href="{{ url('admin/sales') }}">
-                            <i class="nc-icon nc-pin-3"></i>
+                            <i class="nc-icon nc-map-big"></i>
                             <p>Libro de Ventas</p>
                         </a>
                     </li>
                     <li>
                         <a class="nav-link" href="{{ url('admin/discounts') }}">
-                            <i class="nc-icon nc-atom"></i>
+                            <i class="nc-icon nc-stre-down"></i>
                             <p>Descuentos</p>
                         </a>
                     </li>
                     <li>
                         <a class="nav-link" href="{{ url('admin/estadisticas') }}">
-                            <i class="nc-icon nc-bell-55"></i>
+                            <i class="nc-icon nc-chart-pie-35"></i>
                             <p>Estadisticas</p>
                         </a>
                     </li>
@@ -142,7 +139,41 @@
             </nav>
             <!-- End Navbar -->
    @yield('content')
-            
+            <footer class="footer">
+                <div class="container-fluid">
+                    <nav>
+                        <ul class="footer-menu">
+                            <li>
+                                <a href="#">
+                                    Home
+                                </a>
+                            </li>
+                            <li>
+                                <a href="#">
+                                    Company
+                                </a>
+                            </li>
+                            <li>
+                                <a href="#">
+                                    Portfolio
+                                </a>
+                            </li>
+                            <li>
+                                <a href="#">
+                                    Blog
+                                </a>
+                            </li>
+                        </ul>
+                        <p class="copyright text-center">
+                            ©
+                            <script>
+                                document.write(new Date().getFullYear())
+                            </script>
+                            <a href="http://www.creative-tim.com">Creative Tim</a>, made with love for a better web
+                        </p>
+                    </nav>
+                </div>
+            </footer>
         </div>
     </div>
     <!--   -->
@@ -231,11 +262,8 @@
 <script src="{{ asset('/assets/js/core/bootstrap.min.js') }}" type="text/javascript"></script>
 <!--  Plugin for Switches, full documentation here: http://www.jque.re/plugins/version3/bootstrap.switch/ -->
 <script src="{{ asset('/assets/js/plugins/bootstrap-switch.js') }}"></script>
-<!--  Google Maps Plugin    
-
+<!--  Google Maps Plugin    -->
 <script type="text/javascript" src="https://maps.googleapis.com/maps/api/js?key=YOUR_KEY_HERE"></script>
-
--->
 <!--  Chartist Plugin  -->
 <script src="{{ asset('/assets/js/plugins/chartist.min.js') }}"></script>
 <!--  Notifications Plugin    -->
@@ -255,12 +283,12 @@
 </script> -->
 
 <!-- probar si no se cae datepicker -->
-<!-- <script src="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/3.3.7/js/bootstrap.min.js"></script> 
+<!-- <script src="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/3.3.7/js/bootstrap.min.js"></script> -->
 
 <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.15.1/moment.min.js"></script>
-<script src="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.4.0-alpha/js/bootstrap.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/3.3.7/js/bootstrap.min.js"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-datetimepicker/4.7.14/js/bootstrap-datetimepicker.min.js"></script>
 
--->
+
 </html>
