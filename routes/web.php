@@ -60,6 +60,7 @@ Route::post('/unsubscribe', 'UnsubscribeController@unsubscribe')->name('unsubscr
 Route::resource('admin/products','ProductController');
 Route::resource('admin/ingredients','IngredientController');
 Route::resource('admin/discounts','DiscountController');
+Route::get('admin/estadisticas','EstadisticasController@index')->name('estadisticas');
 
 Route::resource('admin/sales','SaleController');
 Route::post('admin/sales/generarInforme','SaleController@generarInforme')->name('sales.generarInforme');

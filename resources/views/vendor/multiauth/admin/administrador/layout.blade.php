@@ -89,9 +89,9 @@
                         </a>
                     </li>
                     <li>
-                        <a class="nav-link" href="./notifications.html">
+                        <a class="nav-link" href="{{ url('admin/estadisticas') }}">
                             <i class="nc-icon nc-bell-55"></i>
-                            <p>algo?</p>
+                            <p>Estadisticas</p>
                         </a>
                     </li>
 
