@@ -113,6 +113,50 @@
       }
     </script>
     <!-- FIN GRAFICO VENTAS -->
+     <!-- GRAFICO VENTAS ESTACIONALES -->
+      <script type="text/javascript">
+      google.charts.load("current", {packages:["corechart"]});
+      google.charts.setOnLoadCallback(drawChart);
+      function drawChart() {
+        var data = google.visualization.arrayToDataTable([
+          ['Task', 'Hours per Day'],
+        @foreach ($contador_ventas_estaciones as $cont)
+          ['{{ $cont->estado }}',    {{ $cont->contador }} ],
+        @endforeach    
+        ]);
+
+        var options = {
+          title: 'Ventas',
+          is3D: true,
+        };
+
+        var chart = new google.visualization.PieChart(document.getElementById('piechart_3d4'));
+        chart.draw(data, options);
+      }
+    </script>
+    <!-- FIN GRAFICO VENTAS ESTACIONALES -->
+     <!-- GRAFICO MENUS ESTACIONALES-->
+      <script type="text/javascript">
+      google.charts.load("current", {packages:["corechart"]});
+      google.charts.setOnLoadCallback(drawChart);
+      function drawChart() {
+        var data = google.visualization.arrayToDataTable([
+          ['Task', 'Hours per Day'],
+        @foreach ($contador_pedidos_estaciones as $cont)
+          ['{{ $cont->titulo }}',    {{ $cont->contador }} ],
+        @endforeach    
+        ]);
+
+        var options = {
+          title: 'Menus',
+          is3D: true,
+        };
+
+        var chart = new google.visualization.PieChart(document.getElementById('piechart_3d5'));
+        chart.draw(data, options);
+      }
+    </script>
+    <!-- FIN GRAFICO MENUS ESTACIONALES-->
   </head>
 
 @extends('vendor.multiauth.admin.administrador.layout')
@@ -139,7 +183,7 @@
   <div class="row">
     <form action="{{ route('estadisticas') }}" method="get">
       <div class="col-md-4">
-         <input type="text" name="mes_estado" class="form-control" placeholder="Mes">
+         <input type="text" name="mes_estado" class="form-control" placeholder="Mes Ejemplo 01">
       </div>
       <div class="col-md-4">
         <input type="text" name="ano_estado" class="form-control" placeholder="Año">
@@ -160,6 +204,39 @@
     <div class="row">
         <div id="piechart_3d2" style="width: 500px; height: 250px;" class="col-md-6"></div>
          <div id="piechart_3d3" style="width: 500px; height: 250px;" class="col-md-6"></div>
+    </div>
+    <br>
+    
+    <h4>Datos por Estaciones del año</h4>
+    <dv class="row">
+        
+          <form action="{{ route('estadisticas') }}" method="get">
+              <div class="col-md-4" >
+    <select name="select_estacion" class="form-control" style="height: 40px;">
+<!--		<option value="" selected="">...</option> -->
+      <option value="01">Primavera </option>
+      <option value="02">Verano </option>
+        <option value="03">Otoño </option>
+        <option value="04">Invierno </option>
+      
+</select>
+                  </div>
+              <div class="col-md-4">
+              <input type="text" class="form-control" name="ano_estacion" placeholder="año">
+              </div>
+              <div class="col-md-4">
+              <button type="submit" class="btn btn-primary">Aceptar</button>
+              </div>
+    
+    </form>
+        
+      
+    </dv>
+    
+    
+    <div class="row">
+        <div id="piechart_3d4" style="width: 500px; height: 250px;" class="col-md-6"></div>
+        <div id="piechart_3d5" style="width: 500px; height: 250px;" class="col-md-6"></div>
     </div>
 
         
