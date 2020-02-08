@@ -32,7 +32,7 @@ class HomeController extends Controller
         //
 
         $request->validate([
-            'email' => 'required|email',
+            'email' => ['required', 'string', 'email', 'max:255','regex:/^\w+(\.\w+)*@\w+(\.\w+)+$/'],
 
         ]);
 

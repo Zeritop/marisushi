@@ -431,12 +431,19 @@
 
 					<form action="{{ route('home.subscribe') }}" method="POST" class="d-flex newsletter-info">
 						@csrf
-						
-						<input type="email" name="email" placeholder="Ingresa tu Email..." required="">
-						
-						<button type="submit">Aceptar</button>
-					</form>
+						<div class="row">
+						<div class="form-group">
+						<input type="email" class="form-control @error('email') is-invalid @enderror" name="email" placeholder="Ingresa tu Email..." required="">
+						@error('email')
+                                    <span class="invalid-feedback" role="alert">
+                                        <strong>{{ $message }}</strong>
+                                    </span>
+                                @enderror
+                       </div>
 
+						<button type="submit">Subscribir</button>
+					</form>
+					</div>
 				</div>
 				<div class="col-lg-6 col-md-3">
 
