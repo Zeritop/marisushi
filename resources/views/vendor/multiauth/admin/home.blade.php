@@ -9,7 +9,7 @@
 
                 <div class="card-body">
                 @include('multiauth::message')
-                     You are logged in to {{ config('multiauth.prefix') }} side! jajaj
+                     Bienvenido, a la sección de  {{ config('multiauth.prefix') }}
 		
                 </div>
             </div>

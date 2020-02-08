@@ -77,7 +77,6 @@ Route::resource('menus','MenuController');//admin
 Route::resource('menu','MeenuController');
 
 
-Route::resource('personalizar','PersonalizarController')->middleware('verified');
+Route::resource('personalizar','PersonalizarController');
 Route::post('personalizar','PersonalizarController@addToCart')->name('personalizar.addToCart');
 
-//Route::resource('/contacto','ContactController')->middleware('verified'); 

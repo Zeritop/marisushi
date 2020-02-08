@@ -106,13 +106,14 @@
                     <div class="card-text">
                         <p>Monto Total: ${{ $cart->totalPrice }}</p>
                         <p>Cantidad Total: {{ $cart->totalQty }}</p>
-                        <a href="{{ route('cart.detalles') }}" class="btn btn-info">Pedir</a>
+                        <a href="{{ route('cart.detalles') }}" class="btn btn-info">Realizar Pedido</a>
                     </div>    
                 </div>
             </div>
         </div>
         @else
-        <p> No hay menus en el carrito.</p>
+        <br>
+        <p> No hay items en el carrito de compras.</p>
         
         @endif
     </div>

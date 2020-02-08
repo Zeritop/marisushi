@@ -8,7 +8,7 @@
                 <div class="card-header bg-info text-white">
                     Roles
                     <span class="float-right">
-                        <a href="{{ route('admin.role.create') }}" class="btn btn-sm btn-success">New Role</a>
+                        <a href="{{ route('admin.role.create') }}" class="btn btn-sm btn-success">Nuevo Rol</a>
                     </span>
                 </div>
 

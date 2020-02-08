@@ -91,6 +91,8 @@
 
             <th>Estado</th>
 
+            <th>Retira</th>
+
             <th>Fecha y Hora de Entrega</th>
 
             <th width="280px">Acción</th>
@@ -104,6 +106,8 @@
             <td>{{ ++$i }}</td>
 
             <td>{{ $order->estado }}</td>
+
+            <td>{{ $order->nombre_retira }}</td>
 
             <td>{{ $order->fecha_entrega->format('d/m/Y H:i') }}</td>
             
