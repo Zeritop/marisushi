@@ -44,42 +44,14 @@
 </head>
 
 <body>
-@if ($errors->any())
-
-    <div class="alert alert-danger">
-    	<button type="button" class="close" data-dismiss="alert" aria-label="Close">
-    		<span aria-hidden="true">&times;</span>
-  		</button>
-
-        <strong>Whoops!</strong> Parece que encontramos un problema.<br><br>
-
-        <ul>
-
-            @foreach ($errors->all() as $error)
-
-                <li>{{ $error }}</li>
-
-            @endforeach
-
-        </ul>
-
-    </div>
-
-@endif
 
 @if ($message = Session::get('success'))
-
         <div class="alert alert-success">
         	<button type="button" class="close" data-dismiss="alert" aria-label="Close">
     			<span aria-hidden="true">&times;</span>
   			</button>
-
-  			<h4 class="alert-heading">Exito!</h4>
-  			<hr>
             <p class="mb-0">{{ $message }}</p>
-
         </div>
-
 @endif
 
 	<!-- banner -->
