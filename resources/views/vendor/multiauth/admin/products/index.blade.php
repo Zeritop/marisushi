@@ -34,7 +34,18 @@
         </div>
 
     @endif
+    
+    @foreach($products as $product)
+    @if ($product->cantidad == 0 || 0 > $product->cantidad )
 
+        <div class="alert alert-danger">
+
+            <p>No queda {{ $product->name }} en el inventario</p>
+
+        </div>
+
+    @endif
+    @endforeach
    
 
     <table class="table table-hover">

@@ -42,6 +42,15 @@
         </div>
 
     @endif
+     @if ($message = Session::get('danger'))
+
+        <div class="alert alert-danger">
+
+            <p>{{ $message }}</p>
+
+        </div>
+
+    @endif
 
    
 
@@ -102,7 +111,7 @@
     <input type="tel" class="form-control" id="exampleInputPassword1" name="telefono">
   </div>
 <div class="form-group">
-    <label for="exampleInputPassword1">Descuento</label>
+    <label for="exampleInputPassword1">Codigo de descuento</label>
     <input type="text" class="form-control" id="exampleInputPassword1" name="codigo">
   </div>
  <div class="form-group">

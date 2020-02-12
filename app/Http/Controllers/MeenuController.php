@@ -9,6 +9,7 @@ use App\Order;
 use App\Order_MenuItem;
 use Session;
 use App\Discount;
+use App\Product;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Carbon;
@@ -196,10 +197,11 @@ class MeenuController extends Controller
             $pedido->observacion = $request->observacion;
 
         }
-  $codigo = DB::table('discounts')->where('codigo', $request->codigo)->exists();
-        
+  $codigo = DB::table('discounts')->where('codigo', $request->codigo)->exists();        
+
         //dd($codigo1);
-        if($codigo){
+        if($request->codigo != ''){
+            if($codigo){
             $codigo1 = DB::table('discounts')->where('codigo', '=', $request->codigo)->first();
             $pedido->descuento = $codigo1->descuento; 
             //dd($pedido->descuento);
@@ -212,6 +214,9 @@ class MeenuController extends Controller
             $pedido->precio_total_con_descuento = $precio_con_descuento;
 
 
+        }else{
+            return redirect()->route('cart.detalles')->with('danger', 'Codigo no existente' );
+            }
         }else{
             
            $pedido->descuento = 0;
@@ -256,7 +261,24 @@ class MeenuController extends Controller
         $pedido_menuItem->precio = $precio_item;
         $pedido_menuItem->id_pedido = $pedido->id;  //id del pedido de arribas
         $pedido_menuItem->save();        
+    
+        $ingre = DB::table('ingredients')->select('name')->where('name', '=', $menu['esencial'])->first();
+        $prod = DB::table('products')->select('cantidad')->where('name', '=', $ingre->name)->decrement('cantidad', 1);
         
+         $ingre1 = DB::table('ingredients')->select('name')->where('name', '=', $menu['principal'])->first();
+        $prod1 = DB::table('products')->select('cantidad')->where('name', '=', $ingre1->name)->decrement('cantidad', 1);
+        
+         $ingre2 = DB::table('ingredients')->select('name')->where('name', '=', $menu['secundario1'])->first();
+        $prod2 = DB::table('products')->select('cantidad')->where('name', '=', $ingre2->name)->decrement('cantidad', 1);
+        
+         $ingre3 = DB::table('ingredients')->select('name')->where('name', '=', $menu['secundario2'])->first();
+        $prod3 = DB::table('products')->select('cantidad')->where('name', '=', $ingre3->name)->decrement('cantidad', 1);
+        
+         $ingre4 = DB::table('ingredients')->select('name')->where('name', '=', $menu['envoltura'])->first();
+        $prod4 = DB::table('products')->select('cantidad')->where('name', '=', $ingre4->name)->decrement('cantidad', 1);
+        
+        
+        //$prod->save();
     }
         //retornar con los strings  
         $order= $pedido;
