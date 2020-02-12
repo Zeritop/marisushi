@@ -12,17 +12,9 @@ use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Carbon;
 
-class OrderController extends Controller
+class ApiOrderController extends Controller
 {
     //
-    public function __construct()
-    {
-        //
-        $this->middleware('auth:admin');
-        $this->middleware('role:super', ['only'=>'show']);
-    }
-
-
 
     /**
      * Display a listing of the resource.
@@ -40,8 +32,11 @@ class OrderController extends Controller
             ->fecha($fecha)
             ->paginate(15);
         
-        return view('vendor.multiauth.admin.orders.index',compact('orders'))
-                    ->with('i', (request()->input('page', 1) - 1) * 15);
+        //return view('vendor.multiauth.admin.orders.index',compact('orders'))
+        //            ->with('i', (request()->input('page', 1) - 1) * 15);
+
+        return response()->json([$orders]);
+
     }
 
     /**
@@ -159,11 +154,7 @@ class OrderController extends Controller
         $order= $pedido;
         $personalizars = DB::table('ingredients')->select('name', 'categoria')->get();
         $menuItemsLists = DB::table('menus')->where('titulo','not like','Sushi Personalizado')->get();
-        
-        $menuItems = DB::table('orders_menuItems')->leftJoin('menus', 'id_menu_item', '=', 'menus.id')
-                                                    ->where('orders_menuItems.id_pedido',$order->id)
-                                                    ->select('orders_menuItems.*','menus.foto','menus.esencial','menus.principal','menus.secundario1','menus.secundario2','menus.envoltura','menus.ingrediente1','menus.ingrediente2','menus.ingrediente3','menus.ingrediente4','menus.ingrediente5')
-                                                    ->get();
+        $menuItems = DB::table('orders_menuItems')->where('id_pedido',$order->id)->get();
         
 
         return redirect('admin/orders/'. $order->id )
@@ -254,11 +245,7 @@ class OrderController extends Controller
         $order= $pedido;
         $personalizars = DB::table('ingredients')->select('name', 'categoria')->get();
         $menuItemsLists = DB::table('menus')->where('titulo','not like','Sushi Personalizado')->get();
-        
-        $menuItems = DB::table('orders_menuItems')->leftJoin('menus', 'id_menu_item', '=', 'menus.id')
-                                                    ->where('orders_menuItems.id_pedido',$order->id)
-                                                    ->select('orders_menuItems.*','menus.foto','menus.esencial','menus.principal','menus.secundario1','menus.secundario2','menus.envoltura','menus.ingrediente1','menus.ingrediente2','menus.ingrediente3','menus.ingrediente4','menus.ingrediente5')
-                                                    ->get();
+        $menuItems = DB::table('orders_menuItems')->where('id_pedido',$order->id)->get();
         
 
         return redirect('admin/orders/'. $order->id )
@@ -281,16 +268,10 @@ class OrderController extends Controller
         //
         $personalizars = DB::table('ingredients')->select('name', 'categoria')->get();
         $menuItemsLists = DB::table('menus')->where('titulo','not like','Sushi Personalizado')->get();
-        
-        $menuItems = DB::table('orders_menuItems')->leftJoin('menus', 'id_menu_item', '=', 'menus.id')
-                                                    ->where('orders_menuItems.id_pedido',$order->id)
-                                                    ->select('orders_menuItems.*','menus.foto','menus.esencial','menus.principal','menus.secundario1','menus.secundario2','menus.envoltura','menus.ingrediente1','menus.ingrediente2','menus.ingrediente3','menus.ingrediente4','menus.ingrediente5')
-                                                    ->get();
+        $menuItems = DB::table('orders_menuItems')->where('id_pedido',$order->id)->get();
 
-        
-
-        return view('vendor.multiauth.admin.orders.show',compact('order','menuItems','menuItemsLists','personalizars'))
-                        ->with('i', (request()->input('page', 1) - 1) * 5);
+        //return view('vendor.multiauth.admin.orders.show',compact('order','menuItems','menuItemsLists','personalizars'))->with('i', (request()->input('page', 1) - 1) * 5);
+        return response()->json([$order,$personalizars,$menuItemsLists,$menuItems]);
     }
 
     /**
@@ -348,11 +329,7 @@ class OrderController extends Controller
         $order = DB::table('orders')->where('id',$request->order_id)->first();
         $personalizars = DB::table('ingredients')->select('name', 'categoria')->get();
         $menuItemsLists = DB::table('menus')->where('titulo','not like','Sushi Personalizado')->get();
-        
-        $menuItems = DB::table('orders_menuItems')->leftJoin('menus', 'id_menu_item', '=', 'menus.id')
-                                                    ->where('orders_menuItems.id_pedido',$order->id)
-                                                    ->select('orders_menuItems.*','menus.foto','menus.esencial','menus.principal','menus.secundario1','menus.secundario2','menus.envoltura','menus.ingrediente1','menus.ingrediente2','menus.ingrediente3','menus.ingrediente4','menus.ingrediente5')
-                                                    ->get();
+        $menuItems = DB::table('orders_menuItems')->where('id_pedido',$order->id)->get();
         
         return redirect('admin/orders/'. $order->id )
                         ->with('order')->with('menuItems')->with('menuItemsLists')->with('personalizars')
@@ -446,11 +423,7 @@ class OrderController extends Controller
         $order = DB::table('orders')->where('id',$request->order_id)->first();
         $personalizars = DB::table('ingredients')->select('name', 'categoria')->get();
         $menuItemsLists = DB::table('menus')->where('titulo','not like','Sushi Personalizado')->get();
-        
-        $menuItems = DB::table('orders_menuItems')->leftJoin('menus', 'id_menu_item', '=', 'menus.id')
-                                                    ->where('orders_menuItems.id_pedido',$order->id)
-                                                    ->select('orders_menuItems.*','menus.foto','menus.esencial','menus.principal','menus.secundario1','menus.secundario2','menus.envoltura','menus.ingrediente1','menus.ingrediente2','menus.ingrediente3','menus.ingrediente4','menus.ingrediente5')
-                                                    ->get();
+        $menuItems = DB::table('orders_menuItems')->where('id_pedido',$order->id)->get();
         
         return redirect('admin/orders/'. $order->id )
                         ->with('order')->with('menuItems')->with('menuItemsLists')->with('personalizars')
@@ -474,6 +447,7 @@ class OrderController extends Controller
         $precio_item = DB::table('menus')->select('precio')->where('id',$request->menuItem)->first()->precio;
         $cantidad = $request->cantidad;
         $agregarPrecio = $precio_item * $cantidad;
+
 
         $nuevoItem = new Order_MenuItem;
         $nuevoItem->id_menu_item = $request->menuItem;
@@ -515,11 +489,7 @@ class OrderController extends Controller
         $order = DB::table('orders')->where('id',$request->order_id)->first();
         $personalizars = DB::table('ingredients')->select('name', 'categoria')->get();
         $menuItemsLists = DB::table('menus')->where('titulo','not like','Sushi Personalizado')->get();
-        
-        $menuItems = DB::table('orders_menuItems')->leftJoin('menus', 'id_menu_item', '=', 'menus.id')
-                                                    ->where('orders_menuItems.id_pedido',$order->id)
-                                                    ->select('orders_menuItems.*','menus.foto','menus.esencial','menus.principal','menus.secundario1','menus.secundario2','menus.envoltura','menus.ingrediente1','menus.ingrediente2','menus.ingrediente3','menus.ingrediente4','menus.ingrediente5')
-                                                    ->get();
+        $menuItems = DB::table('orders_menuItems')->where('id_pedido',$order->id)->get();
         
         return redirect('admin/orders/'. $order->id )
                         ->with('order')->with('menuItems')->with('menuItemsLists')->with('personalizars')
@@ -568,11 +538,7 @@ class OrderController extends Controller
         $order = DB::table('orders')->where('id',$request->order_id)->first();
         $personalizars = DB::table('ingredients')->select('name', 'categoria')->get();
         $menuItemsLists = DB::table('menus')->where('titulo','not like','Sushi Personalizado')->get();
-        
-        $menuItems = DB::table('orders_menuItems')->leftJoin('menus', 'id_menu_item', '=', 'menus.id')
-                                                    ->where('orders_menuItems.id_pedido',$order->id)
-                                                    ->select('orders_menuItems.*','menus.foto','menus.esencial','menus.principal','menus.secundario1','menus.secundario2','menus.envoltura','menus.ingrediente1','menus.ingrediente2','menus.ingrediente3','menus.ingrediente4','menus.ingrediente5')
-                                                    ->get();
+        $menuItems = DB::table('orders_menuItems')->where('id_pedido',$order->id)->get();
         
         return redirect('admin/orders/'. $order->id )
                         ->with('order')->with('menuItems')->with('menuItemsLists')->with('personalizars')
@@ -640,11 +606,7 @@ class OrderController extends Controller
         $order = DB::table('orders')->where('id',$request->order_id)->first();
         $personalizars = DB::table('ingredients')->select('name', 'categoria')->get();
         $menuItemsLists = DB::table('menus')->where('titulo','not like','Sushi Personalizado')->get();
-        
-        $menuItems = DB::table('orders_menuItems')->leftJoin('menus', 'id_menu_item', '=', 'menus.id')
-                                                    ->where('orders_menuItems.id_pedido',$order->id)
-                                                    ->select('orders_menuItems.*','menus.foto','menus.esencial','menus.principal','menus.secundario1','menus.secundario2','menus.envoltura','menus.ingrediente1','menus.ingrediente2','menus.ingrediente3','menus.ingrediente4','menus.ingrediente5')
-                                                    ->get();
+        $menuItems = DB::table('orders_menuItems')->where('id_pedido',$order->id)->get();
         
         return redirect('admin/orders/'. $order->id )
                         ->with('order')->with('menuItems')->with('menuItemsLists')->with('personalizars')

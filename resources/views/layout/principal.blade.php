@@ -243,19 +243,19 @@
 					</div>
 					<ul class="list-unstyled payment-links mt-4">
 						<li>
-							<a href="login.html"><img src="images/pay2.png" alt=""></a>
+							<img src="images/pay2.png" alt=""></a>
 						</li>
 						<li>
-							<a href="login.html"><img src="images/pay5.png" alt=""></a>
+							<img src="images/pay5.png" alt=""></a>
 						</li>
 						<li>
-							<a href="login.html"><img src="images/pay1.png" alt=""></a>
+							<img src="images/pay1.png" alt=""></a>
 						</li>
 						<li>
-							<a href="login.html"><img src="images/pay4.png" alt=""></a>
+							<img src="images/pay4.png" alt=""></a>
 						</li>
 						<li>
-							<a href="login.html"><img src="images/pay6.png" alt=""></a>
+							<img src="images/pay6.png" alt=""></a>
 						</li>
 					</ul>
 				</div>

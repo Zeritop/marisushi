@@ -16,3 +16,16 @@ use Illuminate\Http\Request;
 Route::middleware('auth:api')->get('/user', function (Request $request) {
     return $request->user();
 });
+
+Route::resource('menu','ApiMeenuController');
+Route::get('/addToCart/{menu}', 'ApiMeenuController@addToCart')->name('cart.add');
+Route::get('/shopping-cart', 'ApiMeenuController@showCart')->name('cart.show');
+Route::delete('/menu/{menu}', 'ApiMeenuController@destroy')->name('menu.destroy');
+Route::put('/menu/{menu}', 'ApiMeenuController@update')->name('menu.update');
+Route::get('/detalles', 'ApiMeenuController@detallesCart')->name('cart.detalles');
+Route::post('/storeCart', 'ApiMeenuController@storeCart')->name('cart.store');
+    //->middleware('verified');
+
+Route::get('/home', 'ApiHomeController@index')->name('home');
+Route::resource('admin/orders','ApiOrderController');
+

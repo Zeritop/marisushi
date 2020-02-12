@@ -197,15 +197,65 @@
             <td>{{ ++$i }} </td>
 
             <td> {{ $menuItem->titulo }}</td>
+            
 
-            <td> ingredientesk</td>
+            <td> @if($menuItem->esencial != null)
+                     {{ $menuItem->esencial }}
+                  @endif
+
+                  @if($menuItem->principal != null)
+                    - {{ $menuItem->principal }}
+                  @endif
+                  
+                  @if($menuItem->secundario1 != null)
+                    - {{ $menuItem->secundario1 }}
+                  @endif
+                  
+                  @if($menuItem->secundario2 != null)
+                    - {{ $menuItem->secundario2 }}
+                  @endif
+
+                  @if($menuItem->envoltura != null)
+                    - {{ $menuItem->envoltura }}
+                  @endif
+
+                  @if($menuItem->ingrediente1 != null)
+                    - {{ $menuItem->ingrediente1 }}
+                  @endif
+
+                  @if($menuItem->ingrediente2 != null)
+                    - {{ $menuItem->ingrediente2 }}
+                  @endif
+
+                  @if($menuItem->ingrediente3 != null)
+                    - {{ $menuItem->ingrediente3 }}
+                  @endif
+
+                  @if($menuItem->ingrediente4 != null)
+                    - {{ $menuItem->ingrediente4 }}
+                  @endif
+
+                  @if($menuItem->ingrediente5 != null)
+                    - {{ $menuItem->ingrediente5 }}
+                  @endif
+                  
+                  
+                
+
+
+
+            </td>
+
+            
 
             <td> {{ $menuItem->precio }}</td>
 
             <td> {{ $menuItem->cantidad }}</td>
 
-            <td> imagen</td>
-
+            <td> 
+                @if($menuItem->titulo != 'Sushi Personalizado')
+                    <img width="500px;" src="/storage/{{ $menuItem->foto }}" style="height: 100px; width: auto;" ></td>
+                @endif
             <td>
               @if($order->estado === 'Pendiente')
                 <form action="{{ route('orders.quitarItem',$order->id) }}" method="POST">

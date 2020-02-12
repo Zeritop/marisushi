@@ -80,31 +80,7 @@
 						<div class="row middle-flex">
 								
 							<div class="col-lg-7 col-8 social-grid-w3">
-								<!-- social icons -->
-								<ul class="top-right-info">
-									<li>
-										<p>Siguenos:</p>
-									</li>
-									<li class="facebook-w3">
-										<a href="#facebook">
-											<span class="fa fa-facebook-f"></span>
-										</a>
-									</li>
-									<li class="twitter-w3">
-										<a href="#twitter">
-											<span class="fa fa-twitter"></span>
-										</a>
-									</li>
-									<li class="google-w3">
-										<a href="#google">
-											<span class="fa fa-google-plus"></span>
-										</a>
-									</li>
-
-								</ul>
-
-
-								<!-- //social icons -->
+								
 							</div>
 					<nav class="navbar navbar-expand-md navbar-light bg-white shadow-sm">
 						<ul class="navbar-nav ml-auto">
@@ -211,7 +187,7 @@
 	<footer class="py-5">
 		<div class="container py-xl-4">
 			<div class="row footer-top">
-				<div class="col-lg-4 footer-grid_section_1its footer-text">
+				<div class="col-lg-6 footer-grid_section_1its footer-text">
 					<!-- logo -->
 					<h2>
 						<a class="logo text-wh" href="index.html">
@@ -252,7 +228,7 @@
 					</ul>
 					<!-- //social icons -->
 				</div>
-				<div class="col-lg-4 footer-grid_section_1its my-lg-0 my-sm-4 my-4">
+				<div class="col-lg-6 footer-grid_section_1its my-lg-0 my-sm-4 my-4">
 					<div class="footer-title">
 						<h3>Encuéntranos</h3>
 					</div>
@@ -266,45 +242,23 @@
 					</div>
 					<ul class="list-unstyled payment-links mt-4">
 						<li>
-							<a href="login.html"><img src="images/pay2.png" alt=""></a>
+							<img src="images/pay2.png" alt=""></a>
 						</li>
 						<li>
-							<a href="login.html"><img src="images/pay5.png" alt=""></a>
+							<img src="images/pay5.png" alt=""></a>
 						</li>
 						<li>
-							<a href="login.html"><img src="images/pay1.png" alt=""></a>
+							<img src="images/pay1.png" alt=""></a>
 						</li>
 						<li>
-							<a href="login.html"><img src="images/pay4.png" alt=""></a>
+							<img src="images/pay4.png" alt=""></a>
+						</li>
+						<li>
+							<img src="images/pay6.png" alt=""></a>
 						</li>
 					</ul>
 				</div>
-				<div class="col-lg-4 footer-grid_section_1its">
-					<div class="footer-title">
-						<h3>Contactanos</h3>
-					</div>
-					<div class="info-form-right mt-4 p-0">
-						<form action="#" method="post">
-							<div class="row">
-								<div class="col-lg-6 form-group mb-2 pr-lg-1">
-									<input type="text" class="form-control" name="Name" placeholder="Nombre" required="">
-								</div>
-								<div class="col-lg-6 form-group mb-2 pl-lg-1">
-									<input type="text" class="form-control" name="Phone" placeholder="Telefono"
-										required="">
-								</div>
-							</div>
-							<div class="form-group mb-2">
-								<input type="email" class="form-control" name="Email" placeholder="Email" required="">
-							</div>
-							<div class="form-group mb-2">
-								<textarea name="Comment" class="form-control" placeholder="Mensaje"
-									required=""></textarea>
-							</div>
-							<button type="submit" class="btn submit-contact ml-auto">Enviar</button>
-						</form>
-					</div>
-				</div>
+				
 			</div>
 		</div>
 	</footer>
