@@ -101,6 +101,10 @@
     <label for="exampleInputPassword1">Telefono</label>
     <input type="tel" class="form-control" id="exampleInputPassword1" name="telefono">
   </div>
+<div class="form-group">
+    <label for="exampleInputPassword1">Descuento</label>
+    <input type="text" class="form-control" id="exampleInputPassword1" name="codigo">
+  </div>
  <div class="form-group">
             <label for="message-text" class="col-form-label">Fecha y Hora de Retiro del Pedido</label>
             <div class='input-group date' id='datetimepicker'>

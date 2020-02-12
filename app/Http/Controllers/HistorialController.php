@@ -25,7 +25,7 @@ class HistorialController extends Controller
         //
         
         //$orders = DB::table('orders')->where('id_user_registra_compra', Auth::user())->get();
-        $orders = Order::orderBy('created_at', 'ASC')->paginate(15);
+        $orders = Order::orderBy('created_at', 'DESC')->paginate(15);
         //dd($orders, $order);
         return view('cart.historial',compact('orders'))
                     ->with('i', (request()->input('page', 1) - 1) * 15);

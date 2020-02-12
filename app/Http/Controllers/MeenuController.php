@@ -8,6 +8,7 @@ use App\Cart;
 use App\Order;
 use App\Order_MenuItem;
 use Session;
+use App\Discount;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Carbon;
@@ -195,24 +196,29 @@ class MeenuController extends Controller
             $pedido->observacion = $request->observacion;
 
         }
-
-        if($request->descuento === ''){
-            $pedido->descuento = 0;
-            $pedido->descuento_aplicado  = false;
-            $pedido->precio_total_sin_descuento = $precio;
-            $pedido->precio_total_con_descuento = $precio;
-
-
-        }else{
-            $pedido->descuento = $request->descuento;
+  $codigo = DB::table('discounts')->where('codigo', $request->codigo)->exists();
+        
+        //dd($codigo1);
+        if($codigo){
+            $codigo1 = DB::table('discounts')->where('codigo', '=', $request->codigo)->first();
+            $pedido->descuento = $codigo1->descuento; 
+            //dd($pedido->descuento);
             $pedido->descuento_aplicado  = true;
 
-            $porcentaje = $request->descuento / 100;
+            $porcentaje = $codigo1->descuento / 100;
             $precio_con_descuento = $precio - ($precio * $porcentaje);
 
             $pedido->precio_total_sin_descuento = $precio;
             $pedido->precio_total_con_descuento = $precio_con_descuento;
 
+
+        }else{
+            
+           $pedido->descuento = 0;
+            $pedido->descuento_aplicado  = false;
+            $pedido->precio_total_sin_descuento = $precio;
+            $pedido->precio_total_con_descuento = $precio;
+            
         }
 
         $pedido->seccion = $seccion;
