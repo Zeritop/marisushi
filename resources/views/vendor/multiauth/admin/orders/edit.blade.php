@@ -19,6 +19,12 @@
             <div class="pull-left">
 
                 <h2>Editar Pedido #000{{$order->id }}</h2>
+                <h4>Estados</h4>
+                <h5 class="text-secondary">Pendiente: El pedido ha sido registrado.</h5>
+                <h5 class="text-secondary">Anulado: El pedido ha sido anulado por la administración.</h5>
+                <h5 class="text-secondary">Listo para Entregar: El pedido esta listo para ser retirado.</h5>
+                <h5 class="text-secondary">Pagado: El pedido ha sido pagado, pero aun no entregado.</h5>
+                <h5 class="text-secondary">Entregado: El pedido ha sido entregado al cliente.</h5>
 
             </div>
 
@@ -100,8 +106,6 @@
             </div>
           </div>
 
-            
-
 
             <div class="col-xs-12 col-sm-12 col-md-12 text-center">
 
@@ -126,8 +130,6 @@
                 //format: 'DD/MM/YYYY HH:mm',
                 minDate: new Date(),
                 daysOfWeekDisabled: [6]
-
-
 
 
             });

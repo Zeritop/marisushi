@@ -21,7 +21,7 @@ class StatusesTableSeeder extends Seeder
         ]);
 
         DB::table('statuses')->insert([
-            'name' => 'Cancelado',
+            'name' => 'Anulado',
         ]);
 
         DB::table('statuses')->insert([

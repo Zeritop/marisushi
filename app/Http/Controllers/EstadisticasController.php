@@ -49,7 +49,7 @@ class EstadisticasController extends Controller
         $contador_pedidos = DB::table('orders')
             ->join('orders_menuItems', 'orders.id', '=', 'orders_menuItems.id_pedido')
             ->select(DB::raw('count(titulo) as contador, titulo'))
-            ->where('orders.estado', '=', 'Cancelado')
+            ->where('orders.estado', '=', 'Pagado')
             ->whereYear('orders.created_at', $ano_estado)
             ->whereMonth('orders.created_at', $mes_estado)
             ->groupBy('titulo')
@@ -60,7 +60,7 @@ class EstadisticasController extends Controller
             ->join('orders_menuItems' ,'menus.id', '=', 'orders_menuItems.id_menu_item')
             ->join('orders', 'orders.id', '=', 'orders_menuItems.id_pedido')
             ->select(DB::raw('count(esencial) as contador, esencial'))
-           ->where('orders.estado', '=', 'Cancelado')
+           ->where('orders.estado', '=', 'Pagado')
            ->whereYear('menus.created_at', $ano_estado)
             ->whereMonth('menus.created_at', $mes_estado)
             ->where('menus.titulo', '=', 'Sushi Personalizado')
@@ -72,7 +72,7 @@ class EstadisticasController extends Controller
             ->join('orders_menuItems' ,'menus.id', '=', 'orders_menuItems.id_menu_item')
             ->join('orders', 'orders.id', '=', 'orders_menuItems.id_pedido')
             ->select(DB::raw('count(principal) as contador, principal'))
-            ->where('orders.estado', '=', 'Cancelado')
+            ->where('orders.estado', '=', 'Pagado')
             ->where('menus.titulo', '=', 'Sushi Personalizado')
             ->whereYear('menus.created_at', $ano_estado)
             ->whereMonth('menus.created_at', $mes_estado)
@@ -84,7 +84,7 @@ class EstadisticasController extends Controller
             ->join('orders_menuItems' ,'menus.id', '=', 'orders_menuItems.id_menu_item')
             ->join('orders', 'orders.id', '=', 'orders_menuItems.id_pedido')
             ->select(DB::raw('count(secundario1) as contador, secundario1'))
-            ->where('orders.estado', '=', 'Cancelado')
+            ->where('orders.estado', '=', 'Pagado')
             ->where('menus.titulo', '=', 'Sushi Personalizado')
             ->whereYear('menus.created_at', $ano_estado)
             ->whereMonth('menus.created_at', $mes_estado)
@@ -96,7 +96,7 @@ class EstadisticasController extends Controller
             ->join('orders_menuItems' ,'menus.id', '=', 'orders_menuItems.id_menu_item')
             ->join('orders', 'orders.id', '=', 'orders_menuItems.id_pedido')
             ->select(DB::raw('count(secundario2) as contador, secundario2'))
-            ->where('orders.estado', '=', 'Cancelado')
+            ->where('orders.estado', '=', 'Pagado')
             ->where('menus.titulo', '=', 'Sushi Personalizado')
             ->whereYear('menus.created_at', $ano_estado)
             ->whereMonth('menus.created_at', $mes_estado)
@@ -108,7 +108,7 @@ class EstadisticasController extends Controller
             ->join('orders_menuItems' ,'menus.id', '=', 'orders_menuItems.id_menu_item')
             ->join('orders', 'orders.id', '=', 'orders_menuItems.id_pedido')
             ->select(DB::raw('count(envoltura) as contador, envoltura'))
-            ->where('orders.estado', '=', 'Cancelado')
+            ->where('orders.estado', '=', 'Pagado')
             ->where('menus.titulo', '=', 'Sushi Personalizado')
             ->whereYear('menus.created_at', $ano_estado)
             ->whereMonth('menus.created_at', $mes_estado)
@@ -118,7 +118,7 @@ class EstadisticasController extends Controller
         
         $contador_ventas = DB::table('orders')
             ->select(DB::raw('count(estado) as contador, estado'))
-            ->where('estado', '=', 'Cancelado')
+            ->where('estado', '=', 'Pagado')
             ->whereYear('orders.created_at', $ano_estado)
             ->whereMonth('orders.created_at', $mes_estado)
             ->groupBy('estado')
@@ -142,7 +142,7 @@ class EstadisticasController extends Controller
             
             $contador_ventas_estaciones = DB::table('orders')
             ->select(DB::raw('count(estado) as contador, estado'))
-            ->where('estado', '=', 'Cancelado')
+            ->where('estado', '=', 'Pagado')
             ->whereBetween('created_at', [$fecha1, $fecha2])
             ->groupBy('estado')
             ->get();
@@ -150,7 +150,7 @@ class EstadisticasController extends Controller
             $contador_pedidos_estaciones = DB::table('orders')
             ->join('orders_menuItems', 'orders.id', '=', 'orders_menuItems.id_pedido')
             ->select(DB::raw('count(titulo) as contador, titulo'))
-            ->where('orders.estado', '=', 'Cancelado')
+            ->where('orders.estado', '=', 'Pagado')
             ->whereBetween('orders.created_at', [$fecha1, $fecha2])
             ->groupBy('titulo')
             ->get();
@@ -171,7 +171,7 @@ class EstadisticasController extends Controller
             
             $contador_ventas_estaciones = DB::table('orders')
             ->select(DB::raw('count(estado) as contador, estado'))
-            ->where('estado', '=', 'Cancelado')
+            ->where('estado', '=', 'Pagado')
             ->whereBetween('created_at', [$fecha1, $fecha2])
             ->groupBy('estado')
             ->get();
@@ -179,7 +179,7 @@ class EstadisticasController extends Controller
             $contador_pedidos_estaciones = DB::table('orders')
             ->join('orders_menuItems', 'orders.id', '=', 'orders_menuItems.id_pedido')
             ->select(DB::raw('count(titulo) as contador, titulo'))
-            ->where('orders.estado', '=', 'Cancelado')
+            ->where('orders.estado', '=', 'Pagado')
             ->whereBetween('orders.created_at', [$fecha1, $fecha2])
             ->groupBy('titulo')
             ->get();
@@ -197,7 +197,7 @@ class EstadisticasController extends Controller
             
             $contador_ventas_estaciones = DB::table('orders')
             ->select(DB::raw('count(estado) as contador, estado'))
-            ->where('estado', '=', 'Cancelado')
+            ->where('estado', '=', 'Pagado')
             ->whereBetween('created_at', [$fecha1, $fecha2])
             ->groupBy('estado')
             ->get();
@@ -205,7 +205,7 @@ class EstadisticasController extends Controller
             $contador_pedidos_estaciones = DB::table('orders')
             ->join('orders_menuItems', 'orders.id', '=', 'orders_menuItems.id_pedido')
             ->select(DB::raw('count(titulo) as contador, titulo'))
-            ->where('orders.estado', '=', 'Cancelado')
+            ->where('orders.estado', '=', 'Pagado')
             ->whereBetween('orders.created_at', [$fecha1, $fecha2])
             ->groupBy('titulo')
             ->get();
@@ -223,7 +223,7 @@ class EstadisticasController extends Controller
             
             $contador_ventas_estaciones = DB::table('orders')
             ->select(DB::raw('count(estado) as contador, estado'))
-            ->where('estado', '=', 'Cancelado')
+            ->where('estado', '=', 'Pagado')
             ->whereBetween('created_at', [$fecha1, $fecha2])
             ->groupBy('estado')
             ->get();
@@ -231,7 +231,7 @@ class EstadisticasController extends Controller
             $contador_pedidos_estaciones = DB::table('orders')
             ->join('orders_menuItems', 'orders.id', '=', 'orders_menuItems.id_pedido')
             ->select(DB::raw('count(titulo) as contador, titulo'))
-            ->where('orders.estado', '=', 'Cancelado')
+            ->where('orders.estado', '=', 'Pagado')
             ->whereBetween('orders.created_at', [$fecha1, $fecha2])
             ->groupBy('titulo')
             ->get();

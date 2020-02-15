@@ -98,23 +98,14 @@ class ProductController extends Controller
     public function update(Request $request, Product $product)
     {
             $request->validate([
-            
-            'observaciones' => 'required',
             'cantidad' => 'required',
             'precio_inicial' => 'required',
-            'proveedor' => 'required',
             'precio_actual' => 'required',
             'descuento' => 'required',
 
-
-
         ]);
 
-  
-
         $product->update($request->all());
-
-  
 
         return redirect()->route('products.index')
 

@@ -9,7 +9,7 @@
     <!-- CSRF Token -->
     <meta name="csrf-token" content="{{ csrf_token() }}">
 
-    <title>{{ config('app.name', 'Laravel') }} {{ ucfirst(config('multiauth.prefix')) }}</title>
+    <title>{{ config('app.name', 'Mari Sushi') }} {{ ucfirst(config('multiauth.prefix')) }}</title>
 
     <!-- Scripts -->
     <script src="{{ asset('js/app.js') }}" defer></script>
@@ -27,7 +27,7 @@
         <nav class="navbar navbar-expand-md navbar-light navbar-laravel">
             <div class="container">
                 <a class="navbar-brand" href="{{ route('admin.home') }}">
-                    {{ config('app.name', 'Laravel') }} {{ ucfirst(config('multiauth.prefix')) }}
+                    {{ config('app.name', 'Laravel') }} {{ ucfirst(config('multiauth.prefix')) }}   
                 </a>
                 <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent"
                     aria-expanded="false" aria-label="{{ __('Toggle navigation') }}">

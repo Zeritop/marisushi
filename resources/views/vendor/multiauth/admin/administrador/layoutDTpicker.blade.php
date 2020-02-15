@@ -45,7 +45,7 @@
                 <ul class="nav">
                     <li class="nav-item active">
                         <a class="nav-link" href="{{ url('admin/home') }}">
-                            <i class="nc-icon nc-chart-pie-35"></i>
+                            <i class="nc-icon nc-grid-45"></i>
                             <p>Dashboard</p>
                         </a>
                     </li>
@@ -63,7 +63,7 @@
                     </li>
                     <li>
                         <a class="nav-link" href="{{ url('admin/products') }}">
-                            <i class="nc-icon nc-notes"></i>
+                            <i class="nc-icon nc-bag"></i>
                             <p>Inventario</p>
                         </a>
                     </li>
@@ -75,20 +75,20 @@
                     </li>
                     <li>
                         <a class="nav-link" href="{{ url('admin/sales') }}">
-                            <i class="nc-icon nc-pin-3"></i>
+                            <i class="nc-icon nc-map-big"></i>
                             <p>Libro de Ventas</p>
                         </a>
                     </li>
                     <li>
                         <a class="nav-link" href="{{ url('admin/discounts') }}">
-                            <i class="nc-icon nc-atom"></i>
+                            <i class="nc-icon nc-stre-down"></i>
                             <p>Descuentos</p>
                         </a>
                     </li>
                     <li>
-                        <a class="nav-link" href="./notifications.html">
-                            <i class="nc-icon nc-bell-55"></i>
-                            <p>algo?</p>
+                        <a class="nav-link" href="{{ url('admin/estadisticas') }}">
+                            <i class="nc-icon nc-chart-pie-35"></i>
+                            <p>Estadisticas</p>
                         </a>
                     </li>
 
@@ -253,7 +253,7 @@
 <!-- <script src="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/3.3.7/js/bootstrap.min.js"></script> -->
 
 <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
-<script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.15.1/moment.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.15.1/moment-with-locales.min.js"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/3.3.7/js/bootstrap.min.js"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-datetimepicker/4.7.14/js/bootstrap-datetimepicker.min.js"></script>
 

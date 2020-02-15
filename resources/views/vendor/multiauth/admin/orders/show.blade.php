@@ -121,7 +121,7 @@
 
                 <strong>Fecha de entrega:</strong>
 
-                {{ $order->fecha_entrega }}
+                {{ $order->fecha_entrega->format('d/m/Y H:i') }}
 
             </div>
 

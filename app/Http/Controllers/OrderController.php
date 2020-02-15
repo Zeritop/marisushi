@@ -85,14 +85,14 @@ class OrderController extends Controller
             'cantidad' => 'required',
             'nombreRetira' => 'required|min:2',
             'telefono' => 'required|min:5',
-            'fechaEntrega' => 'required|after:yesterday'
+            'fechaEntrega' => 'required'
 
         ]);
 
         $cantidad = $request->cantidad;
         $precio = $precio_item * $cantidad;
 
-        $fecha_entrega = Carbon::parse($request->fechaEntrega);
+        $fecha_entrega = Carbon::createFromFormat('d/m/Y H:i', $request->fechaEntrega);
 
 
         //registrar el pedido
@@ -177,6 +177,7 @@ class OrderController extends Controller
 
         //item de menu estandar(el que viene de la base de datos)
         if($request->tipo === 'estandar'){
+        
     
         $id_user_registra_compra = Auth::user()->id; 
         $nombre_registra_compra = Auth::user()->name;
@@ -189,7 +190,7 @@ class OrderController extends Controller
             'cantidad' => 'required',
             'nombreRetira' => 'required|min:2',
             'telefono' => 'required|min:5',
-            'fechaEntrega' => 'required|after:yesterday'
+            'fechaEntrega' => 'required'
 
         ]);
 
@@ -201,7 +202,8 @@ class OrderController extends Controller
         $cantidad = $request->cantidad;
         $precio = $precio_item * $cantidad;
 
-        $fecha_entrega = Carbon::parse($request->fechaEntrega);
+        $fecha_entrega = Carbon::createFromFormat('d/m/Y H:i', $request->fechaEntrega);
+
 
         $pedido = new Order;
         $pedido->id_user_registra_compra = $id_user_registra_compra;

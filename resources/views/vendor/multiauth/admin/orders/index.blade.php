@@ -91,11 +91,11 @@
 
             <th>Estado</th>
 
-            <th>Retira</th>
-
             <th>Fecha y Hora de Entrega</th>
 
-            <th width="280px">Acción</th>
+            <th>Retira</th>
+
+            <th width="200px">Acción</th>
 
         </tr>
 
@@ -107,16 +107,14 @@
 
             <td>{{ $order->estado }}</td>
 
-            <td>{{ $order->nombre_retira }}</td>
-
             <td>{{ $order->fecha_entrega->format('d/m/Y H:i') }}</td>
-            
+
+            <td>{{ $order->nombre_retira }}</td>
 
             <td>
 
                 <a class="btn btn-info" href="{{ route('orders.show',$order->id) }}">Ver</a>
-                
-                <a class="btn btn-primary" href="{{ route('orders.edit',$order->id) }}">Editar</a>
+    
 
             </td>
 

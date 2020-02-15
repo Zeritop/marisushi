@@ -9,13 +9,13 @@
 
             <div class="pull-left">
 
-                <h2>Productos</h2>
+                <h2>Inventario de Productos</h2>
 
             </div>
 
             <div class="pull-right">
 
-                <a class="btn btn-success" href="{{ route('products.create') }}"> Crear Nuevo Producto</a>
+                <a class="btn btn-success" href="{{ route('products.create') }}"> Registrar Nuevo Producto</a>
 
             </div>
 

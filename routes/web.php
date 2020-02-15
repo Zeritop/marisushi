@@ -39,7 +39,7 @@ Route::get('/addToCart/{menu}', 'MeenuController@addToCart')->name('cart.add');
 Route::get('/shopping-cart', 'MeenuController@showCart')->name('cart.show');
 Route::delete('/menu/{menu}', 'MeenuController@destroy')->name('menu.destroy');
 Route::put('/menu/{menu}', 'MeenuController@update')->name('menu.update');
-Route::get('/detalles', 'MeenuController@detallesCart')->name('cart.detalles')->middleware('auth');
+Route::get('/detalles', 'MeenuController@detallesCart')->name('cart.detalles')->middleware('verified');
 Route::post('/storeCart', 'MeenuController@storeCart')->name('cart.store');
     //->middleware('verified');
 Route::get('/historial', 'HistorialController@index')->name('cart.historial')->middleware('auth');

@@ -23,10 +23,11 @@ class HistorialController extends Controller
     public function index()
     {
         //
+        $user_id = Auth::user()->id;
+
+        $orders = DB::table('orders')->where('id_user_registra_compra', $user_id)
+                                     ->paginate(15);
         
-        //$orders = DB::table('orders')->where('id_user_registra_compra', Auth::user())->get();
-        $orders = Order::orderBy('created_at', 'DESC')->paginate(15);
-        //dd($orders, $order);
         return view('cart.historial',compact('orders'))
                     ->with('i', (request()->input('page', 1) - 1) * 15);
     }

@@ -179,7 +179,7 @@ class MeenuController extends Controller
         $seccion = 'Usuario';
         $precio = $cart->totalPrice;
 
-        $fecha_entrega = Carbon::parse($request->fecha_entrega);
+        $fecha_entrega = Carbon::createFromFormat('d/m/Y H:i', $request->fechaEntrega);
 
         //registrar el pedido
         $pedido = new Order;
