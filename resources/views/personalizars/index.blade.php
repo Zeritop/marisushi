@@ -30,7 +30,7 @@
 	<section class="portfolio py-5">
 		<div class="container py-xl-5 py-lg-3">
 			<div class="title-section text-center mb-md-5 mb-4">
-				<h3 class="w3ls-title mb-3">Persnaliza tu <span>Menu</span></h3>
+				<h3 class="w3ls-title mb-3">Personaliza tu <span>Menu</span></h3>
 				<p class="titile-para-text mx-auto">Inventore veritatis et quasi architecto beatae vitae dicta sunt
 					explicabo.Nemo
 					enim totam rem aperiam.</p>
@@ -38,7 +38,19 @@
 	</section>
 	<!-- gallery model-->
 
-
+@if ($errors->any())
+    <div class="alert alert-danger">
+    	<button type="button" class="close" data-dismiss="alert" aria-label="Close">
+    		<span aria-hidden="true">&times;</span>
+  		</button>
+        <strong>Whoops!</strong> Parece que encontramos un problema.<br><br>
+        <ul>
+            @foreach ($errors->all() as $error)
+                <li>{{ $error }}</li>
+            @endforeach
+        </ul>
+    </div>
+@endif
 	
 	<!-- End Google Tag Manager (noscript) -->
 	<div class="image-container set-full-height" style="background-image: url('images/sushi7MME.jpg')">
@@ -107,15 +119,15 @@
 								</div>
 		                        <div class="tab-content">
 		                            <div class="tab-pane" id="esencial">
+		                            	<h5 class="info-text">Ingrediente Esencial</h5>
 		                            	<div class="row">
-											<h5 class="info-text">Ingrediente Base.</h5>
-											
-											
+										
 											<div class="col-sm-10 col-sm-offset-1">
 												<div class="form-group">
 													<label>Primer ingrediente</label>
 													
 													<select name="esencial" class="form-control" style="height: 40px;">
+														<option disabled selected>Selecciona el ingrediente esencial</option>
 														@foreach($personalizars as $personalizar)
 														@if($personalizar->categoria == 'Esencial')
 		                                                <option value=" {{ $personalizar->name}} "> {{ $personalizar->name}} </option>
@@ -170,10 +182,11 @@
 		                                <div class="row">
 		                                    <div class="col-sm-10 col-sm-offset-1">
 												<div class="form-group">
-													<label>Ingrediente <small>(required)</small></label>
+													<label>Ingrediente <small>(requerido)</small></label>
 													
 													<select name="principal" class="form-control" style="height: 40px;">
 													<!--	<option value="" selected="">...</option> -->
+													<option disabled selected>Selecciona un ingrediente principal</option>
 														@foreach($personalizars as $personalizar)
 														@if($personalizar->categoria == 'Principal')
 		                                                <option value="{{ $personalizar->name}}"> {{ $personalizar->name}} </option>
@@ -193,10 +206,11 @@
 		                                    </div>
 		                                     <div class="col-sm-10 col-sm-offset-1">
 												<div class="form-group">
-													<label>Primer ingrediente <small>(required)</small></label>
+													<label>Primer ingrediente <small>(requerido)</small></label>
 													
 													<select name="secundario1" class="form-control" style="height: 40px;">
 												<!--		<option value="" selected="">...</option> -->
+												<option disabled selected>Selecciona un ingrediente secundario</option>
 														@foreach($personalizars as $personalizar)
 														@if($personalizar->categoria == 'Secundarios')
 		                                                <option value=" {{ $personalizar->name}} "> {{ $personalizar->name}} </option>
@@ -209,10 +223,11 @@
 											</div>
 											 <div class="col-sm-10 col-sm-offset-1">
 												<div class="form-group">
-													<label>Segundo ingrediente <small>(required)</small></label>
+													<label>Segundo ingrediente <small>(requerido)</small></label>
 													
 													<select name="secundario2" class="form-control" style="height: 40px;">
 												<!--		<option value="" selected="">...</option> -->
+												<option disabled selected>Selecciona un ingrediente secundario</option>
 														@foreach($personalizars as $personalizar)
 														@if($personalizar->categoria == 'Secundarios')
 		                                                <option value=" {{ $personalizar->name}} "> {{ $personalizar->name}} </option>
@@ -230,10 +245,11 @@
 		                                <div class="row">
 		                                    <div class="col-sm-10 col-sm-offset-1">
 												<div class="form-group">
-													<label>Envoltura <small>(required)</small></label>
+													<label>Envoltura <small>(requerido)</small></label>
 													
 													<select name="envoltura" class="form-control" style="height: 40px;">
 												<!--		<option value="" selected="">...</option> -->
+												<option disabled selected>Selecciona una envoltura</option>
 														@foreach($personalizars as $personalizar)
 														@if($personalizar->categoria == 'Envoltura')
 		                                                <option value=" {{ $personalizar->name}} "> {{ $personalizar->name}} </option>
@@ -249,13 +265,13 @@
 		                        </div>
 		                        <div class="wizard-footer">
 		                            <div class="pull-right">
-		                                <input type='button' class='btn btn-next btn-fill btn-danger btn-wd' name='next' value='Next' />
+		                                <input type='button' class='btn btn-next btn-fill btn-danger btn-wd' name='next' value='Siguiente' />
 		                               
 		                                <button type="submit" class="btn btn-finish btn-fill btn-danger btn-wd">Agregar al carrito</button>
 		                            </div>
 
 		                            <div class="pull-left">
-		                                <input type='button' class='btn btn-previous btn-default btn-wd' name='previous' value='Previous' />
+		                                <input type='button' class='btn btn-previous btn-default btn-wd' name='previous' value='Atras' />
 		                            </div>
 		                            <div class="clearfix"></div>
 		                        </div>

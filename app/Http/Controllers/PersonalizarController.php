@@ -95,6 +95,15 @@ class PersonalizarController extends Controller
     
     public function addToCart(Request $request){
 
+        $request->validate([
+
+            'esencial' => 'required',
+            'principal' => 'required',
+            'secundario1' => 'required',
+            'secundario2' => 'required',
+            'envoltura' => 'required',
+        ]);
+
        $menu = new Menu;
        $menu->titulo = 'Sushi Personalizado';
        $menu->descripcion = 'Descripcion';
@@ -118,7 +127,7 @@ class PersonalizarController extends Controller
         $cart->add($menu);
         //dd($cart);
         session()->put('cart', $cart);
-        return redirect()->route('menu.index')->with('success', 'Menu añadido');
+        return redirect()->route('menu.index')->with('success', 'Menu añadido al carro de compras');
         
     }
 

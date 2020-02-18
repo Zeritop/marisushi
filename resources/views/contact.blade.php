@@ -134,7 +134,12 @@
 								<input type="text" class="form-control" name="nombre" placeholder="Nombre" required="">
 							</div>
 							<div class="col-lg-6 form-group pl-lg-2">
-								<input type="email" class="form-control" name="email" placeholder="Email" required="">
+								<input type="email" class="form-control @error('email') is-invalid @enderror" name="email" placeholder="Email" required="">
+								@error('email')
+                                    <span class="invalid-feedback" role="alert">
+                                        <strong>{{ $message }}</strong>
+                                    </span>
+                        		@enderror
 							</div>
 						</div>
 						<div class="form-group">

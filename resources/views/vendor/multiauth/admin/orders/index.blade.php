@@ -63,8 +63,14 @@
         <div class="row">
         <div class="col-md-3">
             <div class="form-group">
-                <input type="text" class="form-control" name="estado" placeholder="Estado">
+                <select name="estado" class="form-control" style="height: 40px;">
+                <option disabled selected>Selecciona un estado</option>
+                  @foreach($estados as $estado)
+                          <option value=" {{ $estado->name}} "> {{ $estado->name}} </option>
+                  @endforeach
+              </select>
             </div>  
+            
             
         </div>
             <div class="col-md-3">

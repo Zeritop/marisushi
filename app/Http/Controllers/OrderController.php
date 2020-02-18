@@ -32,6 +32,8 @@ class OrderController extends Controller
     public function index(Request $request)
     {
         //
+        $estados = DB::table('statuses')->select('name')->get();
+
         $estado = $request->get('estado');
         $fecha = $request->get('fecha_entrega');
         
@@ -40,7 +42,7 @@ class OrderController extends Controller
             ->fecha($fecha)
             ->paginate(15);
         
-        return view('vendor.multiauth.admin.orders.index',compact('orders'))
+        return view('vendor.multiauth.admin.orders.index',compact('orders','estados'))
                     ->with('i', (request()->input('page', 1) - 1) * 15);
     }
 

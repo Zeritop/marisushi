@@ -1,4 +1,4 @@
-@extends('layouts.app')
+@extends('layout.principal')
 
 @section('content')
 <div class="container">
@@ -16,9 +16,10 @@
 
                     {{ __('Antes de continuar, por favor revise su correo electrónico con un enlace de verificación.') }}
                     {{ __('Si no recibiste el correo electrónico') }},
+                    <br><br>
                     <form class="d-inline" method="POST" action="{{ route('verification.resend') }}">
                         @csrf
-                        <button type="submit" class="btn btn-link p-0 m-0 align-baseline">{{ __('apreta aqui para recibir otro') }}</button>.
+                        <button type="submit" class="btn btn-link p-0 m-0 align-baseline">{{ __('Apreta aqui para recibir otro') }}</button>
                     </form>
                 </div>
             </div>

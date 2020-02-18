@@ -121,7 +121,7 @@
                                     @endadmin
                                         <a class="dropdown-item" href="{{ route('admin.password.change') }}">Cambiar Contraseña</a>
                                         <div class="divider"></div>
-                                        <a class="dropdown-item" href="{{ route('logout') }}"
+                                        <a class="dropdown-item" href="{{ route('admin.logout') }}"
                                             onclick="event.preventDefault();
                                                      document.getElementById('logout-form').submit();">
                                             {{ __('Cerrar Sesión') }}
