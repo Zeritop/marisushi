@@ -29,24 +29,23 @@
 
         <div class="alert alert-success">
 
-            <p>{{ $message }}</p>
+            <strong>{{ $message }}</strong>
 
         </div>
 
     @endif
     
-    @foreach($products as $product)
-    @if ($product->cantidad == 0 || 0 > $product->cantidad )
-
+    <ul>
         <div class="alert alert-danger">
-
-            <p>No queda {{ $product->name }} en el inventario</p>
-
+            @foreach($products as $product)
+                @if ($product->cantidad == 0 || 0 > $product->cantidad )
+                    <li>   
+                        <strong>No queda {{ $product->name }} en el inventario</strong> 
+                    </li>
+                @endif
+            @endforeach
         </div>
-
-    @endif
-    @endforeach
-   
+   </ul>
 
     <table class="table table-hover">
 

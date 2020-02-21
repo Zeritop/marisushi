@@ -49,6 +49,11 @@ Route::get('/ver-historial/{order}', 'HistorialController@show')->name('cart.ver
 Auth::routes(['verify' => true]);
 
 Route::resource('/contacto','ContactController');
+Route::get('/contacto', 'ContactController@index')->name('contacto.index');
+
+
+Route::get('/change-password','Auth\ChangePasswordController@index')->name('password.change');
+Route::post('/change-password','Auth\ChangePasswordController@changePassword')->name('password.update');
 
 Route::get('/home', 'HomeController@index')->name('home');
 Route::post('/home', 'HomeController@subscribe')->name('home.subscribe');

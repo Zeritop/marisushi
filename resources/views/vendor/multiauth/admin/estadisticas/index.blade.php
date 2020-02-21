@@ -172,7 +172,7 @@
 
         <div class="alert alert-success">
 
-            <p>{{ $message }}</p>
+            <strong>{{ $message }}</strong>
 
         </div>
 

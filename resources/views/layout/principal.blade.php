@@ -100,6 +100,7 @@
 
                                 <div class="dropdown-menu dropdown-menu-right" aria-labelledby="navbarDropdown">
                                 	<a class="dropdown-item" href="{{ route('cart.historial') }}">Mis Pedidos</a>
+                                	<a class="dropdown-item" href="{{ route('password.change') }}">Cambiar Contraseña</a>
                                 	<div class="divider"></div>
                                     <a class="dropdown-item" href="{{ route('logout') }}"
                                        onclick="event.preventDefault();

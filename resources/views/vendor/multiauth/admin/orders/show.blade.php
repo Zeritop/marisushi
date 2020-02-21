@@ -39,7 +39,7 @@
                             <span aria-hidden="true">&times;</span>
                         </button>
 
-                        <p class="mb-0">{{ $message }}</p>
+                        <strong class="mb-0">{{ $message }}</strong>
 
                     </div>
 
