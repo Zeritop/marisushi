@@ -26,11 +26,11 @@ Route::get('about', function () {
 });
 */
 
-Route::get('administrador', function () {
+/*Route::get('administrador', function () {
     return view('administrador/index');
 });
 
-/*Route::get('/add-to-cart/{id}'[
+Route::get('/add-to-cart/{id}'[
     'uses' => 'MenuController@getAddToCart', 
     'as'  => 'menu.addToCart' 
 ]);*/
@@ -50,6 +50,8 @@ Auth::routes(['verify' => true]);
 
 Route::resource('/contacto','ContactController');
 Route::get('/contacto', 'ContactController@index')->name('contacto.index');
+
+Route::get('/faq', 'FaqController@index')->name('faq.index');
 
 
 Route::get('/change-password','Auth\ChangePasswordController@index')->name('password.change');

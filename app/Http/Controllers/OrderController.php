@@ -588,6 +588,7 @@ class OrderController extends Controller
         
 
     }
+    
     public function registrarPago(Request $request, Order $order)
     {
         //
@@ -639,6 +640,16 @@ class OrderController extends Controller
         $pago->id_pedido = $request->order_id;
 
         $pago->save();
+
+
+
+
+        //descuento de ingredientes del inventario
+
+
+
+
+        //termina descuento de inventario
 
         //retornar
         $order = DB::table('orders')->where('id',$request->order_id)->first();

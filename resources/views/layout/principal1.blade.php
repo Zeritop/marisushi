@@ -103,6 +103,7 @@
 
                                 <div class="dropdown-menu dropdown-menu-right" aria-labelledby="navbarDropdown">
                                     <a class="dropdown-item" href="{{ route('cart.historial') }}">Mis Pedidos</a>
+                                    <a class="dropdown-item" href="{{ route('password.change') }}">Cambiar Contraseña</a>
                                     <a class="dropdown-item" href="{{ route('logout') }}"
                                        onclick="event.preventDefault();
                                                      document.getElementById('logout-form').submit();">
@@ -139,7 +140,7 @@
 				<!-- logo -->
 				<h1>
 					<a id="logo" class="logo" href="/">
-						<img src="images/sushiAnimado2.jpg" alt="" class="img-fluid" style="width:120px;"><span>Maria</span> Sushi
+						<img src="images/sushiAnimado2.jpg" alt="" class="img-fluid" style="width:120px;"><span>Mari</span> Sushi
 					</a>
 				</h1>
 				<!-- //logo -->
@@ -151,26 +152,11 @@
 						<ul class="menu">
 							<li><a href="/">Home</a></li>
 							<li><a href="about">Nosotros</a></li>
-							<li>
-								<!-- First Tier Drop Down -->
-								<label for="drop-3" class="toggle toogle-2">Pages <span class="fa fa-angle-down"
-										aria-hidden="true"></span>
-								</label>
-								<a href="#pages">Pages <span class="fa fa-angle-down" aria-hidden="true"></span></a>
-								<input type="checkbox" id="drop-3" />
-								<ul>
-									<li><a class="drop-text" href="#services">Services</a></li>
-									<li><a class="drop-text" href="about">Our Chefs</a></li>
-									<li><a class="drop-text" href="#blog">Blog</a></li>
-									<li><a class="drop-text" href="single.html">Single Page</a></li>
-									<li><a class="drop-text" href="{{ route('login') }}">Login</a></li>
-									<li><a class="drop-text" href="{{ route('register') }}">Register</a></li>
-								</ul>
-							</li>
 							<li><a href="menu">Menu</a></li>
 							<li><a href="personalizar">Personalizar</a></li>
 							<li><a href="contacto">Contactanos</a></li>
-                            <li><a href="{{ route('cart.show') }}"><span class="fa fa-shopping-cart">My cart ({{ session()->has('cart') ? session()->get('cart')->totalQty : '0'}})</span></a></li>
+							<li><a href="faq">FAQ</a></li>
+                            <li><a href="{{ route('cart.show') }}"><span class="fa fa-shopping-cart">Mi carro ({{ session()->has('cart') ? session()->get('cart')->totalQty : '0'}})</span></a></li>
 						</ul>
 					</nav>
 				</div>
@@ -235,7 +221,8 @@
 					<div class="footer-text mt-4">
 						<p>Direccion : Andalio Vigueras #200, Los Alamos, Región del Bío Bío</p>
 						<p class="my-2">Telefono : 9 7849 0869</p>
-						<p>Email : <a href="mailto:info@example.com">info@example.com</a></p>
+						<p>Email : info@example.com</p>
+						<p>Horario de Atención: Lunes a Sabados 14:00 a 00:00</p>
 					</div>
 					<div class="footer-title mt-4 pt-md-2">
 						<h3>Métodos de Pago</h3>
