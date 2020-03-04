@@ -46,7 +46,7 @@
 
                 <strong>Cantidad:</strong>
 
-                {{ $product->cantidad }}
+                {{ $product->cantidad }} {{ $product->unidad_medida }}
 
             </div>
 

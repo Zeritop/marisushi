@@ -30,11 +30,12 @@ class MenuController extends Controller
         
         $menus = Menu::orderBy('created_at', 'ASC')
         ->titulo($titulo) 
-        ->descripcion($descripcion)    
-        ->paginate(5);
+        ->descripcion($descripcion)
+        ->where('titulo','not like','Sushi Personalizado')
+        ->paginate(15);
   
         return view('vendor.multiauth.admin.menus.index',compact('menus'))
-            ->with('i', (request()->input('page', 1) - 1) * 5);
+            ->with('i', (request()->input('page', 1) - 1) * 15);
     }
 
     /**
@@ -59,7 +60,7 @@ class MenuController extends Controller
         $request->validate([
             'precio' => 'required',
             'titulo' => 'required',
-            'descripcion' => 'required',
+            'foto' => 'required|mimes:jpeg,jpg,png',
             'esencial' => 'required',
             'principal' => 'required',
             'secundario1' => 'required',

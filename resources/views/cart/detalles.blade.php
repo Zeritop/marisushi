@@ -5,8 +5,7 @@
 <script src="//cdnjs.cloudflare.com/ajax/libs/moment.js/2.15.2/moment-with-locales.min.js"></script>
 <script src="//cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/3.3.7/js/bootstrap.js"></script>
 <script src="//cdnjs.cloudflare.com/ajax/libs/bootstrap-datetimepicker/4.17.37/js/bootstrap-datetimepicker.min.js"></script>
-    
-<link href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/3.3.7/css/bootstrap.css" rel="stylesheet">
+</head>
       
 </head>
 
@@ -52,6 +51,26 @@
 
     @endif
 
+    @if ($errors->any())
+
+    <div class="alert alert-danger">
+
+        <strong>Whoops!</strong> Parece haber algunos problemas con los siguientes campos.<br><br>
+
+        <ul>
+
+            @foreach ($errors->all() as $error)
+
+                <li>{{ $error }}</li>
+
+            @endforeach
+
+        </ul>
+
+    </div>
+
+    @endif
+
    
 
     <table class="table table-hover">
@@ -66,6 +85,8 @@
             
             <th>Cantidad</th>
 
+            <th>Foto</th>
+
         </tr>
 
         @foreach($cart->items as $menu)
@@ -76,12 +97,16 @@
 
             <td>{{ $menu['title'] }}</td>
 
-
             <td>{{ $menu['precio'] }}</td>
             
             <td>{{ $menu['qty'] }}</td>
-            
 
+            @if($menu['title'] != 'Sushi Personalizado')
+
+            <td><img src="/storage/{{ $menu['image'] }}" alt=" " class="img-fluid" width="80px" /></td>
+
+            @endif
+            
         </tr>
 
         @endforeach
@@ -117,7 +142,7 @@
  <div class="form-group">
             <label for="message-text" class="col-form-label">Fecha y Hora de Retiro del Pedido</label>
             <div class='input-group date' id='datetimepicker'>
-                <input type='text' class="form-control" name="fecha_entrega" placeholder="00/00/2020 00:00 PM"/>
+                <input type='text' class="form-control" name="fechaEntrega"/>
                 <span class="input-group-addon">
                     <span class="glyphicon glyphicon-calendar">
                     </span>
@@ -145,19 +170,15 @@
 <script type="text/javascript">
         $(function () {
             $('#datetimepicker').datetimepicker({
-                format: 'MM-DD-YYYY HH:mm',
+                //format: 'DD/MM/YYYY HH:mm',
                 locale: 'es',
                 minDate: new Date(),
                 daysOfWeekDisabled: [6]
-
-
-
-
             });
         });
         $(function () {
             $('#datetimepicker2').datetimepicker({
-                format: 'MM-DD-YYYY HH:mm',
+                //format: 'MM-DD-YYYY HH:mm',
                 locale: 'es',
                 minDate: new Date(),
                 daysOfWeekDisabled: [6]

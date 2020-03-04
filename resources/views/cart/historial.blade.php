@@ -20,7 +20,7 @@
     @if ($message = Session::get('success'))
 
         <div class="alert alert-success text-center">
-            <p>{{ $message }} </p>
+            <strong>{{ $message }} </strong>
 
         </div>
 

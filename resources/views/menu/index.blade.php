@@ -47,7 +47,6 @@
 	<div class="container">
 		<div class="row mt-4">
 		@foreach($menus as $key => $menu)
-            @if($menu->titulo != "Sushi Personalizado")
 				<div class="col-md-4">
 					<div class="gallery-demo">
 						<a href="#{{ $key }}">
@@ -56,7 +55,6 @@
 						</a>
 					</div>
 				</div>
-            @endif
 				@endforeach	
 		</div>	
 	</div>

@@ -274,19 +274,13 @@
 <script type="text/javascript">
         $(function () {
             $('#datetimepicker').datetimepicker({
-                //format: 'DD/MM/YYYY HH:mm',
                 locale: 'es',
                 minDate: new Date(),
                 daysOfWeekDisabled: [6]
-
-
-
-
             });
         });
         $(function () {
             $('#datetimepicker2').datetimepicker({
-                //format: 'DD/MM/YYYY HH:mm',
                 locale: 'es',
                 minDate: new Date(),
                 daysOfWeekDisabled: [6]

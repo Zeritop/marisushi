@@ -166,8 +166,6 @@
 <div class="container">
     
 
-   
-
     @if ($message = Session::get('success'))
 
         <div class="alert alert-success">
@@ -177,18 +175,39 @@
         </div>
 
     @endif
-  
-   
+
+
+      <div class="alert alert-info">
+          <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+              <span aria-hidden="true">&times;</span>
+          </button>
+          <strong>Info:</strong> El campo año es necesario para generar gráficos.<br><br>
+      </div>
+        
 
   <div class="row">
     <form action="{{ route('estadisticas') }}" method="get">
-      <div class="col-md-4">
-         <input type="text" name="mes_estado" class="form-control" placeholder="Mes Ejemplo 01">
+      <div class="col-md-6">
+         <select name="mes_estado" class="form-control" style="height: 40px;">
+                  <option disabled selected>Selecciona un mes (Opcional)</option>
+                  <option value="01">Enero</option>
+                  <option value="02">Febrero</option>
+                  <option value="03">Marzo</option>
+                  <option value="04">Abril</option>
+                  <option value="05">Mayo</option>
+                  <option value="06">Junio</option>
+                  <option value="07">Julio</option>
+                  <option value="08">Agosto</option>
+                  <option value="09">Septiembre</option>
+                  <option value="10">Octubre</option>
+                  <option value="11">Noviembre</option>
+                  <option value="12">Diciembre</option>
+              </select>
       </div>
       <div class="col-md-4">
         <input type="text" name="ano_estado" class="form-control" placeholder="Año">
       </div>
-        <div class="col-md-4">
+        <div class="col-md-2">
             <button type="submit" class="btn btn-primary">Buscar</button>
         </div>
         

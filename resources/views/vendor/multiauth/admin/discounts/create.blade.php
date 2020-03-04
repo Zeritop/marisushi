@@ -75,7 +75,7 @@
 
                 <strong>Porcentaje de Descuento:</strong>
 
-                <input type="number" name="descuento" class="form-control" placeholder="Ejemplo: 5 (sin ingresar el simbolo %)">
+                <input type="number"  min="0" name="descuento" class="form-control" placeholder="Ejemplo: 5 (sin ingresar el simbolo %)">
 
             </div>
 

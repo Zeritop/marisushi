@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use Barryvdh\DomPDF\Facade as PDF;
 use Illuminate\Support\Facades\DB;
+use Illuminate\Support\Carbon;
 use App\Sale;
 
 
@@ -105,7 +106,7 @@ class SaleController extends Controller
         //
         $request->validate([
 
-            'year' => 'required',
+            'year' => 'required|digits:4|integer|min:2020|max:'.Carbon::tomorrow()->year,
 
         ]);
 

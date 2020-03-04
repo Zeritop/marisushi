@@ -16,11 +16,11 @@ class ProductController extends Controller
      */
     public function index()
     {
-        $products = Product::latest()->paginate(5);
+        $products = Product::latest()->paginate(15);
 
         return view('vendor.multiauth.admin.products.index',compact('products'))
 
-            ->with('i', (request()->input('page', 1) - 1) * 5);
+            ->with('i', (request()->input('page', 1) - 1) * 15);
 
     }
 
@@ -32,8 +32,9 @@ class ProductController extends Controller
     public function create()
     {
         //
+        $medidas = DB::table('measurements')->select('name')->get();
         $ingredients = DB::table('ingredients')->select('name')->get();
-        return view('vendor.multiauth.admin.products.create',compact('ingredients'));
+        return view('vendor.multiauth.admin.products.create',compact('ingredients','medidas'));
                     
     }
 
@@ -48,9 +49,9 @@ class ProductController extends Controller
             
 
             $request->validate([
-
             'name' => 'required',
-            'cantidad' => 'required',
+            'cantidad' => 'required|min:0',
+            'unidad_medida' => 'required',
             'precio_inicial' => 'required',
             'precio_actual' => 'required',
 
@@ -85,7 +86,8 @@ class ProductController extends Controller
     public function edit(Product $product)
     {
         //
-        return view('vendor.multiauth.admin.products.edit',compact('product'));
+        $medidas = DB::table('measurements')->select('name')->get();
+        return view('vendor.multiauth.admin.products.edit',compact('product','medidas'));
     }
 
     /**
@@ -98,11 +100,10 @@ class ProductController extends Controller
     public function update(Request $request, Product $product)
     {
             $request->validate([
-            'cantidad' => 'required',
+            'cantidad' => 'required|numeric|min:0',
+            'unidad_medida' => 'required',
             'precio_inicial' => 'required',
             'precio_actual' => 'required',
-            'descuento' => 'required',
-
         ]);
 
         $product->update($request->all());

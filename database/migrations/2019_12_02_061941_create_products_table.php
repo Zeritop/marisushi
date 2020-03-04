@@ -21,6 +21,7 @@ class CreateProductsTable extends Migration
             $table->integer('precio_actual');
             $table->integer('descuento')->nullable();
             $table->integer('cantidad');
+            $table->string('unidad_medida');
             $table->string('proveedor')->nullable();
             $table->text('observaciones')->nullable();
             $table->timestamps();

@@ -84,7 +84,7 @@ class OrderController extends Controller
             'secundario1' => 'required',
             'secundario2' => 'required',
             'envoltura' => 'required',
-            'cantidad' => 'required',
+            'cantidad' => 'required|numeric|min:1',
             'nombreRetira' => 'required|min:2',
             'telefono' => 'required|min:5',
             'fechaEntrega' => 'required'
@@ -139,7 +139,7 @@ class OrderController extends Controller
         //registrar el menu personalizado en la tabla menu
         $menu = new Menu;
         $menu->titulo = 'Sushi Personalizado';
-        $menu->descripcion = 'Descripcion';
+        $menu->descripcion = '';
         $menu->precio = 2000;
         $menu->esencial = $request->esencial;
         $menu->principal = $request->principal;
@@ -189,7 +189,7 @@ class OrderController extends Controller
         $request->validate([
 
             'menuItem' => 'required',
-            'cantidad' => 'required',
+            'cantidad' => 'required|numeric|min:1',
             'nombreRetira' => 'required|min:2',
             'telefono' => 'required|min:5',
             'fechaEntrega' => 'required'
@@ -395,7 +395,7 @@ class OrderController extends Controller
         'secundario1' => 'required',
         'secundario2' => 'required',
         'envoltura' => 'required',
-        'cantidad' => 'required',
+        'cantidad' => 'required|numeric|min:1',
         ]);
 
         $cantidad = $request->cantidad;
@@ -404,7 +404,7 @@ class OrderController extends Controller
         //registrar el menu personalizado en la tabla menu
         $menu = new Menu;
         $menu->titulo = $titulo;
-        $menu->descripcion = 'Descripcion';
+        $menu->descripcion = '';
         $menu->precio = 2000;
         $menu->esencial = $request->esencial;
         $menu->principal = $request->principal;
@@ -469,7 +469,7 @@ class OrderController extends Controller
         $request->validate([
 
             'menuItem' => 'required',
-            'cantidad' => 'required',
+            'cantidad' => 'required|numeric|min:1',
 
 
         ]);

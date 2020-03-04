@@ -23,11 +23,11 @@ class IngredientController extends Controller
      */
     public function index()
     {
-        $ingredients = Ingredient::orderBy('created_at', 'ASC')->paginate(5);
+        $ingredients = Ingredient::orderBy('created_at', 'ASC')->paginate(15);
 
         return view('vendor.multiauth.admin.ingredients.index',compact('ingredients'))
 
-            ->with('i', (request()->input('page', 1) - 1) * 5);
+            ->with('i', (request()->input('page', 1) - 1) * 15);
     }
 
     /**

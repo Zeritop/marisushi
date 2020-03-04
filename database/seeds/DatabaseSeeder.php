@@ -17,6 +17,7 @@ class DatabaseSeeder extends Seeder
             CategorysTableSeeder::class,
             IngredientsTableSeeder::class,         
             StatusesTableSeeder::class,
+            MeasurementsTableSeeder::class,
         ]);
     }
 }

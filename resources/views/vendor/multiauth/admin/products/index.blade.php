@@ -38,7 +38,7 @@
     <ul>
         <div class="alert alert-danger">
             @foreach($products as $product)
-                @if ($product->cantidad == 0 || 0 > $product->cantidad )
+                @if ($product->cantidad == 0 )
                     <li>   
                         <strong>No queda {{ $product->name }} en el inventario</strong> 
                     </li>
@@ -57,6 +57,8 @@
 
             <th>Cantidad</th>
 
+            <th>Unidad Medida</th>
+
             <th>Precio Actual</th>
 
             <th>Proveedor</th>
@@ -74,6 +76,8 @@
             <td>{{ $product->name }}</td>
 
             <td>{{ $product->cantidad }}</td>
+
+            <td>{{ $product->unidad_medida }}</td>
 
             <td>{{ $product->precio_actual }}</td>
 
@@ -99,7 +103,7 @@
 
       
 
-                    <button type="submit" class="btn btn-danger">Delete</button>
+                    <button type="submit" class="btn btn-danger">Eliminar</button>
 
                 </form>
 

@@ -31,7 +31,7 @@
 
     <div class="alert alert-danger">
 
-        <strong>Whoops!</strong> There were some problems with your input.<br><br>
+        <strong>Whoops!</strong> Parece haber algunos problemas con los siguientes campos.<br><br>
 
         <ul>
 
@@ -103,8 +103,11 @@
          
         <div class="col-xs-12 col-sm-12 col-md-12">
             <div class="form-group">
+
+            <hr>
+            <strong><h4>Menú Sushi</h4></strong>
                 
-            <strong>Ingrediente: ("Esencial")</strong>    
+            <strong>Ingrediente Esencial</strong>    
              <select class="form-control" name="esencial" style="height: auto">
                     <option disabled selected>Selecciona una opción</option>
                     
@@ -125,7 +128,7 @@
          <div class="col-xs-12 col-sm-12 col-md-12">
             <div class="form-group">
                 
-            <strong>Ingrediente: ("Principal")</strong>    
+            <strong>Ingrediente Principal</strong>    
              <select class="form-control" name="principal" style="height: auto">
                     <option disabled selected>Selecciona una opción</option>
                     
@@ -146,7 +149,7 @@
           <div class="col-xs-12 col-sm-12 col-md-12">
             <div class="form-group">
                 
-            <strong>Ingrediente: ("Secundarios")</strong>    
+            <strong>Ingrediente Secundario 1</strong>    
              <select class="form-control" name="secundario1" style="height: auto">
                     <option disabled selected>Selecciona una opción</option>
                     
@@ -167,7 +170,7 @@
           <div class="col-xs-12 col-sm-12 col-md-12">
             <div class="form-group">
                 
-            <strong>Ingrediente: ("Secundarios")</strong>    
+            <strong>Ingrediente Secundarios 2</strong>    
              <select class="form-control" name="secundario2" style="height: auto">
                     <option disabled selected>Selecciona una opción</option>
                     
@@ -188,7 +191,7 @@
           <div class="col-xs-12 col-sm-12 col-md-12">
             <div class="form-group">
                 
-            <strong>Ingrediente: ("Envoltura")</strong>    
+            <strong>Ingrediente Envoltura</strong>    
              <select class="form-control" name="envoltura" style="height: auto">
                     <option disabled selected>Selecciona una opción</option>
                     
@@ -205,10 +208,12 @@
             </div>
          
         </div>
+        
          
          <div class="col-xs-12 col-sm-12 col-md-12">
+            <hr>
+            <strong><h4>Otros Menús (Opcional)</h4></strong>
             <div class="form-group">
-             <strong>Otros Ingredientes (Opcionales)</strong>
             </div>
              
          </div>

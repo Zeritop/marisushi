@@ -106,7 +106,7 @@ class PersonalizarController extends Controller
 
        $menu = new Menu;
        $menu->titulo = 'Sushi Personalizado';
-       $menu->descripcion = 'Descripcion';
+       $menu->descripcion = '';
        $menu->precio = 2000;
        $menu->esencial = $request->esencial;
        $menu->principal = $request->principal;

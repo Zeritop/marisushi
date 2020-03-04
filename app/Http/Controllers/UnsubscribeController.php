@@ -90,7 +90,7 @@ class UnsubscribeController extends Controller
         //
         $request->validate([
 
-            'email' => 'required|email',
+            'email' => 'required|email|regex:/^\w+(\.\w+)*@\w+(\.\w+)+$/',
 
         ]);
 

@@ -31,7 +31,7 @@
 
     <div class="alert alert-danger">
 
-        <strong>Whoops!</strong> There were some problems with your input.<br><br>
+        <strong>Whoops!</strong> Parece haber algunos problemas con los siguientes campos.<br><br>
 
         <ul>
 
@@ -102,6 +102,19 @@
             </div>
 
         </div>
+
+        <div class="col-xs-12 col-sm-12 col-md-12">
+        <div class="form-group">
+            <strong>Unidad de medida:</strong>
+              <select name="unidad_medida" class="form-control" style="height: 40px;">
+                <option disabled selected>Selecciona la unidad de medida</option>
+                    @foreach($medidas as $medida)
+                            <option value=" {{ $medida->name }}"> {{ $medida->name}} </option>
+                    @endforeach
+
+              </select>
+          </div>
+          </div>
 
         <div class="col-xs-12 col-sm-12 col-md-12">
 
