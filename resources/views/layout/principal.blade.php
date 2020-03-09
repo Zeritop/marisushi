@@ -65,7 +65,7 @@
 							</div>
 							<div class="col-xl-3 col-6 header-top_w3layouts">
 								<p class="text-da">
-									<span class="fa fa-phone mr-2"></span>9 7849 0869
+									<span class="fa fa-phone mr-2"></span>9 7849 0896
 								</p>
 							</div>
 							<div class="col-xl-6"></div>
@@ -178,7 +178,7 @@
 					<!-- logo -->
 					<h2>
 						<a class="logo text-wh" href="index.html">
-							<img src="images/sushiAnimado2.jpg" alt="" class="img-fluid" style="width: 80px;"><span>Maria</span> Sushi
+							<img src="images/sushiAnimado2.jpg" alt="" class="img-fluid" style="width: 80px;"><span>Mari</span> Sushi
 						</a>
 					</h2>
 					<!-- //logo -->
@@ -221,9 +221,8 @@
 					</div>
 					<div class="footer-text mt-4">
 						<p>Direccion : Andalio Vigueras #200, Los Alamos, Región del Bío Bío</p>
-						<p class="my-2">Telefono : 9 7849 0869</p>
-						<p>Email : info@example.com</p>
-						<p>Horario de Atención: Lunes a Sabados 14:00 a 00:00</p>
+						<p class="my-2">Telefono : 9 7849 0896</p>
+						<p>Horario de Atención: Martes a Sabados 17:00 a 23:30</p>
 					</div>
 					<div class="footer-title mt-4 pt-md-2">
 						<h3>Métodos de Pago</h3>

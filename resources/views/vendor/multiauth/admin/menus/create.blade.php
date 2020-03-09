@@ -188,15 +188,29 @@
          
         </div>
          
+        <div class="col-xs-12 col-sm-12 col-md-12">
+            <div class="form-group">
+                
+            <strong>Ingrediente Envoltura Interna</strong>    
+             <select class="form-control" name="envolturaInterna" style="height: auto">
+                    <option disabled selected>Selecciona una opción</option>
+                        <option value="Nori">Con Nori</option>
+                        <option value="">Sin Nori</option>
+                </select>
+                
+            </div> 
+        </div>
+
+
           <div class="col-xs-12 col-sm-12 col-md-12">
             <div class="form-group">
                 
-            <strong>Ingrediente Envoltura</strong>    
-             <select class="form-control" name="envoltura" style="height: auto">
+            <strong>Ingrediente Envoltura Externa</strong>    
+             <select class="form-control" name="envolturaExterna" style="height: auto">
                     <option disabled selected>Selecciona una opción</option>
                     
                     @foreach ($ingredients as $ingredient)
-                    @if($ingredient->categoria == 'Envoltura')
+                    @if($ingredient->categoria == 'Envoltura externa')
                  
                     <option value=" {{ $ingredient->name }} "> {{ $ingredient->name }} </option>
                 

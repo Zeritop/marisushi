@@ -23,7 +23,8 @@ class CreateMenusTable extends Migration
             $table->string('principal')->nullable();
             $table->string('secundario1')->nullable();
             $table->string('secundario2')->nullable();
-            $table->string('envoltura')->nullable();
+            $table->string('envolturaInterna')->nullable();
+            $table->string('envolturaExterna')->nullable();
             $table->string('ingrediente1')->nullable();
             $table->string('ingrediente2')->nullable();
             $table->string('ingrediente3')->nullable();

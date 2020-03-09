@@ -25,8 +25,13 @@ class CategorysTableSeeder extends Seeder
         ]);
 
         DB::table('categorys')->insert([
-            'name' => 'Envoltura',
+            'name' => 'Envoltura interna',
         ]);
+
+        DB::table('categorys')->insert([
+            'name' => 'Envoltura externa',
+        ]);
+
 
         DB::table('categorys')->insert([
             'name' => 'Otros',

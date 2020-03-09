@@ -61,13 +61,16 @@
                         <hr>
                         <div class="row">
                             <div class="col-md-4">
-                                @if($menu['title'] != "Sushi Personalizado")
+                                @if(($menu['title'] != "Sushi Personalizado: 10 piezas") && ($menu['title'] != "Handroll Personalizado"))
                                     <img src="/storage/{{ $menu['image'] }}" style="height: 200px; width: 200px;">
                                 @endif    
                             </div>
                             <div class="col-md-8">
                             Ingredientes:
-                                <p>{{ $menu['esencial'] }} - {{ $menu['principal'] }} - {{ $menu['secundario1'] }} - {{ $menu['secundario2'] }} - {{ $menu['envoltura'] }}</p>
+                                <p>{{ $menu['esencial'] }} - {{ $menu['principal'] }} - {{ $menu['secundario1'] }} - {{ $menu['secundario2'] }} - {{ $menu['envolturaExterna'] }}</p>
+                                @if($menu['envolturaInterna'] != null)
+                                    <p>- {{ $menu['envolturaInterna'] }}</p>
+                                @endif
                                 @if($menu['ingrediente1'] != null)
                                     <p>- {{ $menu['ingrediente1'] }}</p>
                                 @endif

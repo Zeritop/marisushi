@@ -31,7 +31,8 @@ class MenuController extends Controller
         $menus = Menu::orderBy('created_at', 'ASC')
         ->titulo($titulo) 
         ->descripcion($descripcion)
-        ->where('titulo','not like','Sushi Personalizado')
+        ->where('titulo','not like','Sushi Personalizado: 10 piezas')
+        ->where('titulo','not like','Handroll Personalizado')
         ->paginate(15);
   
         return view('vendor.multiauth.admin.menus.index',compact('menus'))
@@ -65,7 +66,8 @@ class MenuController extends Controller
             'principal' => 'required',
             'secundario1' => 'required',
             'secundario2' => 'required',
-            'envoltura' => 'required',
+            'envolturaInterna' => 'required',
+            'envolturaExterna' => 'required',
         ]);
 
     
@@ -79,7 +81,8 @@ class MenuController extends Controller
         $menu->principal = $request->principal;
         $menu->secundario1 = $request->secundario1;
         $menu->secundario2 = $request->secundario2;
-        $menu->envoltura = $request->envoltura;
+        $menu->envolturaInterna = $request->envolturaInterna;
+        $menu->envolturaExterna = $request->envolturaExterna;
         $menu->ingrediente1 = $request->ingrediente1;
         $menu->ingrediente2 = $request->ingrediente2;
         $menu->ingrediente3 = $request->ingrediente3;
@@ -126,17 +129,13 @@ class MenuController extends Controller
     {
              $request->validate([
 
-            'titulo' => 'required',
-            
+            'titulo' => 'required',       
             'descripcion' => 'required',
             'precio' => 'required',
         ]);
 
-  
 
         $menu->update($request->all());
-
-  
 
         return redirect()->route('menus.index')
 
@@ -160,14 +159,4 @@ class MenuController extends Controller
                         ->with('success','Menu Eliminado Exitosamente');
     }
     
-   /* public function add(Menu $menu){
-        if(session()->has('cart')){
-            $cart = new Cart(session()->get('cart'));
-        } else {
-            $cart = new Cart();
-        }
-        
-        $cart->add($menu);
-        dd($cart);
-    }*/
 }

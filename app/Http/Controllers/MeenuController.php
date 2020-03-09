@@ -26,7 +26,8 @@ class MeenuController extends Controller
     public function index()
     {
         $menus = Menu::orderBy('created_at', 'ASC')
-        ->where('titulo','not like','Sushi Personalizado')
+        ->where('titulo','not like','Sushi Personalizado: 10 piezas')
+        ->where('titulo','not like','Handroll Personalizado')
         ->paginate(5);
   
         return view('menu.index',compact('menus'))
@@ -257,8 +258,6 @@ class MeenuController extends Controller
          $ingre3 = DB::table('ingredients')->select('name')->where('name', '=', $menu['secundario2'])->first();
         $prod3 = DB::table('products')->select('cantidad')->where('name', '=', $ingre3->name)->decrement('cantidad', 1);
         
-         $ingre4 = DB::table('ingredients')->select('name')->where('name', '=', $menu['envoltura'])->first();
-        $prod4 = DB::table('products')->select('cantidad')->where('name', '=', $ingre4->name)->decrement('cantidad', 1);
         
         
         //$prod->save();

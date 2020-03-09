@@ -38,8 +38,13 @@ class IngredientsTableSeeder extends Seeder
         ]);
 
         DB::table('ingredients')->insert([
+            'name' => 'Nori',
+            'categoria' => 'Envoltura interna',
+        ]);
+
+        DB::table('ingredients')->insert([
             'name' => 'Panko',
-            'categoria' => 'Envoltura',
+            'categoria' => 'Envoltura externa',
         ]);
     }
 }

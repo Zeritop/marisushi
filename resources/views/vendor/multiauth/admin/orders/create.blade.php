@@ -79,8 +79,19 @@
             <input type="hidden"  name="tipo" value="personalizado">
 
           <div class="form-group">
+            <label for="recipient-name" class="col-form-label">Titulo</label>
+              <select name="titulo" class="form-control" style="height: 40px;">
+                  <option disabled selected>Selecciona la forma</option>
+                  <option value="Handroll Personalizado">Handroll Personalizado</option>
+                  <option value="Sushi Personalizado: 10 piezas">Sushi Personalizado: 10 piezas</option>
+              </select>
+          </div>
+
+
+          <div class="form-group">
             <label for="recipient-name" class="col-form-label">Ingrediente Esencial</label>
               <select name="esencial" class="form-control" style="height: 40px;">
+                <option disabled selected>Selecciona el ingrediente esencial</option>
                     @foreach($personalizars as $personalizar)
                         @if($personalizar->categoria == 'Esencial')
                             <option value=" {{ $personalizar->name}} "> {{ $personalizar->name}} </option>
@@ -131,11 +142,21 @@
           </div>
 
           <div class="form-group">
-            <label for="recipient-name" class="col-form-label">Envoltura</label>
-            <select name="envoltura" class="form-control" style="height: 40px;">
-              <option disabled selected>Selecciona una envoltura</option>
+            <label for="recipient-name" class="col-form-label">Envoltura Interna</label>
+            <select name="envolturaInterna" class="form-control" style="height: auto">
+                <option disabled selected>Selecciona una envoltura interna</option>
+                <option value="Nori">Con Nori</option>
+                <option value="sinNori">Sin Nori</option>
+            </select>
+          </div>
+
+          <div class="form-group">
+            <label for="recipient-name" class="col-form-label">Envoltura Externa</label>
+            <select name="envolturaExterna" class="form-control" style="height: 40px;">
+                    <!--  <option value="" selected="">...</option> -->
+              <option disabled selected>Selecciona una envoltura externa</option>
                   @foreach($personalizars as $personalizar)
-                      @if($personalizar->categoria == 'Envoltura')
+                      @if($personalizar->categoria == 'Envoltura externa')
                           <option value=" {{ $personalizar->name}} "> {{ $personalizar->name}} </option>
                       @endif
                   @endforeach
@@ -181,7 +202,7 @@
       </div>
       <div class="modal-footer">
         <button type="button" class="btn btn-secondary" data-dismiss="modal">Cancelar</button>
-        <button type="submit" class="btn btn-primary">Registrar Pago</button>
+        <button type="submit" class="btn btn-primary">Crear Pedido</button>
       </div>
       </form>
     </div>
@@ -256,7 +277,7 @@
       </div>
       <div class="modal-footer">
         <button type="button" class="btn btn-secondary" data-dismiss="modal">Cancelar</button>
-        <button type="submit" class="btn btn-primary">Registrar Pago</button>
+        <button type="submit" class="btn btn-primary">Crear pedido</button>
       </div>
       </form>
     </div>
@@ -276,14 +297,14 @@
             $('#datetimepicker').datetimepicker({
                 locale: 'es',
                 minDate: new Date(),
-                daysOfWeekDisabled: [6]
+                daysOfWeekDisabled: [0, 1]
             });
         });
         $(function () {
             $('#datetimepicker2').datetimepicker({
                 locale: 'es',
                 minDate: new Date(),
-                daysOfWeekDisabled: [6]
+                daysOfWeekDisabled: [0, 1]
 
             });
         });

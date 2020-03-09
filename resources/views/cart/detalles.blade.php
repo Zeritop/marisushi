@@ -101,7 +101,7 @@
             
             <td>{{ $menu['qty'] }}</td>
 
-            @if($menu['title'] != 'Sushi Personalizado')
+            @if(($menu['title'] != "Sushi Personalizado: 10 piezas") && ($menu['title'] != "Handroll Personalizado"))
 
             <td><img src="/storage/{{ $menu['image'] }}" alt=" " class="img-fluid" width="80px" /></td>
 
@@ -173,7 +173,7 @@
                 //format: 'DD/MM/YYYY HH:mm',
                 locale: 'es',
                 minDate: new Date(),
-                daysOfWeekDisabled: [6]
+                daysOfWeekDisabled: [0, 1]
             });
         });
         $(function () {
@@ -181,7 +181,7 @@
                 //format: 'MM-DD-YYYY HH:mm',
                 locale: 'es',
                 minDate: new Date(),
-                daysOfWeekDisabled: [6]
+                daysOfWeekDisabled: [0, 1]
 
 
 

@@ -11,8 +11,8 @@
             <div class="pull-left">
 
                 <h2>Ver Pedido #000{{ $order->id }}</h2>
-                <h5>Este pedido fue realizado desde la sección de {{ $order->seccion }}</h5>
 
+                <h5>Este pedido fue realizado desde la sección de: <strong> {{ $order->seccion }} </strong></h5> 
 
                 @if ($errors->any())
                     <div class="alert alert-danger">
@@ -155,6 +155,18 @@
 
             <div class="form-group">
 
+                <strong>Sección:</strong>
+
+                {{ $order->seccion }}
+
+            </div>
+
+        </div>
+
+        <div class="col-xs-12 col-sm-12 col-md-12">
+
+            <div class="form-group">
+
                 <strong>Observación:</strong>
 
                 {{ $order->observacion }}
@@ -215,8 +227,12 @@
                     - {{ $menuItem->secundario2 }}
                   @endif
 
-                  @if($menuItem->envoltura != null)
-                    - {{ $menuItem->envoltura }}
+                  @if($menuItem->envolturaInterna != null)
+                    - {{ $menuItem->envolturaInterna }}
+                  @endif
+
+                  @if($menuItem->envolturaExterna != null)
+                    - {{ $menuItem->envolturaExterna }}
                   @endif
 
                   @if($menuItem->ingrediente1 != null)
@@ -238,11 +254,6 @@
                   @if($menuItem->ingrediente5 != null)
                     - {{ $menuItem->ingrediente5 }}
                   @endif
-                  
-                  
-                
-
-
 
             </td>
 
@@ -253,7 +264,7 @@
             <td> {{ $menuItem->cantidad }}</td>
 
             <td> 
-                @if($menuItem->titulo != 'Sushi Personalizado')
+                @if(($menuItem->titulo != 'Sushi Personalizado: 10 piezas') && ($menuItem->titulo != 'Handroll Personalizado'))
                     <img width="500px;" src="/storage/{{ $menuItem->foto }}" style="height: 100px; width: auto;" ></td>
                 @endif
             <td>
@@ -424,9 +435,22 @@
       <div class="modal-body">
           <form action="{{ route('orders.agregarItem',$order->id) }}" method="POST">
             @csrf
+
+            <div class="form-group">
+            <label for="recipient-name" class="col-form-label">Titulo</label>
+              <select name="titulo" class="form-control" style="height: 40px;">
+                  <option disabled selected>Selecciona la forma</option>
+                  <option value="Handroll Personalizado">Handroll Personalizado</option>
+                  <option value="Sushi Personalizado: 10 piezas">Sushi Personalizado: 10 piezas</option>
+              </select>
+          </div>
+
+
+
           <div class="form-group">
             <label for="recipient-name" class="col-form-label">Ingrediente Esencial</label>
               <select name="esencial" class="form-control" style="height: 40px;">
+                <option disabled selected>Selecciona el ingrediente esencial</option>
                     @foreach($personalizars as $personalizar)
                         @if($personalizar->categoria == 'Esencial')
                             <option value=" {{ $personalizar->name}} "> {{ $personalizar->name}} </option>
@@ -477,12 +501,21 @@
           </div>
 
           <div class="form-group">
-            <label for="recipient-name" class="col-form-label">Envoltura</label>
-            <select name="envoltura" class="form-control" style="height: 40px;">
+            <label for="recipient-name" class="col-form-label">Envoltura Interna</label>
+            <select name="envolturaInterna" class="form-control" style="height: auto">
+                <option disabled selected>Selecciona una envoltura interna</option>
+                <option value="Nori">Con Nori</option>
+                <option value="sinNori">Sin Nori</option>
+            </select>
+          </div>
+
+          <div class="form-group">
+            <label for="recipient-name" class="col-form-label">Envoltura Externa</label>
+            <select name="envolturaExterna" class="form-control" style="height: 40px;">
                     <!--  <option value="" selected="">...</option> -->
-              <option disabled selected>Selecciona una envoltura</option>
+              <option disabled selected>Selecciona una envoltura externa</option>
                   @foreach($personalizars as $personalizar)
-                      @if($personalizar->categoria == 'Envoltura')
+                      @if($personalizar->categoria == 'Envoltura externa')
                           <option value=" {{ $personalizar->name}} "> {{ $personalizar->name}} </option>
                       @endif
                   @endforeach
@@ -499,7 +532,7 @@
       </div>
       <div class="modal-footer">
         <button type="button" class="btn btn-secondary" data-dismiss="modal">Cancelar</button>
-        <button type="submit" class="btn btn-primary">Registrar Pago</button>
+        <button type="submit" class="btn btn-primary">Agregar menu personalizado</button>
       </div>
       </form>
     </div>
@@ -546,7 +579,7 @@
       </div>
       <div class="modal-footer">
         <button type="button" class="btn btn-secondary" data-dismiss="modal">Cancelar</button>
-        <button type="submit" class="btn btn-primary">Registrar Pago</button>
+        <button type="submit" class="btn btn-primary">Agregar menú estandar</button>
       </div>
       </form>
     </div>

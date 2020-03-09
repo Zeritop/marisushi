@@ -122,7 +122,7 @@
 						<div class="col-9 address-right mt-2">
 							<h5 class="address mb-2">Email</h5>
 							<p>
-								<a href="mailto:example@email.com"> mail@example.com</a>
+								<p> mail@example.com</p>
 							</p>
 						</div>
 					</div>
@@ -132,7 +132,7 @@
 						</div>
 						<div class="col-9 address-right mt-2">
 							<h5 class="address mb-2">Telefono</h5>
-							<p>9 7849 0869</p>
+							<p>9 7849 0896</p>
 						</div>
 					</div>
 				</div>

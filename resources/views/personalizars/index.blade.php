@@ -121,10 +121,24 @@
 		                            <div class="tab-pane" id="esencial">
 		                            	<h5 class="info-text">Ingrediente Esencial</h5>
 		                            	<div class="row">
+
+
+		                            		<div class="col-sm-10 col-sm-offset-1">
+												<div class="form-group">
+													<label>Forma</label>
+													
+													<select name="titulo" class="form-control" style="height: 40px;">
+														<option disabled selected>Selecciona la forma</option>
+		                                                <option value="Handroll Personalizado">Handroll Personalizado</option>
+		                                                <option value="Sushi Personalizado: 10 piezas">Sushi Personalizado: 10 piezas</option>
+		                                            </select>
+		                                            
+												</div>
+											</div>
 										
 											<div class="col-sm-10 col-sm-offset-1">
 												<div class="form-group">
-													<label>Primer ingrediente</label>
+													<label>Ingrediente esencial</label>
 													
 													<select name="esencial" class="form-control" style="height: 40px;">
 														<option disabled selected>Selecciona el ingrediente esencial</option>
@@ -138,42 +152,6 @@
 		                                            
 												</div>
 											</div>
-											<!-- <div class="col-sm-10 col-sm-offset-1">
-												<div class="form-group">
-													<label>Segundo ingrediente <small>(required)</small></label>
-													
-													<select name="country" class="form-control" style="height: 40px;">
-														<option value="" selected="">...</option>
-														@foreach($personalizars as $personalizar)
-														@if($personalizar->categoria == 'Esencial')
-														@if($personalizar->name != 'Arroz')
-		                                                <option value=""> {{ $personalizar->name}} </option>
-		                                                @endif
-		                                                @endif
-		                                                @endforeach
-
-		                                            </select>
-		                                            
-												</div>
-											</div>-->
-											<!-- <div class="col-sm-10 col-sm-offset-1">
-												<div class="form-group">
-													<label>Tercer ingrediente <small>(required)</small></label>
-													
-													<select name="country" class="form-control" style="height: 40px;">
-														<option value="" selected="">...</option>
-														@foreach($personalizars as $personalizar)
-														@if($personalizar->categoria == 'Esencial')
-														@if($personalizar->name != 'Arroz')
-		                                                <option value=""> {{ $personalizar->name}} </option>
-		                                                @endif
-		                                                @endif
-		                                                @endforeach
-
-		                                            </select>
-		                                            
-												</div>
-											</div> -->
 											  
 										</div>
 		                            </div>
@@ -243,15 +221,29 @@
 		                            <div class="tab-pane" id="envoltura">
 		                                <h5 class="info-text"> Elige entre nuestras envolturas </h5>
 		                                <div class="row">
+
+		                                	<div class="col-sm-10 col-sm-offset-1">
+												<div class="form-group">
+													<label>Envoltura Interna<small>(requerido)</small></label>
+													
+													<select class="form-control" name="envolturaInterna" style="height: auto">
+                    									<option disabled selected>Selecciona una opción</option>
+                        									<option value="Nori">Con Nori</option>
+                        									<option value="sinNori">Sin Nori</option>
+                									</select>
+		                                            
+												</div>
+											</div>
+
 		                                    <div class="col-sm-10 col-sm-offset-1">
 												<div class="form-group">
-													<label>Envoltura <small>(requerido)</small></label>
+													<label>Envoltura Externa<small>(requerido)</small></label>
 													
-													<select name="envoltura" class="form-control" style="height: 40px;">
+													<select name="envolturaExterna" class="form-control" style="height: 40px;">
 												<!--		<option value="" selected="">...</option> -->
 												<option disabled selected>Selecciona una envoltura</option>
 														@foreach($personalizars as $personalizar)
-														@if($personalizar->categoria == 'Envoltura')
+														@if($personalizar->categoria == 'Envoltura externa')
 		                                                <option value=" {{ $personalizar->name}} "> {{ $personalizar->name}} </option>
 		                                                @endif
 		                                                @endforeach
