@@ -23,7 +23,7 @@
 
     </div>
 
-   
+
 
     @if ($message = Session::get('success'))
 
@@ -34,17 +34,19 @@
         </div>
 
     @endif
-    
+
     <ul>
-        <div class="alert alert-danger">
+
             @foreach($products as $product)
                 @if ($product->cantidad == 0 )
-                    <li>   
-                        <strong>No queda {{ $product->name }} en el inventario</strong> 
+                <div class="alert alert-danger">
+                    <li>
+                        <strong>No queda {{ $product->name }} en el inventario</strong>
                     </li>
+                </div>    
                 @endif
             @endforeach
-        </div>
+
    </ul>
 
     <table class="table table-hover">
@@ -87,21 +89,21 @@
 
                 <form action="{{ route('products.destroy',$product->id) }}" method="POST">
 
-   
+
 
                     <a class="btn btn-info" href="{{ route('products.show',$product->id) }}">Ver</a>
 
-    
+
 
                     <a class="btn btn-primary" href="{{ route('products.edit',$product->id) }}">Editar</a>
 
-   
+
 
                     @csrf
 
                     @method('DELETE')
 
-      
+
 
                     <button type="submit" class="btn btn-danger">Eliminar</button>
 
@@ -115,12 +117,12 @@
 
     </table>
 
-  
+
 
     {!! $products->links() !!}
 
 </div>
-    
-      
+
+
 
 @endsection

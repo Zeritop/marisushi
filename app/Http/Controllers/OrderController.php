@@ -7,6 +7,9 @@ use App\Order_MenuItem;
 use App\Menu;
 use App\Discount;
 use App\Sale;
+use Session;
+use App\Cart;
+use App\Ingredients;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Auth;
@@ -36,12 +39,12 @@ class OrderController extends Controller
 
         $estado = $request->get('estado');
         $fecha = $request->get('fecha_entrega');
-        
+
         $orders = Order::orderBy('created_at', 'ASC')
             ->estado($estado)
             ->fecha($fecha)
             ->paginate(15);
-        
+
         return view('vendor.multiauth.admin.orders.index',compact('orders','estados'))
                     ->with('i', (request()->input('page', 1) - 1) * 15);
     }
@@ -70,11 +73,11 @@ class OrderController extends Controller
      * @return \Illuminate\Http\Response
      */
     public function store(Request $request)
-    {   
+    {
         //item del menu personalizado
         if($request->tipo === 'personalizado'){
 
-        $id_user_registra_compra = Auth::user()->id; 
+        $id_user_registra_compra = Auth::user()->id;
         $nombre_registra_compra = Auth::user()->name;
         $estado = 'Pendiente';
         $seccion = 'Administración';
@@ -168,19 +171,19 @@ class OrderController extends Controller
         $pedido_menuItem->id_pedido = $pedido->id;  //id del pedido de arriba
         $pedido_menuItem->save();
 
-        //retornar con los strings  
+        //retornar con los strings
         $order= $pedido;
         $personalizars = DB::table('ingredients')->select('name', 'categoria')->get();
         $menuItemsLists = DB::table('menus')
         ->where('titulo','not like','Sushi Personalizado: 10 piezas')
         ->where('titulo','not like','Handroll Personalizado')
         ->get();
-        
+
         $menuItems = DB::table('orders_menuItems')->leftJoin('menus', 'id_menu_item', '=', 'menus.id')
                                                     ->where('orders_menuItems.id_pedido',$order->id)
                                                     ->select('orders_menuItems.*','menus.foto','menus.esencial','menus.principal','menus.secundario1','menus.secundario2','menus.envolturaInterna','menus.envolturaExterna','menus.ingrediente1','menus.ingrediente2','menus.ingrediente3','menus.ingrediente4','menus.ingrediente5')
                                                     ->get();
-        
+
 
         return redirect('admin/orders/'. $order->id )
                         ->with('order')->with('menuItems')->with('menuItemsLists')->with('personalizars')
@@ -193,8 +196,8 @@ class OrderController extends Controller
 
         //item de menu estandar(el que viene de la base de datos)
         if($request->tipo === 'estandar'){
-        
-        $id_user_registra_compra = Auth::user()->id; 
+
+        $id_user_registra_compra = Auth::user()->id;
         $nombre_registra_compra = Auth::user()->name;
         $estado = 'Pendiente';
         $seccion = 'Administración';
@@ -256,7 +259,7 @@ class OrderController extends Controller
         }
 
         $pedido->seccion = $seccion;
-        $pedido->save();        
+        $pedido->save();
 
         //asociar el item al pedido
         $pedido_menuItem = new Order_MenuItem;
@@ -267,19 +270,19 @@ class OrderController extends Controller
         $pedido_menuItem->id_pedido = $pedido->id;  //id del pedido de arriba
         $pedido_menuItem->save();
 
-        //retornar con los strings     
+        //retornar con los strings
         $order= $pedido;
         $personalizars = DB::table('ingredients')->select('name', 'categoria')->get();
         $menuItemsLists = DB::table('menus')
         ->where('titulo','not like','Sushi Personalizado: 10 piezas')
         ->where('titulo','not like','Handroll Personalizado')
         ->get();
-        
+
         $menuItems = DB::table('orders_menuItems')->leftJoin('menus', 'id_menu_item', '=', 'menus.id')
                                                     ->where('orders_menuItems.id_pedido',$order->id)
                                                     ->select('orders_menuItems.*','menus.foto','menus.esencial','menus.principal','menus.secundario1','menus.secundario2','menus.envolturaInterna','menus.envolturaExterna','menus.ingrediente1','menus.ingrediente2','menus.ingrediente3','menus.ingrediente4','menus.ingrediente5')
                                                     ->get();
-        
+
 
         return redirect('admin/orders/'. $order->id )
                         ->with('order')->with('menuItems')->with('menuItemsLists')->with('personalizars')
@@ -304,13 +307,13 @@ class OrderController extends Controller
         ->where('titulo','not like','Sushi Personalizado: 10 piezas')
         ->where('titulo','not like','Handroll Personalizado')
         ->get();
-        
+
         $menuItems = DB::table('orders_menuItems')->leftJoin('menus', 'id_menu_item', '=', 'menus.id')
                                                     ->where('orders_menuItems.id_pedido',$order->id)
                                                     ->select('orders_menuItems.*','menus.foto','menus.esencial','menus.principal','menus.secundario1','menus.secundario2','menus.envolturaInterna','menus.envolturaExterna','menus.ingrediente1','menus.ingrediente2','menus.ingrediente3','menus.ingrediente4','menus.ingrediente5')
                                                     ->get();
 
-        
+
 
         return view('vendor.multiauth.admin.orders.show',compact('order','menuItems','menuItemsLists','personalizars'))
                         ->with('i', (request()->input('page', 1) - 1) * 5);
@@ -350,7 +353,7 @@ class OrderController extends Controller
         ]);
 
         $fecha_entrega = Carbon::parse($request->fechaEntrega);
-        
+
         $precio_total_sin_descuento = DB::table('orders')->select('precio_total_sin_descuento')->where('id',$request->order_id)->first()->precio_total_sin_descuento;
         $porcentaje = $request->descuento / 100;
         $precio_descuento = $precio_total_sin_descuento * $porcentaje;
@@ -374,12 +377,13 @@ class OrderController extends Controller
         ->where('titulo','not like','Sushi Personalizado: 10 piezas')
         ->where('titulo','not like','Handroll Personalizado')
         ->get();
-        
+
         $menuItems = DB::table('orders_menuItems')->leftJoin('menus', 'id_menu_item', '=', 'menus.id')
                                                     ->where('orders_menuItems.id_pedido',$order->id)
                                                     ->select('orders_menuItems.*','menus.foto','menus.esencial','menus.principal','menus.secundario1','menus.secundario2','menus.envolturaInterna','menus.envolturaExterna','menus.ingrediente1','menus.ingrediente2','menus.ingrediente3','menus.ingrediente4','menus.ingrediente5')
                                                     ->get();
-        
+
+
         return redirect('admin/orders/'. $order->id )
                         ->with('order')->with('menuItems')->with('menuItemsLists')->with('personalizars')
                         ->with('success','Pedido Actualizado correctamente')
@@ -406,7 +410,7 @@ class OrderController extends Controller
     public function agregarItem(Request $request)
     {
         if($request->tipo === 'personalizado'){
-        
+
         $precio_item = 2000;
 
         $request->validate([
@@ -458,7 +462,7 @@ class OrderController extends Controller
         $actualizarPedido->precio_total_sin_descuento = $nuevo_precio_total_sin_descuento;
 
         if($actualizarPedido->descuento_aplicado == true){
-        
+
         $porcentaje = $actualizarPedido->descuento / 100;
         $agregar_precio_con_descuento = $agregarPrecio - ($agregarPrecio * $porcentaje);
 
@@ -472,7 +476,7 @@ class OrderController extends Controller
         }
 
         $actualizarPedido->save();
-        
+
 
         //retornar con los strings
         $order = DB::table('orders')->where('id',$request->order_id)->first();
@@ -481,12 +485,12 @@ class OrderController extends Controller
         ->where('titulo','not like','Sushi Personalizado: 10 piezas')
         ->where('titulo','not like','Handroll Personalizado')
         ->get();
-        
+
         $menuItems = DB::table('orders_menuItems')->leftJoin('menus', 'id_menu_item', '=', 'menus.id')
                                                     ->where('orders_menuItems.id_pedido',$order->id)
                                                     ->select('orders_menuItems.*','menus.foto','menus.esencial','menus.principal','menus.secundario1','menus.secundario2','menus.envolturaInterna','menus.envolturaExterna','menus.ingrediente1','menus.ingrediente2','menus.ingrediente3','menus.ingrediente4','menus.ingrediente5')
                                                     ->get();
-        
+
         return redirect('admin/orders/'. $order->id )
                         ->with('order')->with('menuItems')->with('menuItemsLists')->with('personalizars')
                         ->with('success','Item agregado correctamente')
@@ -496,7 +500,7 @@ class OrderController extends Controller
 
 
         if($request->tipo === 'estandar'){
-        //Agregar item del menu estandar a un pedido previamente creado 
+        //Agregar item del menu estandar a un pedido previamente creado
         $request->validate([
 
             'menuItem' => 'required',
@@ -504,7 +508,7 @@ class OrderController extends Controller
 
 
         ]);
-        
+
         $titulo = DB::table('menus')->select('titulo')->where('id',$request->menuItem)->first()->titulo;
         $precio_item = DB::table('menus')->select('precio')->where('id',$request->menuItem)->first()->precio;
         $cantidad = $request->cantidad;
@@ -517,19 +521,19 @@ class OrderController extends Controller
         $nuevoItem->precio =  $precio_item;
         $nuevoItem->id_pedido = $request->order_id;
         $nuevoItem->save();
-    
+
 
         //actualizar precio si es con o sin descuento
         $precio_total_sin_descuento = DB::table('orders')->select('precio_total_sin_descuento')->where('id',$request->order_id)->first()->precio_total_sin_descuento;
         $nuevo_precio_total_sin_descuento = $precio_total_sin_descuento + $agregarPrecio;
-        
+
 
         $actualizarPedido = Order::find($request->order_id);
-        $actualizarPedido->precio_total_sin_descuento = $nuevo_precio_total_sin_descuento; 
+        $actualizarPedido->precio_total_sin_descuento = $nuevo_precio_total_sin_descuento;
 
-   
+
        if($actualizarPedido->descuento_aplicado == true){
-        
+
         $porcentaje = $actualizarPedido->descuento / 100;
         $agregar_precio_con_descuento = $agregarPrecio - ($agregarPrecio * $porcentaje);
 
@@ -553,24 +557,24 @@ class OrderController extends Controller
         ->where('titulo','not like','Sushi Personalizado: 10 piezas')
         ->where('titulo','not like','Handroll Personalizado')
         ->get();
-        
+
         $menuItems = DB::table('orders_menuItems')->leftJoin('menus', 'id_menu_item', '=', 'menus.id')
                                                     ->where('orders_menuItems.id_pedido',$order->id)
                                                     ->select('orders_menuItems.*','menus.foto','menus.esencial','menus.principal','menus.secundario1','menus.secundario2','menus.envolturaInterna','menus.envolturaExterna','menus.ingrediente1','menus.ingrediente2','menus.ingrediente3','menus.ingrediente4','menus.ingrediente5')
                                                     ->get();
-        
+
         return redirect('admin/orders/'. $order->id )
                         ->with('order')->with('menuItems')->with('menuItemsLists')->with('personalizars')
                         ->with('success','Item agregado correctamente')
                         ->with('i', (request()->input('page', 1) - 1) * 5);
 
         }// termino if estandar
-        
+
     }
 
     public function quitarItem(Request $request, Order $order)
-    {   
-        
+    {
+
         $precioItem = DB::table('orders_menuItems')->where('id',$request->menuItem_id)
                             ->where('id_pedido',$request->order_id)->first()->precio;
 
@@ -579,7 +583,7 @@ class OrderController extends Controller
 
 
         $actualizarPedido = DB::table('orders_menuItems')->where('id',$request->menuItem_id)
-                            ->where('id_pedido',$request->order_id)->delete();        
+                            ->where('id_pedido',$request->order_id)->delete();
 
         //actualizar precio
         $quitarPrecio = $precioItem * $cantidad;
@@ -609,12 +613,12 @@ class OrderController extends Controller
         ->where('titulo','not like','Sushi Personalizado: 10 piezas')
         ->where('titulo','not like','Handroll Personalizado')
         ->get();
-        
+
         $menuItems = DB::table('orders_menuItems')->leftJoin('menus', 'id_menu_item', '=', 'menus.id')
                                                     ->where('orders_menuItems.id_pedido',$order->id)
                                                     ->select('orders_menuItems.*','menus.foto','menus.esencial','menus.principal','menus.secundario1','menus.secundario2','menus.envolturaInterna','menus.envolturaExterna','menus.ingrediente1','menus.ingrediente2','menus.ingrediente3','menus.ingrediente4','menus.ingrediente5')
                                                     ->get();
-        
+
         return redirect('admin/orders/'. $order->id )
                         ->with('order')->with('menuItems')->with('menuItemsLists')->with('personalizars')
                         ->with('success','Item eliminado del pedido')
@@ -622,10 +626,10 @@ class OrderController extends Controller
 
         //return view('vendor.multiauth.admin.orders.show',compact('order','menuItems','menuItemsLists','personalizars'))->with('i', (request()->input('page', 1) - 1) * 5);
 
-        
+
 
     }
-    
+
     public function registrarPago(Request $request, Order $order)
     {
         //
@@ -689,23 +693,84 @@ class OrderController extends Controller
         //termina descuento de inventario
 
         //retornar
+
+
+
+
+
+
         $order = DB::table('orders')->where('id',$request->order_id)->first();
         $personalizars = DB::table('ingredients')->select('name', 'categoria')->get();
         $menuItemsLists = DB::table('menus')
         ->where('titulo','not like','Sushi Personalizado: 10 piezas')
         ->where('titulo','not like','Handroll Personalizado')
         ->get();
-        
+
         $menuItems = DB::table('orders_menuItems')->leftJoin('menus', 'id_menu_item', '=', 'menus.id')
                                                     ->where('orders_menuItems.id_pedido',$order->id)
                                                     ->select('orders_menuItems.*','menus.foto','menus.esencial','menus.principal','menus.secundario1','menus.secundario2','menus.envolturaInterna','menus.envolturaExterna','menus.ingrediente1','menus.ingrediente2','menus.ingrediente3','menus.ingrediente4','menus.ingrediente5')
                                                     ->get();
-        
+
+
+        //dd($menuItems);
+        foreach($menuItems as $menus){
+
+          $ingre = DB::table('ingredients')->select('name')->where('name', '=', $menus->esencial)->first();
+          $prod = DB::table('products')->select('cantidad')->where('name', '=', $ingre->name)->decrement('cantidad', 1*$menus->cantidad);
+
+          $ingre1 = DB::table('ingredients')->select('name')->where('name', '=', $menus->principal)->first();
+          $prod1 = DB::table('products')->select('cantidad')->where('name', '=', $ingre1->name)->decrement('cantidad', 1*$menus->cantidad);
+
+          $ingre2 = DB::table('ingredients')->select('name')->where('name', '=', $menus->secundario1)->first();
+          $prod2 = DB::table('products')->select('cantidad')->where('name', '=', $ingre2->name)->decrement('cantidad', 1*$menus->cantidad);
+
+          $ingre3 = DB::table('ingredients')->select('name')->where('name', '=', $menus->secundario2)->first();
+          $prod3 = DB::table('products')->select('cantidad')->where('name', '=', $ingre3->name)->decrement('cantidad', 1*$menus->cantidad);
+
+          $ingre4 = DB::table('ingredients')->select('name')->where('name', '=', $menus->envolturaInterna)->first();
+          $prod4 = DB::table('products')->select('cantidad')->where('name', '=', $ingre4->name)->decrement('cantidad', 1*$menus->cantidad);
+
+          $ingre5 = DB::table('ingredients')->select('name')->where('name', '=', $menus->envolturaExterna)->first();
+          $prod5 = DB::table('products')->select('cantidad')->where('name', '=', $ingre5->name)->decrement('cantidad', 1*$menus->cantidad);
+
+          if($menus->ingrediente1 != null){
+            $ingre6 = DB::table('ingredients')->select('name')->where('name', '=', $menus->ingrediente1)->first();
+            $prod6 = DB::table('products')->select('cantidad')->where('name', '=', $ingre6->name)->decrement('cantidad', 1*$menus->cantidad);
+
+          }
+
+          if($menus->ingrediente2 != null){
+            $ingre7 = DB::table('ingredients')->select('name')->where('name', '=', $menus->ingrediente2)->first();
+            $prod7 = DB::table('products')->select('cantidad')->where('name', '=', $ingre7->name)->decrement('cantidad', 1*$menus->cantidad);
+
+          }
+
+          if($menus->ingrediente3 != null){
+            $ingre8 = DB::table('ingredients')->select('name')->where('name', '=', $menus->ingrediente3)->first();
+            $prod8 = DB::table('products')->select('cantidad')->where('name', '=', $ingre8->name)->decrement('cantidad', 1*$menus->cantidad);
+
+          }
+
+          if($menus->ingrediente4 != null){
+            $ingre9 = DB::table('ingredients')->select('name')->where('name', '=', $menus->ingrediente4)->first();
+            $prod9 = DB::table('products')->select('cantidad')->where('name', '=', $ingre9->name)->decrement('cantidad', 1*$menus->cantidad);
+
+          }
+
+          if($menus->ingrediente5 != null){
+            $ingre10 = DB::table('ingredients')->select('name')->where('name', '=', $menus->ingrediente5)->first();
+            $prod10 = DB::table('products')->select('cantidad')->where('name', '=', $ingre10->name)->decrement('cantidad', 1*$menus->cantidad);
+
+          }
+        }
+
+
+
         return redirect('admin/orders/'. $order->id )
                         ->with('order')->with('menuItems')->with('menuItemsLists')->with('personalizars')
                         ->with('success','El pago del pedido ha sido registrado')
                         ->with('i', (request()->input('page', 1) - 1) * 5);
-        
+
 
     }
 

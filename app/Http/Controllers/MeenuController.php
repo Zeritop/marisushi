@@ -21,15 +21,15 @@ class MeenuController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-        
-    
+
+
     public function index()
     {
         $menus = Menu::orderBy('created_at', 'ASC')
         ->where('titulo','not like','Sushi Personalizado: 10 piezas')
         ->where('titulo','not like','Handroll Personalizado')
         ->paginate(5);
-  
+
         return view('menu.index',compact('menus'))
             ->with('i', (request()->input('page', 1) - 1) * 5);
     }
@@ -52,7 +52,7 @@ class MeenuController extends Controller
      */
     public function store(Request $request)
     {
-        
+
     }
 
     /**
@@ -89,7 +89,7 @@ class MeenuController extends Controller
         $request->validate([
             'qty' => 'required|numeric|min:1'
         ]);
-        
+
         $cart = new Cart(session()->get('cart'));
         $cart->updateQty($menu->id, $request->qty);
         session()->put('cart', $cart);
@@ -106,61 +106,61 @@ class MeenuController extends Controller
     {
         $cart = new Cart(session()->get('cart'));
         $cart->remove($menu->id);
-        
+
         if( $cart->totalQty <= 0){
             session()->forget('cart');
         } else {
             session()->put('cart', $cart);
             //dd($cart);
         }
-        
+
         return redirect()->route('cart.show')->with('success', 'Menu eliminado');
     }
-    
-    
+
+
     public function addToCart(Menu $menu){
        if(session()->has('cart')){
             $cart = new Cart(session()->get('cart'));
         } else {
             $cart = new Cart();
-        } 
-        
-        
+        }
+
+
         $cart->add($menu);
         //dd($cart);
         session()->put('cart', $cart);
         return redirect()->route('menu.index')->with('success', 'Menu añadido');
-        
+
     }
-    
+
     public function showCart(){
-        
+
         if(session()->has('cart')){
             $cart = new Cart(session()->get('cart'));
         } else {
             $cart = null;
         }
-        
+
         return view('cart.show', compact('cart'));
     }
-    
+
     public function detallesCart(){
-        
-        
+
+
         if(session()->has('cart')){
             $cart = new Cart(session()->get('cart'));
         } else {
             $cart = null;
         }
-        
+
         return view('cart.detalles', compact('cart'))->with('i', (request()->input('page', 1) - 1) * 5);
     }
-    
-    
+
+
     public function storeCart(Request $request){
 
       $request->validate([
-            'nombre_retira' => 'required|regex:/^[a-zA-Z '.'.-]*$/', 
+            'nombre_retira' => 'required|regex:/^[a-zA-Z '.'.-]*$/',
             'fechaEntrega' => 'required',
         ]);
 
@@ -171,8 +171,8 @@ class MeenuController extends Controller
         } else {
             $cart = null;
         }
-        
-        $id_user_registra_compra = Auth::user()->id; 
+
+        $id_user_registra_compra = Auth::user()->id;
         $nombre_registra_compra = Auth::user()->name;
         $estado = 'Pendiente';
         $seccion = 'Usuario';
@@ -196,13 +196,13 @@ class MeenuController extends Controller
             $pedido->observacion = $request->observacion;
 
         }
-  $codigo = DB::table('discounts')->where('codigo', $request->codigo)->exists();        
+  $codigo = DB::table('discounts')->where('codigo', $request->codigo)->exists();
 
         //dd($codigo1);
         if($request->codigo != ''){
             if($codigo){
             $codigo1 = DB::table('discounts')->where('codigo', '=', $request->codigo)->first();
-            $pedido->descuento = $codigo1->descuento; 
+            $pedido->descuento = $codigo1->descuento;
             //dd($pedido->descuento);
             $pedido->descuento_aplicado  = true;
 
@@ -217,12 +217,12 @@ class MeenuController extends Controller
             return redirect()->route('cart.detalles')->with('danger', 'Codigo no existente' );
             }
         }else{
-            
+
            $pedido->descuento = 0;
             $pedido->descuento_aplicado  = false;
             $pedido->precio_total_sin_descuento = $precio;
             $pedido->precio_total_con_descuento = $precio;
-            
+
         }
 
         $pedido->seccion = $seccion;
@@ -236,7 +236,7 @@ class MeenuController extends Controller
         $precio_item = $menu['precio'];
         $titulo = $menu['title'];
         $cantidad = $menu['qty'];
-    
+
         //asociar el item al pedido
         $pedido_menuItem = new Order_MenuItem;
         $pedido_menuItem->id_menu_item = $key;  //item que se eligio del menu
@@ -244,38 +244,38 @@ class MeenuController extends Controller
         $pedido_menuItem->cantidad = $cantidad;
         $pedido_menuItem->precio = $precio_item;
         $pedido_menuItem->id_pedido = $pedido->id;  //id del pedido de arribas
-        $pedido_menuItem->save();        
-    
-        $ingre = DB::table('ingredients')->select('name')->where('name', '=', $menu['esencial'])->first();
+        $pedido_menuItem->save();
+
+  /*      $ingre = DB::table('ingredients')->select('name')->where('name', '=', $menu['esencial'])->first();
         $prod = DB::table('products')->select('cantidad')->where('name', '=', $ingre->name)->decrement('cantidad', 1);
-        
+
          $ingre1 = DB::table('ingredients')->select('name')->where('name', '=', $menu['principal'])->first();
         $prod1 = DB::table('products')->select('cantidad')->where('name', '=', $ingre1->name)->decrement('cantidad', 1);
-        
+
          $ingre2 = DB::table('ingredients')->select('name')->where('name', '=', $menu['secundario1'])->first();
         $prod2 = DB::table('products')->select('cantidad')->where('name', '=', $ingre2->name)->decrement('cantidad', 1);
-        
+
          $ingre3 = DB::table('ingredients')->select('name')->where('name', '=', $menu['secundario2'])->first();
         $prod3 = DB::table('products')->select('cantidad')->where('name', '=', $ingre3->name)->decrement('cantidad', 1);
-        
-        
-        
+
+    */    
+
         //$prod->save();
     }
-        //retornar con los strings  
+        //retornar con los strings
         $order= $pedido;
        $personalizars = DB::table('ingredients')->select('name', 'categoria')->get();
         $menuItemsLists = DB::table('menus')->where('titulo','not like','Sushi Personalizado')->get();
-        $menuItems = DB::table('orders_menuItems')->where('id_pedido',$order->id)->get(); 
-        
-     
+        $menuItems = DB::table('orders_menuItems')->where('id_pedido',$order->id)->get();
+
+
         if(session()->has('cart')){
-            
+
             session()->forget('cart');
-                
+
         }
-        
+
         return redirect()->route('cart.historial')->with('success', 'Pedido realizado exitosamente');
-        
+
     }
 }
