@@ -12,6 +12,7 @@
         "barryvdh/laravel-dompdf": "^0.8.5",
         "bitfumes/laravel-multiauth": "^2.1",
         "fideloper/proxy": "^4.0",
+        "fruitcake/laravel-cors": "^1.0",
         "google/recaptcha": "^1.2",
         "laravel/framework": "^6.2",
         "laravel/tinker": "^1.0",

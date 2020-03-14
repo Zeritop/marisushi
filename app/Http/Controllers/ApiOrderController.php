@@ -24,18 +24,9 @@ class ApiOrderController extends Controller
     public function index(Request $request)
     {
         //
-        $estado = $request->get('estado');
-        $fecha = $request->get('fecha_entrega');
+        $pedidos = DB::table('orders')->select('id','estado')->orderBy('created_at', 'ASC')->get();
         
-        $orders = Order::orderBy('created_at', 'ASC')
-            ->estado($estado)
-            ->fecha($fecha)
-            ->paginate(15);
-        
-        //return view('vendor.multiauth.admin.orders.index',compact('orders'))
-        //            ->with('i', (request()->input('page', 1) - 1) * 15);
-
-        return response()->json([$orders]);
+        return response()->json([$pedidos]);
 
     }
 
@@ -263,15 +254,13 @@ class ApiOrderController extends Controller
      * @param  \App\Menu  $menu
      * @return \Illuminate\Http\Response
      */
-    public function show(Order $order)
+    public function show(Order $pedidos)
     {
         //
-        $personalizars = DB::table('ingredients')->select('name', 'categoria')->get();
-        $menuItemsLists = DB::table('menus')->where('titulo','not like','Sushi Personalizado')->get();
-        $menuItems = DB::table('orders_menuItems')->where('id_pedido',$order->id)->get();
+        $menuItems = DB::table('orders_menuItems')->where('id_pedido',$pedidos->id)->get();
 
         //return view('vendor.multiauth.admin.orders.show',compact('order','menuItems','menuItemsLists','personalizars'))->with('i', (request()->input('page', 1) - 1) * 5);
-        return response()->json([$order,$personalizars,$menuItemsLists,$menuItems]);
+        return response()->json([$pedidos,$menuItems]);
     }
 
     /**
