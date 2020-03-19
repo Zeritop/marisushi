@@ -76,10 +76,10 @@
           ['{{ $cont->secundario2 }}',    {{ $cont->contador }} ],
         @endforeach
         @foreach ($contador_envoltura as $cont)
-          ['{{ $cont->envolturaInterna }}',    {{ $cont->contador }} ],
+          ['{{ $cont->envolturaExterna }}',    {{ $cont->contador }} ],
         @endforeach
         @foreach ($contador_envoltura1 as $cont)
-          ['{{ $cont->envolturaExterna }}',    {{ $cont->contador }} ],
+          ['{{ $cont->envolturaInterna }}',    {{ $cont->contador }} ],
         @endforeach
         ]);
 
