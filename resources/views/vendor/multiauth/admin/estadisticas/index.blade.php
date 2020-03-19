@@ -1,7 +1,7 @@
 <head>
-    
+
 <link href="//cdnjs.cloudflare.com/ajax/libs/bootstrap-datetimepicker/4.17.37/css/bootstrap-datetimepicker.css" rel="stylesheet"/>
-       
+
 
 <script src="//cdnjs.cloudflare.com/ajax/libs/jquery/2.1.3/jquery.js"></script>
 <script src="//cdnjs.cloudflare.com/ajax/libs/moment.js/2.15.2/moment.min.js"></script>
@@ -19,7 +19,7 @@
           ['Task', 'Hours per Day'],
         @foreach ($contador_estados as $cont)
           ['{{ $cont->estado }}',    {{ $cont->contador }} ],
-        @endforeach    
+        @endforeach
         ]);
 
         var options = {
@@ -32,7 +32,7 @@
       }
     </script>
     <!-- FIN GRAFICO ESTADOS -->
-    
+
     <!-- GRAFICO MENUS -->
       <script type="text/javascript">
       google.charts.load("current", {packages:["corechart"]});
@@ -42,7 +42,7 @@
           ['Task', 'Hours per Day'],
         @foreach ($contador_pedidos as $cont)
           ['{{ $cont->titulo }}',    {{ $cont->contador }} ],
-        @endforeach    
+        @endforeach
         ]);
 
         var options = {
@@ -55,7 +55,7 @@
       }
     </script>
     <!-- FIN GRAFICO MENUS -->
-    
+
     <!-- GRAFICO INGREDIENTES -->
       <script type="text/javascript">
       google.charts.load("current", {packages:["corechart"]});
@@ -68,16 +68,19 @@
         @endforeach
         @foreach ($contador_principal as $cont)
           ['{{ $cont->principal }}',    {{ $cont->contador }} ],
-        @endforeach 
+        @endforeach
         @foreach ($contador_secundario1 as $cont)
           ['{{ $cont->secundario1 }}',    {{ $cont->contador }} ],
-        @endforeach 
+        @endforeach
         @foreach ($contador_secundario2 as $cont)
           ['{{ $cont->secundario2 }}',    {{ $cont->contador }} ],
-        @endforeach 
+        @endforeach
         @foreach ($contador_envoltura as $cont)
-          ['{{ $cont->envoltura }}',    {{ $cont->contador }} ],
-        @endforeach 
+          ['{{ $cont->envolturaInterna }}',    {{ $cont->contador }} ],
+        @endforeach
+        @foreach ($contador_envoltura1 as $cont)
+          ['{{ $cont->envolturaExterna }}',    {{ $cont->contador }} ],
+        @endforeach
         ]);
 
         var options = {
@@ -90,7 +93,7 @@
       }
     </script>
     <!-- FIN GRAFICO INGREDIENTES -->
-    
+
     <!-- GRAFICO VENTAS -->
       <script type="text/javascript">
       google.charts.load("current", {packages:["corechart"]});
@@ -100,7 +103,7 @@
           ['Task', 'Hours per Day'],
         @foreach ($contador_ventas as $cont)
           ['{{ $cont->estado }}',    {{ $cont->contador }} ],
-        @endforeach    
+        @endforeach
         ]);
 
         var options = {
@@ -122,7 +125,7 @@
           ['Task', 'Hours per Day'],
         @foreach ($contador_ventas_estaciones as $cont)
           ['{{ $cont->estado }}',    {{ $cont->contador }} ],
-        @endforeach    
+        @endforeach
         ]);
 
         var options = {
@@ -144,7 +147,7 @@
           ['Task', 'Hours per Day'],
         @foreach ($contador_pedidos_estaciones as $cont)
           ['{{ $cont->titulo }}',    {{ $cont->contador }} ],
-        @endforeach    
+        @endforeach
         ]);
 
         var options = {
@@ -164,7 +167,7 @@
 @section('content')
 <br>
 <div class="container">
-    
+
 
     @if ($message = Session::get('success'))
 
@@ -183,7 +186,7 @@
           </button>
           <strong>Info:</strong> El campo año es necesario para generar gráficos.<br><br>
       </div>
-        
+
 
   <div class="row">
     <form action="{{ route('estadisticas') }}" method="get">
@@ -210,13 +213,13 @@
         <div class="col-md-2">
             <button type="submit" class="btn btn-primary">Buscar</button>
         </div>
-        
+
     </form>
-              
+
     </div>
        <br>
-    <div class="row">  
-   
+    <div class="row">
+
          <div id="piechart_3d" style="width: 500px; height: 250px;" class="col-md-6"></div>
          <div id="piechart_3d1" style="width: 500px; height: 250px;" class="col-md-6"></div>
     </div>
@@ -225,10 +228,10 @@
          <div id="piechart_3d3" style="width: 500px; height: 250px;" class="col-md-6"></div>
     </div>
     <br>
-    
+
     <h4>Datos por Estaciones del año</h4>
     <dv class="row">
-        
+
           <form action="{{ route('estadisticas') }}" method="get">
               <div class="col-md-4" >
     <select name="select_estacion" class="form-control" style="height: 40px;">
@@ -237,7 +240,7 @@
       <option value="02">Verano </option>
         <option value="03">Otoño </option>
         <option value="04">Invierno </option>
-      
+
 </select>
                   </div>
               <div class="col-md-4">
@@ -246,31 +249,29 @@
               <div class="col-md-4">
               <button type="submit" class="btn btn-primary">Aceptar</button>
               </div>
-    
+
     </form>
-        
-      
+
+
     </dv>
-    
-    
+
+
     <div class="row">
         <div id="piechart_3d4" style="width: 500px; height: 250px;" class="col-md-6"></div>
         <div id="piechart_3d5" style="width: 500px; height: 250px;" class="col-md-6"></div>
     </div>
 
-        
 
 
-   
+
+
 
 </div>
-    
-      
+
+
 
 @endsection
 <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.15.1/moment.min.js"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/3.3.7/js/bootstrap.min.js"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-datetimepicker/4.7.14/js/bootstrap-datetimepicker.min.js"></script>
-
-
