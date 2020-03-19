@@ -19,21 +19,20 @@ class ApiMeenuController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-        
-    
+
+
     public function index()
     {
-        $menus = Menu::orderBy('created_at', 'ASC')
-        ->paginate(5);
-  
+        $menus = DB::table('menus')->select('id','titulo', 'precio', 'descripcion', 'foto')->orderBy('created_at', 'ASC')->get();
+
         //return view('menu.index',compact('menus'))
         //    ->with('i', (request()->input('page', 1) - 1) * 5);
 
 
         return response()->json([$menus]);
 
-        
-    
+
+
     }
 
     /**
@@ -54,7 +53,7 @@ class ApiMeenuController extends Controller
      */
     public function store(Request $request)
     {
-        
+
     }
 
     /**
@@ -91,7 +90,7 @@ class ApiMeenuController extends Controller
         $request->validate([
             'qty' => 'required|numeric|min:1'
         ]);
-        
+
         $cart = new Cart(session()->get('cart'));
         $cart->updateQty($menu->id, $request->qty);
         session()->put('cart', $cart);
@@ -108,17 +107,17 @@ class ApiMeenuController extends Controller
     {
         $cart = new Cart(session()->get('cart'));
         $cart->remove($menu->id);
-        
+
         if( $cart->totalQty <= 0){
             session()->forget('cart');
         } else {
             session()->put('cart', $cart);
             //dd($cart);
         }
-        
+
         return redirect()->route('cart.show')->with('success', 'Menu eliminado');
     }
-    
+
       /*public function getAddToCart(Request $request, $id){
         $menu = Menu::Find($id);
         $oldCart = Session::has('cart') ? Session::get('cart') : null;
@@ -128,15 +127,15 @@ class ApiMeenuController extends Controller
         $request->session()->put('cart', $cart);
         return redirect()->route('');
     }*/
-    
+
     public function addToCart(Menu $menu){
        if(session()->has('cart')){
             $cart = new Cart(session()->get('cart'));
         } else {
             $cart = new Cart();
-        } 
-        
-        
+        }
+
+
         $cart->add($menu);
         //dd($cart);
         session()->put('cart', $cart);
@@ -144,37 +143,37 @@ class ApiMeenuController extends Controller
         return response()->json([
                'alerta'=>'Se ha añadido item al carrito de compras'
             ]);
-        
+
     }
-    
+
     public function showCart(){
-        
+
         if(session()->has('cart')){
             $cart = new Cart(session()->get('cart'));
         } else {
             $cart = null;
         }
-        
+
         //return view('cart.show', compact('cart'));
         return response()->json([$cart]);
 
     }
-    
+
     public function detallesCart(){
-        
-        
+
+
         if(session()->has('cart')){
             $cart = new Cart(session()->get('cart'));
         } else {
             $cart = null;
         }
-        
+
         //return view('cart.detalles', compact('cart'))->with('i', (request()->input('page', 1) - 1) * 5);
         return response()->json([$cart]);
 
     }
-    
-    
+
+
     public function storeCart(Request $request){
         //
         if(session()->has('cart')){
@@ -183,8 +182,8 @@ class ApiMeenuController extends Controller
         } else {
             $cart = null;
         }
-        
-        $id_user_registra_compra = Auth::user()->id; 
+
+        $id_user_registra_compra = Auth::user()->id;
         $nombre_registra_compra = Auth::user()->name;
         $estado = 'Pendiente';
         $seccion = 'Usuario';
@@ -238,8 +237,8 @@ class ApiMeenuController extends Controller
     foreach($cart->items as $key => $menu){
         $precio_item = $menu['precio'];
         $titulo = $menu['title'];
-    
-                 
+
+
 
       /*  $request->validate([
 
@@ -248,13 +247,13 @@ class ApiMeenuController extends Controller
             'fecha_entrega' => 'required|after:yesterday'
 
         ]); */
-         
-           
+
+
         $cantidad = $menu['qty'];
         //dd($request);
         //$precio = $precio_item * $cantidad;
-        
-    
+
+
         //asociar el item al pedido
         $pedido_menuItem = new Order_MenuItem;
         $pedido_menuItem->id_menu_item = $key;  //item que se eligio del menu
@@ -262,37 +261,37 @@ class ApiMeenuController extends Controller
         $pedido_menuItem->cantidad = $cantidad;
         $pedido_menuItem->precio = $precio_item;
         $pedido_menuItem->id_pedido = $pedido->id;  //id del pedido de arribas
-        $pedido_menuItem->save();        
-        
+        $pedido_menuItem->save();
+
     }
-        //retornar con los strings  
+        //retornar con los strings
         $order= $pedido;
        $personalizars = DB::table('ingredients')->select('name', 'categoria')->get();
         $menuItemsLists = DB::table('menus')->where('titulo','not like','Sushi Personalizado')->get();
-        $menuItems = DB::table('orders_menuItems')->where('id_pedido',$order->id)->get(); 
-        
-     
+        $menuItems = DB::table('orders_menuItems')->where('id_pedido',$order->id)->get();
+
+
         if(session()->has('cart')){
-            
+
             session()->forget('cart');
-                
+
         }
         //return view('cart.show',compact('order','menuItems','menuItemsLists','personalizars', 'cart'))->with('i', (request()->input('page', 1) - 1) * 5);
-        
+
         return redirect()->route('cart.historial')->with('success', 'Pedido realizo exitosamente' );
-        
+
         //end if personalizar
 
        //item de menu estandar(el que viene de la base de datos)
       /*  foreach($cart->items as $menu){
         if($menu['title'] != "Sushi Personalizado"){
-    
-        $id_user_registra_compra = Auth::user()->id; 
+
+        $id_user_registra_compra = Auth::user()->id;
         $nombre_registra_compra = Auth::user()->name;
         $estado = 'Pendiente';
         $seccion = 'Usuario';
-            
-        
+
+
         /*$request->validate([
 
             'menuItem' => 'required',
@@ -349,7 +348,7 @@ class ApiMeenuController extends Controller
         }
 
         $pedido->seccion = $seccion;
-        $pedido->save();        
+        $pedido->save();
 
         //asociar el item al pedido
         $pedido_menuItem = new Order_MenuItem;
@@ -360,12 +359,12 @@ class ApiMeenuController extends Controller
         $pedido_menuItem->id_pedido = $pedido->id;  //id del pedido de arriba
         $pedido_menuItem->save();
 
-        //retornar con los strings     
+        //retornar con los strings
         $order= $pedido;
         $personalizars = DB::table('ingredients')->select('name', 'categoria')->get();
         $menuItemsLists = DB::table('menus')->where('titulo','not like','Sushi Personalizado')->get();
         $menuItems = DB::table('orders_menuItems')->where('id_pedido',$order->id)->get();
-        
+
         return view('cart.detalles',compact('order','menuItems','menuItemsLists','personalizars'));
 
         } } //termino if estandar */
