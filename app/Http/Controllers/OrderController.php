@@ -715,24 +715,36 @@ class OrderController extends Controller
         //dd($menuItems);
         foreach($menuItems as $menus){
 
+          if($menus->esencial != null){
           $ingre = DB::table('ingredients')->select('name')->where('name', '=', $menus->esencial)->first();
           $prod = DB::table('products')->select('cantidad')->where('name', '=', $ingre->name)->decrement('cantidad', 1*$menus->cantidad);
+          }
 
+          if($menus->principal != null){
           $ingre1 = DB::table('ingredients')->select('name')->where('name', '=', $menus->principal)->first();
           $prod1 = DB::table('products')->select('cantidad')->where('name', '=', $ingre1->name)->decrement('cantidad', 1*$menus->cantidad);
+          }
 
+          if($menus->secundario1 != null){
           $ingre2 = DB::table('ingredients')->select('name')->where('name', '=', $menus->secundario1)->first();
           $prod2 = DB::table('products')->select('cantidad')->where('name', '=', $ingre2->name)->decrement('cantidad', 1*$menus->cantidad);
+          }
 
+          if($menus->secundario2 != null){
           $ingre3 = DB::table('ingredients')->select('name')->where('name', '=', $menus->secundario2)->first();
           $prod3 = DB::table('products')->select('cantidad')->where('name', '=', $ingre3->name)->decrement('cantidad', 1*$menus->cantidad);
+          }
 
+          if($menus->envolturaInterna != null){
           $ingre4 = DB::table('ingredients')->select('name')->where('name', '=', $menus->envolturaInterna)->first();
           $prod4 = DB::table('products')->select('cantidad')->where('name', '=', $ingre4->name)->decrement('cantidad', 1*$menus->cantidad);
+          }
 
+          if($menus->envolturaExterna != null){
           $ingre5 = DB::table('ingredients')->select('name')->where('name', '=', $menus->envolturaExterna)->first();
           $prod5 = DB::table('products')->select('cantidad')->where('name', '=', $ingre5->name)->decrement('cantidad', 1*$menus->cantidad);
-
+          }
+          
           if($menus->ingrediente1 != null){
             $ingre6 = DB::table('ingredients')->select('name')->where('name', '=', $menus->ingrediente1)->first();
             $prod6 = DB::table('products')->select('cantidad')->where('name', '=', $ingre6->name)->decrement('cantidad', 1*$menus->cantidad);

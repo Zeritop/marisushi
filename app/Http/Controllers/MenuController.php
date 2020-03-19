@@ -24,17 +24,17 @@ class MenuController extends Controller
 
     public function index(Request $request)
     {
-        
+
         $titulo = $request->get('titulo');
         $descripcion = $request->get('descripcion');
-        
+
         $menus = Menu::orderBy('created_at', 'ASC')
-        ->titulo($titulo) 
+        ->titulo($titulo)
         ->descripcion($descripcion)
         ->where('titulo','not like','Sushi Personalizado: 10 piezas')
         ->where('titulo','not like','Handroll Personalizado')
         ->paginate(15);
-  
+
         return view('vendor.multiauth.admin.menus.index',compact('menus'))
             ->with('i', (request()->input('page', 1) - 1) * 15);
     }
@@ -62,18 +62,12 @@ class MenuController extends Controller
             'precio' => 'required',
             'titulo' => 'required',
             'foto' => 'required|mimes:jpeg,jpg,png',
-            'esencial' => 'required',
-            'principal' => 'required',
-            'secundario1' => 'required',
-            'secundario2' => 'required',
-            'envolturaInterna' => 'required',
-            'envolturaExterna' => 'required',
         ]);
 
-    
+
         $menu = new Menu;
         $menu->foto = Storage::putFile('public', $request->file('foto'));
-        $menu->foto = basename(Storage::putFile('public', $request->file('foto')));   
+        $menu->foto = basename(Storage::putFile('public', $request->file('foto')));
         $menu->titulo = $request->titulo;
         $menu->precio = $request->precio;
         $menu->descripcion = $request->descripcion;
@@ -88,10 +82,10 @@ class MenuController extends Controller
         $menu->ingrediente3 = $request->ingrediente3;
         $menu->ingrediente4 = $request->ingrediente4;
         $menu->ingrediente5 = $request->ingrediente5;
-        $menu->save();    
-       
-    
-        
+        $menu->save();
+
+
+
         return redirect()->route('menus.index')
                         ->with('success','Menu creado exitosamente.');
     }
@@ -129,7 +123,7 @@ class MenuController extends Controller
     {
              $request->validate([
 
-            'titulo' => 'required',       
+            'titulo' => 'required',
             'descripcion' => 'required',
             'precio' => 'required',
         ]);
@@ -152,11 +146,11 @@ class MenuController extends Controller
     {
          $menu->delete();
 
-  
+
 
         return redirect()->route('menus.index')
 
                         ->with('success','Menu Eliminado Exitosamente');
     }
-    
+
 }

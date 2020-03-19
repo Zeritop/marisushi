@@ -1,28 +1,3 @@
-<head>
-    <script type="text/javascript" src="https://www.gstatic.com/charts/loader.js"></script>
-    <script type="text/javascript">
-      google.charts.load("current", {packages:["corechart"]});
-      google.charts.setOnLoadCallback(drawChart);
-      function drawChart() {
-        var data = google.visualization.arrayToDataTable([
-          ['Task', 'Hours per Day'],
-        @foreach ($orders as $order)
-          ['{{ $order->estado }}',     11],
-        
-        @endforeach    
-        ]);
-
-        var options = {
-          title: 'My Daily Activities',
-          is3D: true,
-        };
-
-        var chart = new google.visualization.PieChart(document.getElementById('piechart_3d'));
-        chart.draw(data, options);
-      }
-    </script>
-  </head>
-
 @extends('vendor.multiauth.admin.administrador.layout')
 
 @section('content')
@@ -30,7 +5,7 @@
 <div class="container">
     <div class="row">
         <div class="col-lg-12 margin-tb">
- 
+
             <div class="pull-left">
 
                 <h2>Sección de Pedidos</h2>
@@ -47,7 +22,7 @@
 
     </div>
 
-   
+
 
     @if ($message = Session::get('success'))
 
@@ -59,7 +34,7 @@
 
     @endif
     <form action="orders" method="get">
-        
+
         <div class="row">
         <div class="col-md-3">
             <div class="form-group">
@@ -69,25 +44,25 @@
                           <option value=" {{ $estado->name}} "> {{ $estado->name}} </option>
                   @endforeach
               </select>
-            </div>  
-            
-            
+            </div>
+
+
         </div>
             <div class="col-md-3">
              <div class="form-group">
               <input type="date" class="form-control" name="fecha_entrega" placeholder="Fecha">
-                 
+
             </div>
             </div>
-           
+
             <div class="form-group">
                 <button type="submit" class="btn btn-primary" style="height: 35px;"><i class="glyphicon glyphicon-search"></i></button>
             </div>
         </div>
-        
+
     </form>
-    
-   
+
+
 
     <table class="table table-hover">
 
@@ -120,24 +95,21 @@
             <td>
 
                 <a class="btn btn-info" href="{{ route('orders.show',$order->id) }}">Ver</a>
-    
+
 
             </td>
 
         </tr>
 
         @endforeach
-    
+
     </table>
 
-  <div id="piechart_3d" style="width: 900px; height: 500px;"></div>
 
-    {!! $orders->links() !!} 
+    {!! $orders->links() !!}
 
 </div>
-    
-      
+
+
 
 @endsection
-
-
