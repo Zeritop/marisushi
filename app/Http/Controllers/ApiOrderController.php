@@ -24,8 +24,8 @@ class ApiOrderController extends Controller
     public function index(Request $request)
     {
         //
-        $pedidos = DB::table('orders')->select('id','estado')->orderBy('created_at', 'ASC')->get();
-        
+        $pedidos = DB::table('orders')->select('id','estado', 'nombre_retira')->orderBy('created_at', 'ASC')->get();
+
         return response()->json([$pedidos]);
 
     }
@@ -50,11 +50,11 @@ class ApiOrderController extends Controller
      * @return \Illuminate\Http\Response
      */
     public function store(Request $request)
-    {   
+    {
         //item del menu personalizado
         if($request->tipo === 'personalizado'){
 
-        $id_user_registra_compra = Auth::user()->id; 
+        $id_user_registra_compra = Auth::user()->id;
         $nombre_registra_compra = Auth::user()->name;
         $estado = 'Pendiente';
         $seccion = 'Administración';
@@ -141,12 +141,12 @@ class ApiOrderController extends Controller
         $pedido_menuItem->id_pedido = $pedido->id;  //id del pedido de arriba
         $pedido_menuItem->save();
 
-        //retornar con los strings  
+        //retornar con los strings
         $order= $pedido;
         $personalizars = DB::table('ingredients')->select('name', 'categoria')->get();
         $menuItemsLists = DB::table('menus')->where('titulo','not like','Sushi Personalizado')->get();
         $menuItems = DB::table('orders_menuItems')->where('id_pedido',$order->id)->get();
-        
+
 
         return redirect('admin/orders/'. $order->id )
                         ->with('order')->with('menuItems')->with('menuItemsLists')->with('personalizars')
@@ -159,8 +159,8 @@ class ApiOrderController extends Controller
 
         //item de menu estandar(el que viene de la base de datos)
         if($request->tipo === 'estandar'){
-    
-        $id_user_registra_compra = Auth::user()->id; 
+
+        $id_user_registra_compra = Auth::user()->id;
         $nombre_registra_compra = Auth::user()->name;
         $estado = 'Pendiente';
         $seccion = 'Administración';
@@ -221,7 +221,7 @@ class ApiOrderController extends Controller
         }
 
         $pedido->seccion = $seccion;
-        $pedido->save();        
+        $pedido->save();
 
         //asociar el item al pedido
         $pedido_menuItem = new Order_MenuItem;
@@ -232,12 +232,12 @@ class ApiOrderController extends Controller
         $pedido_menuItem->id_pedido = $pedido->id;  //id del pedido de arriba
         $pedido_menuItem->save();
 
-        //retornar con los strings     
+        //retornar con los strings
         $order= $pedido;
         $personalizars = DB::table('ingredients')->select('name', 'categoria')->get();
         $menuItemsLists = DB::table('menus')->where('titulo','not like','Sushi Personalizado')->get();
         $menuItems = DB::table('orders_menuItems')->where('id_pedido',$order->id)->get();
-        
+
 
         return redirect('admin/orders/'. $order->id )
                         ->with('order')->with('menuItems')->with('menuItemsLists')->with('personalizars')
@@ -297,7 +297,7 @@ class ApiOrderController extends Controller
         ]);
 
         $fecha_entrega = Carbon::parse($request->fechaEntrega);
-        
+
         $precio_total_sin_descuento = DB::table('orders')->select('precio_total_sin_descuento')->where('id',$request->order_id)->first()->precio_total_sin_descuento;
         $porcentaje = $request->descuento / 100;
         $precio_descuento = $precio_total_sin_descuento * $porcentaje;
@@ -319,7 +319,7 @@ class ApiOrderController extends Controller
         $personalizars = DB::table('ingredients')->select('name', 'categoria')->get();
         $menuItemsLists = DB::table('menus')->where('titulo','not like','Sushi Personalizado')->get();
         $menuItems = DB::table('orders_menuItems')->where('id_pedido',$order->id)->get();
-        
+
         return redirect('admin/orders/'. $order->id )
                         ->with('order')->with('menuItems')->with('menuItemsLists')->with('personalizars')
                         ->with('success','Pedido Actualizado correctamente')
@@ -346,7 +346,7 @@ class ApiOrderController extends Controller
     public function agregarItem(Request $request)
     {
         if($request->tipo === 'personalizado'){
-        
+
         $precio_item = 2000;
         $titulo = 'Sushi Personalizado';
 
@@ -392,7 +392,7 @@ class ApiOrderController extends Controller
         $actualizarPedido->precio_total_sin_descuento = $nuevo_precio_total_sin_descuento;
 
         if($actualizarPedido->descuento_aplicado == true){
-        
+
         $porcentaje = $actualizarPedido->descuento / 100;
         $agregar_precio_con_descuento = $agregarPrecio - ($agregarPrecio * $porcentaje);
 
@@ -406,14 +406,14 @@ class ApiOrderController extends Controller
         }
 
         $actualizarPedido->save();
-        
+
 
         //retornar con los strings
         $order = DB::table('orders')->where('id',$request->order_id)->first();
         $personalizars = DB::table('ingredients')->select('name', 'categoria')->get();
         $menuItemsLists = DB::table('menus')->where('titulo','not like','Sushi Personalizado')->get();
         $menuItems = DB::table('orders_menuItems')->where('id_pedido',$order->id)->get();
-        
+
         return redirect('admin/orders/'. $order->id )
                         ->with('order')->with('menuItems')->with('menuItemsLists')->with('personalizars')
                         ->with('success','Item agregado correctamente')
@@ -423,7 +423,7 @@ class ApiOrderController extends Controller
 
 
         if($request->tipo === 'estandar'){
-        //Agregar item del menu estandar a un pedido previamente creado 
+        //Agregar item del menu estandar a un pedido previamente creado
         $request->validate([
 
             'menuItem' => 'required',
@@ -431,7 +431,7 @@ class ApiOrderController extends Controller
 
 
         ]);
-        
+
         $titulo = DB::table('menus')->select('titulo')->where('id',$request->menuItem)->first()->titulo;
         $precio_item = DB::table('menus')->select('precio')->where('id',$request->menuItem)->first()->precio;
         $cantidad = $request->cantidad;
@@ -445,19 +445,19 @@ class ApiOrderController extends Controller
         $nuevoItem->precio =  $precio_item;
         $nuevoItem->id_pedido = $request->order_id;
         $nuevoItem->save();
-    
+
 
         //actualizar precio si es con o sin descuento
         $precio_total_sin_descuento = DB::table('orders')->select('precio_total_sin_descuento')->where('id',$request->order_id)->first()->precio_total_sin_descuento;
         $nuevo_precio_total_sin_descuento = $precio_total_sin_descuento + $agregarPrecio;
-        
+
 
         $actualizarPedido = Order::find($request->order_id);
-        $actualizarPedido->precio_total_sin_descuento = $nuevo_precio_total_sin_descuento; 
+        $actualizarPedido->precio_total_sin_descuento = $nuevo_precio_total_sin_descuento;
 
-   
+
        if($actualizarPedido->descuento_aplicado == true){
-        
+
         $porcentaje = $actualizarPedido->descuento / 100;
         $agregar_precio_con_descuento = $agregarPrecio - ($agregarPrecio * $porcentaje);
 
@@ -479,19 +479,19 @@ class ApiOrderController extends Controller
         $personalizars = DB::table('ingredients')->select('name', 'categoria')->get();
         $menuItemsLists = DB::table('menus')->where('titulo','not like','Sushi Personalizado')->get();
         $menuItems = DB::table('orders_menuItems')->where('id_pedido',$order->id)->get();
-        
+
         return redirect('admin/orders/'. $order->id )
                         ->with('order')->with('menuItems')->with('menuItemsLists')->with('personalizars')
                         ->with('success','Item agregado correctamente')
                         ->with('i', (request()->input('page', 1) - 1) * 5);
 
         }// termino if estandar
-        
+
     }
 
     public function quitarItem(Request $request, Order $order)
-    {   
-        
+    {
+
         $precioItem = DB::table('orders_menuItems')->where('id',$request->menuItem_id)
                             ->where('id_pedido',$request->order_id)->first()->precio;
 
@@ -500,7 +500,7 @@ class ApiOrderController extends Controller
 
 
         $actualizarPedido = DB::table('orders_menuItems')->where('id',$request->menuItem_id)
-                            ->where('id_pedido',$request->order_id)->delete();        
+                            ->where('id_pedido',$request->order_id)->delete();
 
         //actualizar precio
         $quitarPrecio = $precioItem * $cantidad;
@@ -528,7 +528,7 @@ class ApiOrderController extends Controller
         $personalizars = DB::table('ingredients')->select('name', 'categoria')->get();
         $menuItemsLists = DB::table('menus')->where('titulo','not like','Sushi Personalizado')->get();
         $menuItems = DB::table('orders_menuItems')->where('id_pedido',$order->id)->get();
-        
+
         return redirect('admin/orders/'. $order->id )
                         ->with('order')->with('menuItems')->with('menuItemsLists')->with('personalizars')
                         ->with('success','Item eliminado del pedido')
@@ -536,7 +536,7 @@ class ApiOrderController extends Controller
 
         //return view('vendor.multiauth.admin.orders.show',compact('order','menuItems','menuItemsLists','personalizars'))->with('i', (request()->input('page', 1) - 1) * 5);
 
-        
+
 
     }
     public function registrarPago(Request $request, Order $order)
@@ -596,12 +596,12 @@ class ApiOrderController extends Controller
         $personalizars = DB::table('ingredients')->select('name', 'categoria')->get();
         $menuItemsLists = DB::table('menus')->where('titulo','not like','Sushi Personalizado')->get();
         $menuItems = DB::table('orders_menuItems')->where('id_pedido',$order->id)->get();
-        
+
         return redirect('admin/orders/'. $order->id )
                         ->with('order')->with('menuItems')->with('menuItemsLists')->with('personalizars')
                         ->with('success','El pago del pedido ha sido registrado')
                         ->with('i', (request()->input('page', 1) - 1) * 5);
-        
+
 
     }
 

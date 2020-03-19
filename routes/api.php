@@ -18,6 +18,7 @@ Route::middleware('auth:api')->get('/user', function (Request $request) {
 });
 
 Route::resource('menu','ApiMeenuController');
+Route::resource('products','ApiProductController');
 Route::get('/addToCart/{menu}', 'ApiMeenuController@addToCart')->name('cart.add');
 Route::get('/shopping-cart', 'ApiMeenuController@showCart')->name('cart.show');
 Route::delete('/menu/{menu}', 'ApiMeenuController@destroy')->name('menu.destroy');
@@ -28,4 +29,3 @@ Route::post('/storeCart', 'ApiMeenuController@storeCart')->name('cart.store');
 
 Route::get('/home', 'ApiHomeController@index')->name('home');
 Route::resource('admin/orders','ApiOrderController');
-
