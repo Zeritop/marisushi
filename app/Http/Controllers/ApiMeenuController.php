@@ -64,7 +64,7 @@ class ApiMeenuController extends Controller
      */
     public function show($id)
     {
-      $menu = DB::table('menus')->select('id', 'titulo', 'descripcion', 'precio')->where('id', $id)->get();
+      $menu = DB::table('menus')->select('id', 'titulo', 'descripcion', 'precio', 'esencial', 'principal', 'secundario1', 'secundario2', 'envolturaInterna', 'envolturaExterna')->where('id', $id)->get();
 
       return response()->json([$menu]);
     }
