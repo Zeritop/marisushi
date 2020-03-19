@@ -15,7 +15,7 @@
         </div>
     @endif
     </div>
-    
+
 	<div class="breadcrumb-agile bg-light py-2">
 		<ol class="breadcrumb bg-light m-0">
 			<li class="breadcrumb-item">
@@ -42,7 +42,7 @@
 					enim totam rem aperiam.</p>
 			</div>
 	</section>
-	
+
 	<!-- gallery model-->
 	<div class="container">
 		<div class="row mt-4">
@@ -50,15 +50,15 @@
 				<div class="col-md-4">
 					<div class="gallery-demo">
 						<a href="#{{ $key }}">
-							<img src="/storage/{{$menu->foto}}" alt=" " class="img-fluid" />
+							<img src="/storage/{{$menu->foto}}" alt=" " class="img-fluid" style="height: 300px; width: auto;" />
 							<h4 class="p-mask"> {{ $menu->titulo }} - <span>${{ $menu->precio }}</span></h4>
 						</a>
 					</div>
 				</div>
-				@endforeach	
-		</div>	
+				@endforeach
+		</div>
 	</div>
-			
+
 
 	<!-- gallery popup 1 -->
 	@foreach($menus as $key => $menu)
@@ -89,7 +89,7 @@
 			<a class="close" href="#gallery">×</a>
 		</div>
 	</div>
-	@endforeach			
+	@endforeach
 </body>
 </html>
 
