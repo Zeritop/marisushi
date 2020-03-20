@@ -47,7 +47,7 @@ class ContactController extends Controller
 
         ]);
 
-        Mail::to('test@test.com')->send(new ContactFormMail($data));
+        Mail::to('no.responder.marisushi@gmail.com')->send(new ContactFormMail($data));
 
         return redirect()->route('contacto.index')->with('success','Se ha enviado el email exitosamente');
 
