@@ -66,8 +66,8 @@ class MenuController extends Controller
 
 
         $menu = new Menu;
-        $menu->foto = Storage::putFile('public_html', $request->file('foto'));
-        $menu->foto = basename(Storage::putFile('public_html', $request->file('foto')));
+        $menu->foto = Storage::putFile('public', $request->file('foto'));
+        $menu->foto = basename(Storage::putFile('public', $request->file('foto')));
         $menu->titulo = $request->titulo;
         $menu->precio = $request->precio;
         $menu->descripcion = $request->descripcion;
