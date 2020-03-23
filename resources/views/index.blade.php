@@ -151,7 +151,7 @@
 							</a>
 						</div>
 						<div class="card-body border border-top-0">
-							<h5 class="blog-title card-title m-0"><a href="menu">French Burger</a></h5>
+							<h5 class="blog-title card-title m-0"><a href="menu">Sushi Panda</a></h5>
 							<p class="mt-3">Cras ultricies ligula sed magna dictum porta auris blandita.</p>
 							<a href="menu" class="btn button-w3ls mt-4 mb-3">Ver Más
 								<span class="fa fa-caret-right ml-1" aria-hidden="true"></span>
