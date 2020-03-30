@@ -122,7 +122,7 @@
 						<div class="col-9 address-right mt-2">
 							<h5 class="address mb-2">Email</h5>
 							<p>
-								<p> mail@example.com</p>
+								<p>ariassusana205@gmail.com</p>
 							</p>
 						</div>
 					</div>
