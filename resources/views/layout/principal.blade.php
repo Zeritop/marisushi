@@ -193,23 +193,8 @@
 							<p>Siguenos en:</p>
 						</li>
 						<li class="facebook-w3">
-							<a href="#facebbok">
+							<a href="https://www.facebook.com/profile.php?id=100023553709142" target="_blank">
 								<span class="fa fa-facebook-f"></span>
-							</a>
-						</li>
-						<li class="twitter-w3">
-							<a href="#twitter">
-								<span class="fa fa-twitter"></span>
-							</a>
-						</li>
-						<li class="google-w3">
-							<a href="#google">
-								<span class="fa fa-google-plus"></span>
-							</a>
-						</li>
-						<li class="dribble-w3">
-							<a href="#dribble">
-								<span class="fa fa-dribbble"></span>
 							</a>
 						</li>
 					</ul>
