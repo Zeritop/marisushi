@@ -79,7 +79,7 @@
 						mi, vulputate ac metus at, semper varius orci..</p>
 				</div>
 				<div class="col-lg-6 text-center mt-lg-0 mt-4">
-					<img src="images/sushi5.jpg" alt="about" class="img-fluid" />
+					<img src="images/imagenAbout.jpg" alt="about" class="img-fluid" />
 				</div>
 			</div>
 		</div>
