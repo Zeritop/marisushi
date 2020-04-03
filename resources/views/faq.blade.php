@@ -7,12 +7,11 @@
 <html lang="zxx">
 
 <head>
-	<title>Tasty Burger Restaurants Category Bootstrap Responsive Web Template | Contact Us :: W3layouts</title>
 	<!-- Meta tag Keywords -->
 	<meta name="viewport" content="width=device-width, initial-scale=1">
 	<meta charset="UTF-8" />
 	<meta name="keywords"
-		content="Tasty Burger Responsive web template, Bootstrap Web Templates, Flat Web Templates, Android Compatible web template, Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, SonyEricsson, Motorola web design" />
+		content="Mari Sushi"/>
 	<script>
 		addEventListener("load", function () {
 			setTimeout(hideURLbar, 0);
@@ -21,6 +20,7 @@
 		function hideURLbar() {
 			window.scrollTo(0, 1);
 		}
+
 	</script>
 	<!--// Meta tag Keywords -->
 
@@ -69,15 +69,75 @@
 				<h3 class="w3ls-title mb-3">Preguntas <span>Frecuentes</span></h3>
 			</div>
 	</section>
+<br>
+
+<div class="container">
+<div class="panel-group" id="accordion">
+  <div class="panel panel-default">
+    <div class="panel-heading">
+      <h4 class="panel-title">
+        <a class="accordion-toggle" data-toggle="collapse" data-parent="#accordion" href="#collapseOne">
+        	<span class="fa fa-plus"></span>
+          1. ¿Necesito registrarme para realizar un pedido?
+        </a>
+      </h4>
+    </div>
+    <div id="collapseOne" class="panel-collapse collapse">
+      <div class="panel-body">
+        <h4> Si, es necesario estar registrado en nuestra página web para poder realizar un pedido.
+      	</h4>
+      </div>
+    </div>
+  </div>
+  <div class="panel panel-default">
+    <div class="panel-heading">
+      <h4 class="panel-title">
+        <a class="accordion-toggle" data-toggle="collapse" data-parent="#accordion" href="#collapseTwo">
+          <span class="fa fa-plus"></span>
+          2. Perdi mi contraseña, ¿Cómo la puedo recuperar?
+        </a>
+      </h4>
+    </div>
+    <div id="collapseTwo" class="panel-collapse collapse">
+      <div class="panel-body">
+        <h4>Debes ingresar a la sección 'Login' en la página principal y haz click en ¿Olvidaste tu contraseña?. 
+        	Te enviaremos las instrucciones a tu email.
+      	</h4>
+      </div>
+    </div>
+  </div>
+  <div class="panel panel-default">
+    <div class="panel-heading">
+      <h4 class="panel-title">
+        <a class="accordion-toggle" data-toggle="collapse" data-parent="#accordion" href="#collapseThree">
+          <span class="fa fa-plus"></span>
+          Collapsible Group Item #3
+        </a>
+      </h4>
+    </div>
+    <div id="collapseThree" class="panel-collapse collapse">
+      <div class="panel-body">
+        Anim pariatur cliche reprehenderit, enim eiusmod high life accusamus terry richardson ad squid. 3 wolf moon officia aute, non cupidatat skateboard dolor brunch. Food truck quinoa nesciunt laborum eiusmod. Brunch 3 wolf moon tempor, sunt aliqua put a bird on it squid single-origin coffee nulla assumenda shoreditch et. Nihil anim keffiyeh helvetica, craft beer labore wes anderson cred nesciunt sapiente ea proident. Ad vegan excepteur butcher vice lomo. Leggings occaecat craft beer farm-to-table, raw denim aesthetic synth nesciunt you probably haven't heard of them accusamus labore sustainable VHS.
+      </div>
+    </div>
+  </div>
+</div>
+</div>
+
+
 
 
 	<!-- preguntas-->
-	<section class="blog_w3ls py-5">
-		<div class="container pb-xl-5 pb-lg-3">
-			<div class="row">
-				
-			</div>
-		</div>
-	</section>
+	
+
+	<script type="text/javascript">
+$('.collapse').on('shown.bs.collapse', function(){
+$(this).parent().find(".fa fa-plus").removeClass("fa-plus").addClass("fa-minus");
+}).on('hidden.bs.collapse', function(){
+$(this).parent().find(".fa fa-minus").removeClass("fa-minus").addClass("fa-plus");
+});
+	
+
+	</script>
 
 @endsection

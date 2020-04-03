@@ -151,11 +151,11 @@
 						<input type="checkbox" id="drop" />
 						<ul class="menu">
 							<li><a href="/">Home</a></li>
-							<li><a href="about">Nosotros</a></li>
-							<li><a href="menu">Menu</a></li>
-							<li><a href="personalizar">Personalizar</a></li>
-							<li><a href="contacto">Contactanos</a></li>
-							<li><a href="faq">FAQ</a></li>
+							<li><a href="/about">Nosotros</a></li>
+							<li><a href="/menu">Menu</a></li>
+							<li><a href="/personalizar">Personalizar</a></li>
+							<li><a href="/contacto">Contactanos</a></li>
+							<li><a href="/faq">FAQ</a></li>
                             <li><a href="{{ route('cart.show') }}"><span class="fa fa-shopping-cart">Mi carro ({{ session()->has('cart') ? session()->get('cart')->totalQty : '0'}})</span></a></li>
 						</ul>
 					</nav>
