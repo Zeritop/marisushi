@@ -72,6 +72,11 @@
                             </div>
                         </div>
 
+                        <div class="text-center">
+                            Al registrarte aceptas nuestros <a href="/terminos">Términos y Condiciones</a>
+                        </div>
+                        <br>
+
                         <div class="form-group row mb-0">
                             <div class="col-md-6 offset-md-4">
                                 <button type="submit" class="btn btn-primary">

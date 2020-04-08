@@ -67,9 +67,7 @@
 							<a href="about" class="button-w3ls active mt-5">Leer Más..
 								<span class="fa fa-caret-right ml-1" aria-hidden="true"></span>
 							</a>
-							<a href="menu" class="button-w3ls mt-5 ml-2">Ver Más
-								<span class="fa fa-caret-right ml-1" aria-hidden="true"></span>
-							</a>
+
 						</div>
 					</div>
 				</div>
@@ -152,7 +150,6 @@
 						</div>
 						<div class="card-body border border-top-0">
 							<h5 class="blog-title card-title m-0"><a href="menu">Sushi Panda</a></h5>
-							<p class="mt-3">Cras ultricies ligula sed magna dictum porta auris blandita.</p>
 							<a href="menu" class="btn button-w3ls mt-4 mb-3">Ver Más
 								<span class="fa fa-caret-right ml-1" aria-hidden="true"></span>
 							</a>
@@ -169,8 +166,7 @@
 							</a>
 						</div>
 						<div class="card-body border border-top-0">
-							<h5 class="blog-title card-title m-0"><a href="menu">Veg Muffin</a></h5>
-							<p class="mt-3">Cras ultricies ligula sed magna dictum porta auris blandita.</p>
+							<h5 class="blog-title card-title m-0"><a href="menu">Torta de Sushi</a></h5>
 							<a href="menu" class="button-w3ls active mt-4 mb-3">Ver Más
 								<span class="fa fa-caret-right ml-1" aria-hidden="true"></span>
 							</a>
@@ -187,9 +183,8 @@
 							</a>
 						</div>
 						<div class="card-body border border-top-0">
-							<h5 class="blog-title card-title m-0"><a href="menu">Hashbrown Brioche</a></h5>
-							<p class="mt-3">Cras ultricies ligula sed magna dictum porta auris blandita.</p>
-							<a href="menu" class="button-w3ls mt-4 mb-3">Ver Más
+							<h5 class="blog-title card-title m-0"><a href="/personalizar">10 piezas de sushi</a></h5>
+							<a href="/personalizar" class="button-w3ls mt-4 mb-3">Ver Más
 								<span class="fa fa-caret-right ml-1" aria-hidden="true"></span>
 							</a>
 						</div>
@@ -207,11 +202,9 @@
 			<div class="col-md-6 p-0">
 				<div class="blog-sec-w3">
 					<div class="text-blog-w3 text-center p-2">
-						<h4 class="text-wh mb-3"><a href="menu">Best Fast Food Collection</a></h4>
-						<p class="text-li">Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris Sed
-							ut perspiciatis
-							unde omnis iste natus error.</p>
-						<a href="menu" class="button-w3ls active mt-5">Ver Más
+						<h4 class="text-wh mb-3"><a href="menu">Torta de Sushi</a></h4>
+						<p class="text-li">Realiza pedidos para cualquier ocación.</p>
+						<a href="menu" class="button-w3ls active mt-5">Vamos
 							<span class="fa fa-caret-right ml-1" aria-hidden="true"></span>
 						</a>
 					</div>
@@ -220,11 +213,9 @@
 			<div class="col-md-6 p-0">
 				<div class="blog-sec-w3 blog-sec-w3-2">
 					<div class="text-blog-w3 text-center p-2">
-						<h4 class="text-wh mb-3"><a href="menu">Organic Best & Fresh Food</a></h4>
-						<p class="text-li">Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris Sed
-							ut perspiciatis
-							unde omnis iste natus error.</p>
-						<a href="menu" class="button-w3ls active mt-5">Ver Más
+						<h4 class="text-wh mb-3"><a href="/contacto">Sandwich de Sushi</a></h4>
+						<p class="text-li">¿Quieres organizar un evento?, Comunicate con nosotros.</p>
+						<a href="/contacto" class="button-w3ls active mt-5">Vamos
 							<span class="fa fa-caret-right ml-1" aria-hidden="true"></span>
 						</a>
 					</div>
@@ -316,7 +307,7 @@
 			<div class="row pb-lg-4 pt-lg-5">
 				<div class="col-lg-6 col-md-9 text-center">
 					<h3 class="w3ls-title mb-2">Suscribete al Newsletter</h3>
-					<p class="mb-xl-5 mb-4">Recibe noticias de nuevos productos y descuentos!</p>
+					<p class="mb-xl-5 mb-4">Recibe descuentos y noticias de nuevos productos!</p>
 
 					<form action="{{ route('home.subscribe') }}" method="POST" class="d-flex newsletter-info">
 						@csrf

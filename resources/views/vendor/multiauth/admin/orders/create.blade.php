@@ -296,15 +296,13 @@
         $(function () {
             $('#datetimepicker').datetimepicker({
                 locale: 'es',
-                minDate: new Date(),
-                daysOfWeekDisabled: [0, 1]
+                minDate: new Date()
             });
         });
         $(function () {
             $('#datetimepicker2').datetimepicker({
                 locale: 'es',
-                minDate: new Date(),
-                daysOfWeekDisabled: [0, 1]
+                minDate: new Date()
 
             });
         });

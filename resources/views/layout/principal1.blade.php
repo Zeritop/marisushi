@@ -176,38 +176,12 @@
 				<div class="col-lg-6 footer-grid_section_1its footer-text">
 					<!-- logo -->
 					<h2>
-						<a class="logo text-wh" href="index.html">
+						<a class="logo text-wh" href="/">
 							<img src="images/sushiAnimado2.jpg" alt="" class="img-fluid" style="width: 80px;"><span>Mari</span> Sushi
 						</a>
 					</h2>
 					<!-- //logo -->
-					<p class="mt-lg-4 mt-3 mb-lg-5 mb-4">Sed ut perspiciatis unde omnis iste natus errorhjhsit lupt
-						atem
-						accursit lupt atem accu
-						dfdsa
-						ntium doloremque laudan tium accu santium dolore.</p>
-					<!-- social icons -->
-					<ul class="top-right-info">
-						<li>
-							<p>Siguenos en:</p>
-						</li>
-						<li class="facebook-w3">
-							<a href="https://www.facebook.com/profile.php?id=100023553709142" target="_blank">
-								<span class="fa fa-facebook-f"></span>
-							</a>
-						</li>
-					</ul>
-					<!-- //social icons -->
-				</div>
-				<div class="col-lg-6 footer-grid_section_1its my-lg-0 my-sm-4 my-4">
-					<div class="footer-title">
-						<h3>Encuéntranos</h3>
-					</div>
-					<div class="footer-text mt-4">
-						<p>Direccion : Andalio Vigueras #200, Los Alamos, Región del Bío Bío</p>
-						<p class="my-2">Telefono : 9 7849 0896</p>
-						<p>Horario de Atención: Martes a Sabados 17:00 a 23:30</p>
-					</div>
+					
 					<div class="footer-title mt-4 pt-md-2">
 						<h3>Métodos de Pago</h3>
 					</div>
@@ -228,12 +202,35 @@
 							<img src="images/pay6.png" alt=""></a>
 						</li>
 					</ul>
+
+				</div>
+				<div class="col-lg-6 footer-grid_section_1its my-lg-0 my-sm-4 my-4">
+					<div class="footer-title">
+						<h3>Encuéntranos</h3>
+					</div>
+					<div class="footer-text mt-4">
+						<p>Direccion : Andalio Vigueras #200, Los Alamos, Región del Bío Bío</p>
+						<p class="my-2">Telefono : 9 7849 0896</p>
+						<p>Horario de Atención: Martes a Sabados 17:00 a 23:30</p>
+					</div>
+					<br>
+					<ul class="top-right-info">
+						<li>
+							<p>Siguenos en:</p>
+						</li>
+						<li class="facebook-w3">
+							<a href="https://www.facebook.com/profile.php?id=100023553709142" target="_blank">
+								<span class="fa fa-facebook-f"></span>
+							</a>
+						</li>
+					</ul>
 				</div>
 				
 			</div>
 		</div>
 	</footer>
 	<!-- //footer -->
+	
 	<!-- copyright -->
 	<div class="cpy-right text-center py-3">
 		<p>© 2019 Mari Sushi. Todos los derechos reservados | Design by

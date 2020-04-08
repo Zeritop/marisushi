@@ -89,6 +89,7 @@
       </div>
     </div>
   </div>
+
   <div class="panel panel-default">
     <div class="panel-heading">
       <h4 class="panel-title">
@@ -106,21 +107,64 @@
       </div>
     </div>
   </div>
+
   <div class="panel panel-default">
     <div class="panel-heading">
       <h4 class="panel-title">
         <a class="accordion-toggle" data-toggle="collapse" data-parent="#accordion" href="#collapseThree">
           <span class="fa fa-plus"></span>
-          Collapsible Group Item #3
+          3. Me registre, pero no puedo realizar un pedido.
         </a>
       </h4>
     </div>
     <div id="collapseThree" class="panel-collapse collapse">
       <div class="panel-body">
-        Anim pariatur cliche reprehenderit, enim eiusmod high life accusamus terry richardson ad squid. 3 wolf moon officia aute, non cupidatat skateboard dolor brunch. Food truck quinoa nesciunt laborum eiusmod. Brunch 3 wolf moon tempor, sunt aliqua put a bird on it squid single-origin coffee nulla assumenda shoreditch et. Nihil anim keffiyeh helvetica, craft beer labore wes anderson cred nesciunt sapiente ea proident. Ad vegan excepteur butcher vice lomo. Leggings occaecat craft beer farm-to-table, raw denim aesthetic synth nesciunt you probably haven't heard of them accusamus labore sustainable VHS.
+      	<h4>
+         Revisa que recibiste un email de verificacion de cuenta de Mari Sushi, revisa también tu carpeta de SPAM. 
+         Si no verificaste tu cuenta al momento de crearla, puedes pedir otro email en la sección 'Realizar Pedido', y te enviaremos otro.
+         </h4>
       </div>
     </div>
   </div>
+
+  <div class="panel panel-default">
+    <div class="panel-heading">
+      <h4 class="panel-title">
+        <a class="accordion-toggle" data-toggle="collapse" data-parent="#accordion" href="#collapseFour">
+          <span class="fa fa-plus"></span>
+          4. ¿Hacen despacho a domicilio?, ¿Realizan despacho a lás demas comunas de la ciudad Los Álamos?
+        </a>
+      </h4>
+    </div>
+    <div id="collapseFour" class="panel-collapse collapse">
+      <div class="panel-body">
+      <h4>
+      	Actualmente solo realizamos entregas en nuestro local en la ciudad de Los Álamos.
+      	<hr>
+      	Dirección: Andalio Vigueras #200, Comuna de Los Alamos, Ciudad de Los Álamos, Región del Bío Bío.
+      </h4>
+      </div>
+    </div>
+  </div>
+
+  <div class="panel panel-default">
+    <div class="panel-heading">
+      <h4 class="panel-title">
+        <a class="accordion-toggle" data-toggle="collapse" data-parent="#accordion" href="#collapseFive">
+          <span class="fa fa-plus"></span>
+          5. ¿Cómo pago mi pedido?
+        </a>
+      </h4>
+    </div>
+    <div id="collapseFive" class="panel-collapse collapse">
+      <div class="panel-body">
+      <h4>
+      	Puedes pagar tu pedido cuando retires el pedido en nuestro local.
+      </h4>
+      </div>
+    </div>
+  </div>
+
 </div>
 </div>
 

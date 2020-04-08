@@ -52,6 +52,7 @@ Route::resource('/contacto','ContactController');
 Route::get('/contacto', 'ContactController@index')->name('contacto.index');
 
 Route::get('/faq', 'FaqController@index')->name('faq.index');
+Route::get('/terminos', 'TerminosController@index')->name('terminos.index');
 
 
 Route::get('/change-password','Auth\ChangePasswordController@index')->name('password.change');
