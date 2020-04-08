@@ -65,7 +65,7 @@
 			<img class="img-fluid" src="/storage/{{$menu->foto}}" style="max-height: 280px; width: auto;" alt="">
 			<h4 class="p-mask">{{ $menu->titulo }} - - <span>${{ $menu->precio }}</span></h4>
 			<p>{{ $menu->descripcion }}</p>
-            <p>{{ $menu->esencial }} - {{ $menu->principal }} -  {{ $menu->secundario1 }} - {{ $menu->secundario2 }} - {{ $menu->envoltura }}</p>
+            <p>{{ $menu->esencial }} - {{ $menu->principal }} -  {{ $menu->secundario1 }} - {{ $menu->secundario2 }} - {{ $menu->envolturaInterna }} - {{ $menu->envolturaExterna }}</p>
             @if($menu->ingrediente1 != null)
             <p>- {{ $menu->ingrediente1 }}</p>
             @endif
