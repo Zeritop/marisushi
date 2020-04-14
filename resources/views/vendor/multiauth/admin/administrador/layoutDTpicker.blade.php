@@ -55,6 +55,7 @@
                             <p>Pedidos</p>
                         </a>
                     </li>
+                    @admin('super')
                     <li>
                         <a class="nav-link" href="{{ url('admin/ingredients') }}">
                             <i class="nc-icon nc-notes"></i>
@@ -91,6 +92,7 @@
                             <p>Estadisticas</p>
                         </a>
                     </li>
+                    @endadmin
 
                 </ul>
             </div>

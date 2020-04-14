@@ -77,7 +77,7 @@
 
                 <strong>Categoria:</strong>
 
-                <select class="form-control" name="categoria">
+                <select class="form-control" name="categoria" style="height: auto">
                     <option disabled selected> Selecciona una opción</option>
 
                     @foreach ($categorys as $category)

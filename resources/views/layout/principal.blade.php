@@ -18,6 +18,8 @@
 			window.scrollTo(0, 1);
 		}
 	</script>
+
+	<link rel="icon" sizes="76x76" href="{{ asset('assets/img/favicon.png') }}">
 	<!--// Meta tag Keywords -->
 
 	<!-- Custom-Files -->
@@ -233,8 +235,7 @@
 	<!-- //footer -->
 	<!-- copyright -->
 	<div class="cpy-right text-center py-3">
-		<p>© 2019 Mari Sushi. Todos los derechos reservados | Design by
-			<a href="http://w3layouts.com"> W3layouts.</a>
+		<p>© 2020 Mari Sushi. Todos los derechos reservados
 		</p>
 	</div>
 	<!-- //copyright -->

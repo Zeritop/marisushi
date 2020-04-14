@@ -22,7 +22,7 @@ class OrderController extends Controller
     {
         //
         $this->middleware('auth:admin');
-        $this->middleware('role:super', ['only'=>'show']);
+        $this->middleware('role:pedidos', ['only'=>'show']);
     }
 
 

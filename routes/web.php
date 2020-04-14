@@ -64,27 +64,33 @@ Route::post('/home', 'HomeController@subscribe')->name('home.subscribe');
 Route::get('/unsubscribe', 'UnsubscribeController@index')->name('unsubscribe');
 Route::post('/unsubscribe', 'UnsubscribeController@unsubscribe')->name('unsubscribe.unsubscribe');
 
-
-Route::resource('admin/products','ProductController');
-Route::resource('admin/ingredients','IngredientController');
-Route::resource('admin/discounts','DiscountController');
-Route::get('admin/estadisticas','EstadisticasController@index')->name('estadisticas');
-
-Route::resource('admin/sales','SaleController');
-Route::post('admin/sales/generarInforme','SaleController@generarInforme')->name('sales.generarInforme');
-
-Route::resource('admin/orders','OrderController');
-
-Route::post('admin/orders/{id}/agregarItem','OrderController@agregarItem')->name('orders.agregarItem');
-Route::post('admin/orders/{id}/quitarItem','OrderController@quitarItem')->name('orders.quitarItem');
-Route::post('admin/orders/{id}/registrarPago','OrderController@registrarPago')->name('orders.registrarPago');
-
-
-
-Route::resource('menus','MenuController');//admin
 Route::resource('menu','MeenuController');
-
 
 Route::resource('personalizar','PersonalizarController');
 Route::post('personalizar','PersonalizarController@addToCart')->name('personalizar.addToCart');
+
+
+
+//---------------------admin-----------------------------
+
+Route::resource('admin/orders','OrderController')->middleware('role:pedidos');
+Route::post('admin/orders/{id}/agregarItem','OrderController@agregarItem')->name('orders.agregarItem')->middleware('role:pedidos');
+Route::post('admin/orders/{id}/quitarItem','OrderController@quitarItem')->name('orders.quitarItem')->middleware('role:pedidos');
+Route::post('admin/orders/{id}/registrarPago','OrderController@registrarPago')->name('orders.registrarPago')->middleware('role:pedidos');
+
+Route::resource('admin/products','ProductController')->middleware('role:super');
+
+Route::resource('admin/ingredients','IngredientController')->middleware('role:super');
+
+Route::resource('admin/discounts','DiscountController')->middleware('role:super');
+
+Route::get('admin/estadisticas','EstadisticasController@index')->name('estadisticas')->middleware('role:super');
+
+Route::resource('admin/sales','SaleController')->middleware('role:super');
+
+Route::post('admin/sales/generarInforme','SaleController@generarInforme')->name('sales.generarInforme')->middleware('role:super');
+
+Route::resource('menus','MenuController')->middleware('role:super');
+
+
 
