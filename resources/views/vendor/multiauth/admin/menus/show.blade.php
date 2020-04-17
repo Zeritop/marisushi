@@ -64,6 +64,60 @@
 
         </div>
 
+        <div class="col-xs-12 col-sm-12 col-md-12">
+
+            <div class="form-group">
+
+                <strong>Ingredientes:</strong>
+
+                @if($menu->esencial != null)
+                     {{ $menu->esencial }}
+                  @endif
+
+                  @if($menu->principal != null)
+                    - {{ $menu->principal }}
+                  @endif
+                  
+                  @if($menu->secundario1 != null)
+                    - {{ $menu->secundario1 }}
+                  @endif
+                  
+                  @if($menu->secundario2 != null)
+                    - {{ $menu->secundario2 }}
+                  @endif
+
+                  @if($menu->envolturaInterna != null)
+                    - {{ $menu->envolturaInterna }}
+                  @endif
+
+                  @if($menu->envolturaExterna != null)
+                    - {{ $menu->envolturaExterna }}
+                  @endif
+
+                  @if($menu->ingrediente1 != null)
+                    - {{ $menu->ingrediente1 }}
+                  @endif
+
+                  @if($menu->ingrediente2 != null)
+                    - {{ $menu->ingrediente2 }}
+                  @endif
+
+                  @if($menu->ingrediente3 != null)
+                    - {{ $menu->ingrediente3 }}
+                  @endif
+
+                  @if($menu->ingrediente4 != null)
+                    - {{ $menu->ingrediente4 }}
+                  @endif
+
+                  @if($menu->ingrediente5 != null)
+                    - {{ $menu->ingrediente5 }}
+                  @endif
+
+            </div>
+
+        </div>
+
 
         <div class="col-xs-12 col-sm-12 col-md-12">
 
