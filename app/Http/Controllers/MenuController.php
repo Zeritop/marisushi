@@ -124,8 +124,7 @@ class MenuController extends Controller
              $request->validate([
 
             'titulo' => 'required',
-            'descripcion' => 'required',
-            'precio' => 'required',
+            'precio' => 'required'
         ]);
 
 
