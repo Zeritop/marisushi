@@ -61,7 +61,7 @@ class MenuController extends Controller
         $request->validate([
             'precio' => 'required',
             'titulo' => 'required',
-            'foto' => 'required|mimes:jpeg,jpg,png',
+            'foto' => 'required|mimes:jpeg,jpg,png|max:10240',
         ]);
 
 
