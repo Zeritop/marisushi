@@ -40,7 +40,7 @@ class OrderController extends Controller
         $estado = $request->get('estado');
         $fecha = $request->get('fecha_entrega');
 
-        $orders = Order::orderBy('created_at', 'ASC')
+        $orders = Order::orderBy('created_at', 'DESC')
             ->estado($estado)
             ->fecha($fecha)
             ->paginate(15);
