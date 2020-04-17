@@ -65,22 +65,55 @@
 			<img class="img-fluid" src="/storage/{{$menu->foto}}" style="max-height: 280px; width: auto;" alt="">
 			<h4 class="p-mask">{{ $menu->titulo }} - - <span>${{ $menu->precio }}</span></h4>
 			<p>{{ $menu->descripcion }}</p>
-            <p>{{ $menu->esencial }} - {{ $menu->principal }} -  {{ $menu->secundario1 }} - {{ $menu->secundario2 }} - {{ $menu->envolturaInterna }} - {{ $menu->envolturaExterna }}</p>
+            <p>{{ $menu->esencial }} - {{ $menu->principal }} -  {{ $menu->secundario1 }} - {{ $menu->secundario2 }} - 
+
+            @if($menu->secundario3 != null)
+            {{ $menu->secundario3 }} -
+            @endif
+
+            @if($menu->secundario4 != null)
+            {{ $menu->secundario4 }} -
+            @endif
+
+            @if($menu->secundario5 != null)
+            {{ $menu->secundario5 }} -
+            @endif
+
+            @if($menu->secundario6 != null)
+            {{ $menu->secundario6 }} -
+            @endif
+
+            @if($menu->secundario7 != null)
+            {{ $menu->secundario7 }} -
+            @endif
+
+            @if($menu->secundario8 != null)
+            {{ $menu->secundario8 }} -
+            @endif
+
+            {{ $menu->envolturaInterna }} - {{ $menu->envolturaExterna }}</p>
+            
+
             @if($menu->ingrediente1 != null)
             <p>- {{ $menu->ingrediente1 }}</p>
             @endif
+
             @if($menu->ingrediente2 != null)
             <p>- {{ $menu->ingrediente2 }}</p>
             @endif
+
             @if($menu->ingrediente3 != null)
             <p>- {{ $menu->ingrediente3 }}</p>
             @endif
+
             @if($menu->ingrediente4 != null)
             <p>- {{ $menu->ingrediente4 }}</p>
             @endif
+
             @if($menu->ingrediente5 != null)
             <p>- {{ $menu->ingrediente5 }}</p>
             @endif
+
 			<a href="{{ route('cart.add', $menu->id)}}" class="button-w3ls active mt-3">Añadir al carrito
 				<span class="fa fa-caret-right ml-1" aria-hidden="true"></span>
 			</a>

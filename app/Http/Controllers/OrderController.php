@@ -152,6 +152,7 @@ class OrderController extends Controller
         $menu->principal = $request->principal;
         $menu->secundario1 = $request->secundario1;
         $menu->secundario2 = $request->secundario2;
+        $menu->secundario3 = $request->secundario3;
 
         if($request->envolturaInterna === "sinNori"){
             $menu->envolturaInterna = null;
@@ -181,7 +182,7 @@ class OrderController extends Controller
 
         $menuItems = DB::table('orders_menuItems')->leftJoin('menus', 'id_menu_item', '=', 'menus.id')
                                                     ->where('orders_menuItems.id_pedido',$order->id)
-                                                    ->select('orders_menuItems.*','menus.foto','menus.esencial','menus.principal','menus.secundario1','menus.secundario2','menus.envolturaInterna','menus.envolturaExterna','menus.ingrediente1','menus.ingrediente2','menus.ingrediente3','menus.ingrediente4','menus.ingrediente5')
+                                                    ->select('orders_menuItems.*','menus.foto','menus.esencial','menus.principal','menus.secundario1','menus.secundario2','menus.secundario3','menus.secundario4','menus.secundario5','menus.secundario6','menus.secundario7','menus.secundario8','menus.envolturaInterna','menus.envolturaExterna','menus.ingrediente1','menus.ingrediente2','menus.ingrediente3','menus.ingrediente4','menus.ingrediente5')
                                                     ->get();
 
 
@@ -280,8 +281,8 @@ class OrderController extends Controller
 
         $menuItems = DB::table('orders_menuItems')->leftJoin('menus', 'id_menu_item', '=', 'menus.id')
                                                     ->where('orders_menuItems.id_pedido',$order->id)
-                                                    ->select('orders_menuItems.*','menus.foto','menus.esencial','menus.principal','menus.secundario1','menus.secundario2','menus.envolturaInterna','menus.envolturaExterna','menus.ingrediente1','menus.ingrediente2','menus.ingrediente3','menus.ingrediente4','menus.ingrediente5')
-                                                    ->get();
+                                                    ->select('orders_menuItems.*','menus.foto','menus.esencial','menus.principal','menus.secundario1','menus.secundario2','menus.secundario3','menus.secundario4','menus.secundario5','menus.secundario6','menus.secundario7','menus.secundario8','menus.envolturaInterna','menus.envolturaExterna','menus.ingrediente1','menus.ingrediente2','menus.ingrediente3','menus.ingrediente4','menus.ingrediente5')
+                                                   ->get();
 
 
         return redirect('admin/orders/'. $order->id )
@@ -310,7 +311,7 @@ class OrderController extends Controller
 
         $menuItems = DB::table('orders_menuItems')->leftJoin('menus', 'id_menu_item', '=', 'menus.id')
                                                     ->where('orders_menuItems.id_pedido',$order->id)
-                                                    ->select('orders_menuItems.*','menus.foto','menus.esencial','menus.principal','menus.secundario1','menus.secundario2','menus.envolturaInterna','menus.envolturaExterna','menus.ingrediente1','menus.ingrediente2','menus.ingrediente3','menus.ingrediente4','menus.ingrediente5')
+                                                    ->select('orders_menuItems.*','menus.foto','menus.esencial','menus.principal','menus.secundario1','menus.secundario2','menus.secundario3','menus.secundario4','menus.secundario5','menus.secundario6','menus.secundario7','menus.secundario8','menus.envolturaInterna','menus.envolturaExterna','menus.ingrediente1','menus.ingrediente2','menus.ingrediente3','menus.ingrediente4','menus.ingrediente5')
                                                     ->get();
 
 
@@ -380,7 +381,7 @@ class OrderController extends Controller
 
         $menuItems = DB::table('orders_menuItems')->leftJoin('menus', 'id_menu_item', '=', 'menus.id')
                                                     ->where('orders_menuItems.id_pedido',$order->id)
-                                                    ->select('orders_menuItems.*','menus.foto','menus.esencial','menus.principal','menus.secundario1','menus.secundario2','menus.envolturaInterna','menus.envolturaExterna','menus.ingrediente1','menus.ingrediente2','menus.ingrediente3','menus.ingrediente4','menus.ingrediente5')
+                                                    ->select('orders_menuItems.*','menus.foto','menus.esencial','menus.principal','menus.secundario1','menus.secundario2','menus.secundario3','menus.secundario4','menus.secundario5','menus.secundario6','menus.secundario7','menus.secundario8','menus.envolturaInterna','menus.envolturaExterna','menus.ingrediente1','menus.ingrediente2','menus.ingrediente3','menus.ingrediente4','menus.ingrediente5')
                                                     ->get();
 
 
@@ -488,7 +489,7 @@ class OrderController extends Controller
 
         $menuItems = DB::table('orders_menuItems')->leftJoin('menus', 'id_menu_item', '=', 'menus.id')
                                                     ->where('orders_menuItems.id_pedido',$order->id)
-                                                    ->select('orders_menuItems.*','menus.foto','menus.esencial','menus.principal','menus.secundario1','menus.secundario2','menus.envolturaInterna','menus.envolturaExterna','menus.ingrediente1','menus.ingrediente2','menus.ingrediente3','menus.ingrediente4','menus.ingrediente5')
+                                                    ->select('orders_menuItems.*','menus.foto','menus.esencial','menus.principal','menus.secundario1','menus.secundario2','menus.secundario3','menus.secundario4','menus.secundario5','menus.secundario6','menus.secundario7','menus.secundario8','menus.envolturaInterna','menus.envolturaExterna','menus.ingrediente1','menus.ingrediente2','menus.ingrediente3','menus.ingrediente4','menus.ingrediente5')
                                                     ->get();
 
         return redirect('admin/orders/'. $order->id )
@@ -560,7 +561,7 @@ class OrderController extends Controller
 
         $menuItems = DB::table('orders_menuItems')->leftJoin('menus', 'id_menu_item', '=', 'menus.id')
                                                     ->where('orders_menuItems.id_pedido',$order->id)
-                                                    ->select('orders_menuItems.*','menus.foto','menus.esencial','menus.principal','menus.secundario1','menus.secundario2','menus.envolturaInterna','menus.envolturaExterna','menus.ingrediente1','menus.ingrediente2','menus.ingrediente3','menus.ingrediente4','menus.ingrediente5')
+                                                    ->select('orders_menuItems.*','menus.foto','menus.esencial','menus.principal','menus.secundario1','menus.secundario2','menus.secundario3','menus.secundario4','menus.secundario5','menus.secundario6','menus.secundario7','menus.secundario8','menus.envolturaInterna','menus.envolturaExterna','menus.ingrediente1','menus.ingrediente2','menus.ingrediente3','menus.ingrediente4','menus.ingrediente5')
                                                     ->get();
 
         return redirect('admin/orders/'. $order->id )
@@ -616,8 +617,8 @@ class OrderController extends Controller
 
         $menuItems = DB::table('orders_menuItems')->leftJoin('menus', 'id_menu_item', '=', 'menus.id')
                                                     ->where('orders_menuItems.id_pedido',$order->id)
-                                                    ->select('orders_menuItems.*','menus.foto','menus.esencial','menus.principal','menus.secundario1','menus.secundario2','menus.envolturaInterna','menus.envolturaExterna','menus.ingrediente1','menus.ingrediente2','menus.ingrediente3','menus.ingrediente4','menus.ingrediente5')
-                                                    ->get();
+                                                    ->select('orders_menuItems.*','menus.foto','menus.esencial','menus.principal','menus.secundario1','menus.secundario2','menus.secundario3','menus.secundario4','menus.secundario5','menus.secundario6','menus.secundario7','menus.secundario8','menus.envolturaInterna','menus.envolturaExterna','menus.ingrediente1','menus.ingrediente2','menus.ingrediente3','menus.ingrediente4','menus.ingrediente5') 
+                                                     ->get();
 
         return redirect('admin/orders/'. $order->id )
                         ->with('order')->with('menuItems')->with('menuItemsLists')->with('personalizars')
@@ -708,7 +709,7 @@ class OrderController extends Controller
 
         $menuItems = DB::table('orders_menuItems')->leftJoin('menus', 'id_menu_item', '=', 'menus.id')
                                                     ->where('orders_menuItems.id_pedido',$order->id)
-                                                    ->select('orders_menuItems.*','menus.foto','menus.esencial','menus.principal','menus.secundario1','menus.secundario2','menus.envolturaInterna','menus.envolturaExterna','menus.ingrediente1','menus.ingrediente2','menus.ingrediente3','menus.ingrediente4','menus.ingrediente5')
+                                                    ->select('orders_menuItems.*','menus.foto','menus.esencial','menus.principal','menus.secundario1','menus.secundario2','menus.secundario3','menus.secundario4','menus.secundario5','menus.secundario6','menus.secundario7','menus.secundario8','menus.envolturaInterna','menus.envolturaExterna','menus.ingrediente1','menus.ingrediente2','menus.ingrediente3','menus.ingrediente4','menus.ingrediente5')
                                                     ->get();
 
 

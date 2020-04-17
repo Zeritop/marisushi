@@ -73,10 +73,19 @@ class MenuController extends Controller
         $menu->descripcion = $request->descripcion;
         $menu->esencial = $request->esencial;
         $menu->principal = $request->principal;
+
         $menu->secundario1 = $request->secundario1;
         $menu->secundario2 = $request->secundario2;
+        $menu->secundario3 = $request->secundario3;
+        $menu->secundario4 = $request->secundario4;
+        $menu->secundario5 = $request->secundario5;
+        $menu->secundario6 = $request->secundario6;
+        $menu->secundario7 = $request->secundario7;
+        $menu->secundario8 = $request->secundario8;
+
         $menu->envolturaInterna = $request->envolturaInterna;
         $menu->envolturaExterna = $request->envolturaExterna;
+        
         $menu->ingrediente1 = $request->ingrediente1;
         $menu->ingrediente2 = $request->ingrediente2;
         $menu->ingrediente3 = $request->ingrediente3;

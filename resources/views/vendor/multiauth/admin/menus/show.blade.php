@@ -86,6 +86,30 @@
                     - {{ $menu->secundario2 }}
                   @endif
 
+                  @if($menu->secundario3 != null)
+                    - {{ $menu->secundario3 }}
+                  @endif
+
+                  @if($menu->secundario4 != null)
+                    - {{ $menu->secundario4 }}
+                  @endif
+
+                  @if($menu->secundario5 != null)
+                    - {{ $menu->secundario5 }}
+                  @endif
+
+                  @if($menu->secundario6 != null)
+                    - {{ $menu->secundario6 }}
+                  @endif
+
+                  @if($menu->secundario7 != null)
+                    - {{ $menu->secundario7 }}
+                  @endif
+
+                  @if($menu->secundario8 != null)
+                    - {{ $menu->secundario8 }}
+                  @endif
+
                   @if($menu->envolturaInterna != null)
                     - {{ $menu->envolturaInterna }}
                   @endif

@@ -238,6 +238,30 @@
                     - {{ $menuItem->secundario2 }}
                   @endif
 
+                  @if($menuItem->secundario3 != null)
+                    - {{ $menuItem->secundario3 }}
+                  @endif
+
+                  @if($menuItem->secundario4 != null)
+                    - {{ $menuItem->secundario4 }}
+                  @endif
+
+                  @if($menuItem->secundario5 != null)
+                    - {{ $menuItem->secundario5 }}
+                  @endif
+
+                  @if($menuItem->secundario6 != null)
+                    - {{ $menuItem->secundario6 }}
+                  @endif
+
+                  @if($menuItem->secundario7 != null)
+                    - {{ $menuItem->secundario7 }}
+                  @endif
+
+                  @if($menuItem->secundario8 != null)
+                    - {{ $menuItem->secundario8 }}
+                  @endif
+
                   @if($menuItem->envolturaInterna != null)
                     - {{ $menuItem->envolturaInterna }}
                   @endif
@@ -449,7 +473,7 @@
 
             <div class="form-group">
             <label for="recipient-name" class="col-form-label">Titulo</label>
-              <select name="titulo" class="form-control" style="height: 40px;">
+              <select name="titulo" class="form-control" style="height: 40px;" onchange="sushiCheck(this);">
                   <option disabled selected>Selecciona la forma</option>
                   <option value="Handroll Personalizado">Handroll Personalizado</option>
                   <option value="Sushi Personalizado: 10 piezas">Sushi Personalizado: 10 piezas</option>
@@ -510,6 +534,21 @@
                   @endforeach
               </select>
           </div>
+
+          <div class="form-group" id="ifSushi" style="display: none;">
+            <label for="recipient-name" class="col-form-label">Tercer Ingrediente Secundario</label>
+            <select name="secundario3" class="form-control" style="height: 40px;" id="txt_sushi">
+                    <!--  <option value="" selected="">...</option> -->
+              <option disabled selected>Selecciona el tercer ingrediente</option>
+                  @foreach($personalizars as $personalizar)
+                      @if($personalizar->categoria == 'Secundarios')
+                          <option value=" {{ $personalizar->name}} "> {{ $personalizar->name}} </option>
+                      @endif
+                  @endforeach
+              </select>
+          </div>
+
+
 
           <div class="form-group">
             <label for="recipient-name" class="col-form-label">Envoltura Interna</label>
@@ -628,6 +667,15 @@ function yesnoCheck2(that) {
         document.getElementById("txt_nombre_empresa").value = "";
         document.getElementById("txt_rut_empresa").value = "";
     } 
+}
+
+function sushiCheck(that) {
+    if (that.value == "Sushi Personalizado: 10 piezas") {
+        document.getElementById("ifSushi").style.display = "block";
+    } else {
+        document.getElementById("ifSushi").style.display = "none";
+        document.getElementById("txt_sushi").value = "";
+    }
 }
 
 function onRutBlur(obj) {
