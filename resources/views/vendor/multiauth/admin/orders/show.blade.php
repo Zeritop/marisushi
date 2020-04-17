@@ -45,6 +45,17 @@
 
                 @endif
 
+                @if($order->estado != 'Listo para Retirar')
+
+                <div class="alert alert-info">
+                  <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                      <span aria-hidden="true">&times;</span>
+                  </button>
+                    <strong>Info:</strong> Para registrar pago del pedido debe estar en estado 'Listo Para Retirar'.<br><br>
+                </div>
+
+                @endif
+
                 @if($order->estado === 'Listo para Retirar')
                 <button type="button" class="btn btn-success" data-toggle="modal" data-target="#registrarPago" data-whatever="@registrarPago">
                 Registrar Pago</button>
