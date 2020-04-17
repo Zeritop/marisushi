@@ -31,9 +31,7 @@
 		<div class="container py-xl-5 py-lg-3">
 			<div class="title-section text-center mb-md-5 mb-4">
 				<h3 class="w3ls-title mb-3">Personaliza tu <span>Menu</span></h3>
-				<p class="titile-para-text mx-auto">Inventore veritatis et quasi architecto beatae vitae dicta sunt
-					explicabo.Nemo
-					enim totam rem aperiam.</p>
+				<p class="titile-para-text mx-auto">Elige entre los distintos ingredientes disponibles y fabrica tu propio sushi.</p>
 			</div>
 	</section>
 	<!-- gallery model-->
