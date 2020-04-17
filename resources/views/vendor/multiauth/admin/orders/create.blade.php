@@ -80,7 +80,7 @@
 
           <div class="form-group">
             <label for="recipient-name" class="col-form-label">Titulo</label>
-              <select name="titulo" class="form-control" style="height: 40px;">
+              <select name="titulo" class="form-control" style="height: 40px;" onchange="sushiCheck(this);">
                   <option disabled selected>Selecciona la forma</option>
                   <option value="Handroll Personalizado">Handroll Personalizado</option>
                   <option value="Sushi Personalizado: 10 piezas">Sushi Personalizado: 10 piezas</option>
@@ -133,6 +133,19 @@
             <select name="secundario2" class="form-control" style="height: 40px;">
                     <!--  <option value="" selected="">...</option> -->
               <option disabled selected>Selecciona el segundo ingrediente</option>
+                  @foreach($personalizars as $personalizar)
+                      @if($personalizar->categoria == 'Secundarios')
+                          <option value=" {{ $personalizar->name}} "> {{ $personalizar->name}} </option>
+                      @endif
+                  @endforeach
+              </select>
+          </div>
+
+          <div class="form-group" id="ifSushi" style="display: none;">
+            <label for="recipient-name" class="col-form-label">Tercer Ingrediente Secundario</label>
+            <select name="secundario3" class="form-control" style="height: 40px;" id="txt_sushi">
+                    <!--  <option value="" selected="">...</option> -->
+              <option disabled selected>Selecciona el tercer ingrediente</option>
                   @foreach($personalizars as $personalizar)
                       @if($personalizar->categoria == 'Secundarios')
                           <option value=" {{ $personalizar->name}} "> {{ $personalizar->name}} </option>
@@ -306,6 +319,15 @@
 
             });
         });
+
+        function sushiCheck(that) {
+    if (that.value == "Sushi Personalizado: 10 piezas") {
+        document.getElementById("ifSushi").style.display = "block";
+    } else {
+        document.getElementById("ifSushi").style.display = "none";
+        document.getElementById("txt_sushi").value = "";
+    }
+}
     
     </script>
 

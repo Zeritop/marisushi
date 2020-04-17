@@ -212,6 +212,69 @@
         <div class="col-xs-12 col-sm-12 col-md-12">
             <div class="form-group">
                 
+            <strong>Ingrediente Envoltura Interna</strong>    
+             <select class="form-control" name="envolturaInterna" style="height: auto">
+                    <option disabled selected>Selecciona una opción</option>
+                        <option value="Nori">Con Nori</option>
+                        <option value="">Sin Nori</option>
+                </select>
+                
+            </div> 
+        </div>
+
+
+          <div class="col-xs-12 col-sm-12 col-md-12">
+            <div class="form-group">
+                
+            <strong>Ingrediente Envoltura Externa</strong>    
+             <select class="form-control" name="envolturaExterna" style="height: auto">
+                    <option disabled selected>Selecciona una opción</option>
+                    
+                    @foreach ($ingredients as $ingredient)
+                    @if($ingredient->categoria == 'Envoltura externa')
+                 
+                    <option value=" {{ $ingredient->name }} "> {{ $ingredient->name }} </option>
+                
+                    @endif
+                    @endforeach
+
+                </select>
+                
+            </div>
+         
+        </div>
+
+        
+        <div class="col-xs-12 col-sm-12 col-md-12">
+            <hr>
+            <div class="form-group">
+            </div>
+             
+         </div>
+
+        <div class="col-xs-12 col-sm-12 col-md-12">
+            <div class="form-group">
+                
+            <strong>Ingrediente Principal 2</strong>    
+             <select class="form-control" name="principal2" style="height: auto">
+                    <option disabled selected>Selecciona una opción</option>
+                    
+                    @foreach ($ingredients as $ingredient)
+                    @if($ingredient->categoria == 'Principal')
+                 
+                    <option value=" {{ $ingredient->name }} "> {{ $ingredient->name }} </option>
+                
+                    @endif
+                    @endforeach
+
+                </select>
+                
+            </div>
+         
+        </div>
+        <div class="col-xs-12 col-sm-12 col-md-12">
+            <div class="form-group">
+                
             <strong>Ingrediente Secundarios 4</strong>    
              <select class="form-control" name="secundario4" style="height: auto">
                     <option disabled selected>Selecciona una opción</option>
@@ -275,6 +338,53 @@
         <div class="col-xs-12 col-sm-12 col-md-12">
             <div class="form-group">
                 
+            <strong>Ingrediente Envoltura Externa 2</strong>    
+             <select class="form-control" name="envolturaExterna2" style="height: auto">
+                    <option disabled selected>Selecciona una opción</option>
+                    
+                    @foreach ($ingredients as $ingredient)
+                    @if($ingredient->categoria == 'Envoltura externa')
+                 
+                    <option value=" {{ $ingredient->name }} "> {{ $ingredient->name }} </option>
+                
+                    @endif
+                    @endforeach
+
+                </select>
+                
+            </div>
+
+        <div class="col-xs-12 col-sm-12 col-md-12">
+            <hr>
+            <div class="form-group">
+            </div>
+         </div>
+
+        <div class="col-xs-12 col-sm-12 col-md-12">
+            <div class="form-group">
+                
+            <strong>Ingrediente Principal 3</strong>    
+             <select class="form-control" name="principal3" style="height: auto">
+                    <option disabled selected>Selecciona una opción</option>
+                    
+                    @foreach ($ingredients as $ingredient)
+                    @if($ingredient->categoria == 'Principal')
+                 
+                    <option value=" {{ $ingredient->name }} "> {{ $ingredient->name }} </option>
+                
+                    @endif
+                    @endforeach
+
+                </select>
+                
+            </div>
+         
+        </div>
+
+
+        <div class="col-xs-12 col-sm-12 col-md-12">
+            <div class="form-group">
+                
             <strong>Ingrediente Secundarios 7</strong>    
              <select class="form-control" name="secundario7" style="height: auto">
                     <option disabled selected>Selecciona una opción</option>
@@ -313,26 +423,33 @@
             </div>
          
         </div>
-         
+
         <div class="col-xs-12 col-sm-12 col-md-12">
             <div class="form-group">
                 
-            <strong>Ingrediente Envoltura Interna</strong>    
-             <select class="form-control" name="envolturaInterna" style="height: auto">
+            <strong>Ingrediente Secundarios 9</strong>    
+             <select class="form-control" name="secundario9" style="height: auto">
                     <option disabled selected>Selecciona una opción</option>
-                        <option value="Nori">Con Nori</option>
-                        <option value="">Sin Nori</option>
+                    
+                    @foreach ($ingredients as $ingredient)
+                    @if($ingredient->categoria == 'Secundarios')
+                 
+                    <option value=" {{ $ingredient->name }} "> {{ $ingredient->name }} </option>
+                
+                    @endif
+                    @endforeach
+
                 </select>
                 
-            </div> 
+            </div>
+         
         </div>
 
-
-          <div class="col-xs-12 col-sm-12 col-md-12">
+        <div class="col-xs-12 col-sm-12 col-md-12">
             <div class="form-group">
                 
-            <strong>Ingrediente Envoltura Externa</strong>    
-             <select class="form-control" name="envolturaExterna" style="height: auto">
+            <strong>Ingrediente Envoltura Externa 3</strong>    
+             <select class="form-control" name="envolturaExterna3" style="height: auto">
                     <option disabled selected>Selecciona una opción</option>
                     
                     @foreach ($ingredients as $ingredient)
@@ -346,8 +463,116 @@
                 </select>
                 
             </div>
+
+        <div class="col-xs-12 col-sm-12 col-md-12">
+            <hr>
+            <div class="form-group">
+            </div>
+         </div>
+   
+        <div class="col-xs-12 col-sm-12 col-md-12">
+            <div class="form-group">
+                
+            <strong>Ingrediente Principal 4</strong>    
+             <select class="form-control" name="principal4" style="height: auto">
+                    <option disabled selected>Selecciona una opción</option>
+                    
+                    @foreach ($ingredients as $ingredient)
+                    @if($ingredient->categoria == 'Principal')
+                 
+                    <option value=" {{ $ingredient->name }} "> {{ $ingredient->name }} </option>
+                
+                    @endif
+                    @endforeach
+
+                </select>
+                
+            </div>
          
         </div>
+
+        <div class="col-xs-12 col-sm-12 col-md-12">
+            <div class="form-group">
+                
+            <strong>Ingrediente Secundarios 10</strong>    
+             <select class="form-control" name="secundario10" style="height: auto">
+                    <option disabled selected>Selecciona una opción</option>
+                    
+                    @foreach ($ingredients as $ingredient)
+                    @if($ingredient->categoria == 'Secundarios')
+                 
+                    <option value=" {{ $ingredient->name }} "> {{ $ingredient->name }} </option>
+                
+                    @endif
+                    @endforeach
+
+                </select>
+                
+            </div>
+         
+        </div>
+
+        <div class="col-xs-12 col-sm-12 col-md-12">
+            <div class="form-group">
+                
+            <strong>Ingrediente Secundarios 11</strong>    
+             <select class="form-control" name="secundario11" style="height: auto">
+                    <option disabled selected>Selecciona una opción</option>
+                    
+                    @foreach ($ingredients as $ingredient)
+                    @if($ingredient->categoria == 'Secundarios')
+                 
+                    <option value=" {{ $ingredient->name }} "> {{ $ingredient->name }} </option>
+                
+                    @endif
+                    @endforeach
+
+                </select>
+                
+            </div>
+         
+        </div>
+
+        <div class="col-xs-12 col-sm-12 col-md-12">
+            <div class="form-group">
+                
+            <strong>Ingrediente Secundarios 12</strong>    
+             <select class="form-control" name="secundario12" style="height: auto">
+                    <option disabled selected>Selecciona una opción</option>
+                    
+                    @foreach ($ingredients as $ingredient)
+                    @if($ingredient->categoria == 'Secundarios')
+                 
+                    <option value=" {{ $ingredient->name }} "> {{ $ingredient->name }} </option>
+                
+                    @endif
+                    @endforeach
+
+                </select>
+                
+            </div>
+         
+        </div>
+
+        <div class="col-xs-12 col-sm-12 col-md-12">
+            <div class="form-group">
+                
+            <strong>Ingrediente Envoltura Externa 4</strong>    
+             <select class="form-control" name="envolturaExterna4" style="height: auto">
+                    <option disabled selected>Selecciona una opción</option>
+                    
+                    @foreach ($ingredients as $ingredient)
+                    @if($ingredient->categoria == 'Envoltura externa')
+                 
+                    <option value=" {{ $ingredient->name }} "> {{ $ingredient->name }} </option>
+                
+                    @endif
+                    @endforeach
+
+                </select>
+                
+            </div>
+
         
          
          <div class="col-xs-12 col-sm-12 col-md-12">

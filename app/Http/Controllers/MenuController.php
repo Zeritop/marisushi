@@ -72,19 +72,32 @@ class MenuController extends Controller
         $menu->precio = $request->precio;
         $menu->descripcion = $request->descripcion;
         $menu->esencial = $request->esencial;
-        $menu->principal = $request->principal;
 
+        $menu->principal = $request->principal;
         $menu->secundario1 = $request->secundario1;
         $menu->secundario2 = $request->secundario2;
         $menu->secundario3 = $request->secundario3;
+        $menu->envolturaInterna = $request->envolturaInterna;
+        $menu->envolturaExterna = $request->envolturaExterna;
+
+        $menu->principal2 = $request->principal2;
         $menu->secundario4 = $request->secundario4;
         $menu->secundario5 = $request->secundario5;
         $menu->secundario6 = $request->secundario6;
+        $menu->envolturaExterna2 = $request->envolturaExterna2;
+
+        $menu->principal3 = $request->principal3;
         $menu->secundario7 = $request->secundario7;
         $menu->secundario8 = $request->secundario8;
+        $menu->secundario9 = $request->secundario9;
+        $menu->envolturaExterna3 = $request->envolturaExterna3;
 
-        $menu->envolturaInterna = $request->envolturaInterna;
-        $menu->envolturaExterna = $request->envolturaExterna;
+        $menu->principal4 = $request->principal4;
+        $menu->secundario10 = $request->secundario10;
+        $menu->secundario11 = $request->secundario11;
+        $menu->secundario12 = $request->secundario12;
+        $menu->envolturaExterna4 = $request->envolturaExterna4;
+
         
         $menu->ingrediente1 = $request->ingrediente1;
         $menu->ingrediente2 = $request->ingrediente2;

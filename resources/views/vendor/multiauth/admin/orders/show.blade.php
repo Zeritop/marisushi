@@ -222,53 +222,101 @@
             <td> {{ $menuItem->titulo }}</td>
             
 
-            <td> @if($menuItem->esencial != null)
-                     {{ $menuItem->esencial }}
-                  @endif
+            <td> 
+            <p>
 
-                  @if($menuItem->principal != null)
-                    - {{ $menuItem->principal }}
-                  @endif
-                  
-                  @if($menuItem->secundario1 != null)
-                    - {{ $menuItem->secundario1 }}
-                  @endif
-                  
-                  @if($menuItem->secundario2 != null)
-                    - {{ $menuItem->secundario2 }}
-                  @endif
+            @if($menuItem->principal != null)
+            {{ $menuItem->principal }} -
+            @endif
 
-                  @if($menuItem->secundario3 != null)
-                    - {{ $menuItem->secundario3 }}
-                  @endif
+            @if($menuItem->secundario1 != null)
+            {{ $menuItem->secundario1 }} -
+            @endif
 
-                  @if($menuItem->secundario4 != null)
-                    - {{ $menuItem->secundario4 }}
-                  @endif
+            @if($menuItem->secundario2 != null)
+            {{ $menuItem->secundario2 }} -
+            @endif
 
-                  @if($menuItem->secundario5 != null)
-                    - {{ $menuItem->secundario5 }}
-                  @endif
+            @if($menuItem->secundario3 != null)
+            {{ $menuItem->secundario3 }} -
+            @endif
 
-                  @if($menuItem->secundario6 != null)
-                    - {{ $menuItem->secundario6 }}
-                  @endif
+            @if($menuItem->envolturaInterna != null)
+            {{ $menuItem->envolturaInterna }} -
+            @endif
 
-                  @if($menuItem->secundario7 != null)
-                    - {{ $menuItem->secundario7 }}
-                  @endif
+            @if($menuItem->envolturaExterna != null)
+            {{ $menuItem->envolturaExterna }}
+            @endif
+          </p>
 
-                  @if($menuItem->secundario8 != null)
-                    - {{ $menuItem->secundario8 }}
-                  @endif
 
-                  @if($menuItem->envolturaInterna != null)
-                    - {{ $menuItem->envolturaInterna }}
-                  @endif
+            <p>
+            @if($menuItem->principal2 != null)
+            {{ $menuItem->principal2 }} -
+            @endif
 
-                  @if($menuItem->envolturaExterna != null)
-                    - {{ $menuItem->envolturaExterna }}
-                  @endif
+            @if($menuItem->secundario4 != null)
+            {{ $menuItem->secundario4 }} -
+            @endif
+
+            @if($menuItem->secundario5 != null)
+            {{ $menuItem->secundario5 }} -
+            @endif
+
+            @if($menuItem->secundario6 != null)
+            {{ $menuItem->secundario6 }} -
+            @endif
+
+            @if($menuItem->envolturaExterna2 != null)
+            {{ $menuItem->envolturaExterna2 }}
+            @endif
+
+            </p>
+
+            <p>
+            @if($menuItem->principal3 != null)
+            {{ $menuItem->principal3 }} -
+            @endif
+
+            @if($menuItem->secundario7 != null)
+            {{ $menuItem->secundario7 }} -
+            @endif
+
+            @if($menuItem->secundario8 != null)
+            {{ $menuItem->secundario8 }} -
+            @endif
+
+            @if($menuItem->secundario9 != null)
+            {{ $menuItem->secundario9 }} -
+            @endif
+
+            @if($menuItem->envolturaExterna3 != null)
+            {{ $menuItem->envolturaExterna3 }}
+            @endif
+            </p>
+
+            <p>
+            @if($menuItem->principal4 != null)
+            {{ $menuItem->principal4 }} -
+            @endif
+
+            @if($menuItem->secundario10 != null)
+            {{ $menuItem->secundario10 }} -
+            @endif
+
+            @if($menuItem->secundario11 != null)
+            {{ $menuItem->secundario11 }} -
+            @endif
+
+            @if($menuItem->secundario12 != null)
+            {{ $menuItem->secundario12 }} -
+            @endif
+
+            @if($menuItem->envolturaExterna4 != null)
+            {{ $menuItem->envolturaExterna4 }}
+            @endif
+            </p>
 
                   @if($menuItem->ingrediente1 != null)
                     - {{ $menuItem->ingrediente1 }}
