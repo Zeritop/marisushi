@@ -735,6 +735,21 @@ class OrderController extends Controller
           $prod1 = DB::table('products')->select('cantidad')->where('name', '=', $ingre1->name)->decrement('cantidad', 1*$menus->cantidad);
           }
 
+          if($menus->principal2 != null){
+          $ingre1_2 = DB::table('ingredients')->select('name')->where('name', '=', $menus->principal2)->first();
+          $prod1_2 = DB::table('products')->select('cantidad')->where('name', '=', $ingre1_2->name)->decrement('cantidad', 1*$menus->cantidad);
+          }
+
+          if($menus->principal3 != null){
+          $ingre1_3 = DB::table('ingredients')->select('name')->where('name', '=', $menus->principal3)->first();
+          $prod1_3 = DB::table('products')->select('cantidad')->where('name', '=', $ingre1_3->name)->decrement('cantidad', 1*$menus->cantidad);
+          }
+
+          if($menus->principal4 != null){
+          $ingre1_4 = DB::table('ingredients')->select('name')->where('name', '=', $menus->principal4)->first();
+          $prod1_4 = DB::table('products')->select('cantidad')->where('name', '=', $ingre1_4->name)->decrement('cantidad', 1*$menus->cantidad);
+          }
+
           if($menus->secundario1 != null){
           $ingre2 = DB::table('ingredients')->select('name')->where('name', '=', $menus->secundario1)->first();
           $prod2 = DB::table('products')->select('cantidad')->where('name', '=', $ingre2->name)->decrement('cantidad', 1*$menus->cantidad);
@@ -743,6 +758,56 @@ class OrderController extends Controller
           if($menus->secundario2 != null){
           $ingre3 = DB::table('ingredients')->select('name')->where('name', '=', $menus->secundario2)->first();
           $prod3 = DB::table('products')->select('cantidad')->where('name', '=', $ingre3->name)->decrement('cantidad', 1*$menus->cantidad);
+          }
+
+          if($menus->secundario3 != null){
+          $ingre3_3 = DB::table('ingredients')->select('name')->where('name', '=', $menus->secundario3)->first();
+          $prod3_3 = DB::table('products')->select('cantidad')->where('name', '=', $ingre3_3->name)->decrement('cantidad', 1*$menus->cantidad);
+          }
+
+          if($menus->secundario4 != null){
+          $ingre3_4 = DB::table('ingredients')->select('name')->where('name', '=', $menus->secundario4)->first();
+          $prod3_4 = DB::table('products')->select('cantidad')->where('name', '=', $ingre3_4->name)->decrement('cantidad', 1*$menus->cantidad);
+          }
+
+          if($menus->secundario5 != null){
+          $ingre3_5 = DB::table('ingredients')->select('name')->where('name', '=', $menus->secundario5)->first();
+          $prod3_5 = DB::table('products')->select('cantidad')->where('name', '=', $ingre3_5->name)->decrement('cantidad', 1*$menus->cantidad);
+          }
+
+          if($menus->secundario6 != null){
+          $ingre3_6 = DB::table('ingredients')->select('name')->where('name', '=', $menus->secundario6)->first();
+          $prod3_6 = DB::table('products')->select('cantidad')->where('name', '=', $ingre3_6->name)->decrement('cantidad', 1*$menus->cantidad);
+          }
+
+          if($menus->secundario7 != null){
+          $ingre3_7 = DB::table('ingredients')->select('name')->where('name', '=', $menus->secundario7)->first();
+          $prod3_7 = DB::table('products')->select('cantidad')->where('name', '=', $ingre3_7->name)->decrement('cantidad', 1*$menus->cantidad);
+          }
+
+          if($menus->secundario8 != null){
+          $ingre3_8 = DB::table('ingredients')->select('name')->where('name', '=', $menus->secundario8)->first();
+          $prod3_8 = DB::table('products')->select('cantidad')->where('name', '=', $ingre3_8->name)->decrement('cantidad', 1*$menus->cantidad);
+          }
+
+          if($menus->secundario9 != null){
+          $ingre3_9 = DB::table('ingredients')->select('name')->where('name', '=', $menus->secundario9)->first();
+          $prod3_9 = DB::table('products')->select('cantidad')->where('name', '=', $ingre3_9->name)->decrement('cantidad', 1*$menus->cantidad);
+          }
+
+          if($menus->secundario10 != null){
+          $ingre3_10 = DB::table('ingredients')->select('name')->where('name', '=', $menus->secundario10)->first();
+          $prod3_10 = DB::table('products')->select('cantidad')->where('name', '=', $ingre3_10->name)->decrement('cantidad', 1*$menus->cantidad);
+          }
+
+          if($menus->secundario11 != null){
+          $ingre3_11 = DB::table('ingredients')->select('name')->where('name', '=', $menus->secundario11)->first();
+          $prod3_11 = DB::table('products')->select('cantidad')->where('name', '=', $ingre3_11->name)->decrement('cantidad', 1*$menus->cantidad);
+          }
+
+          if($menus->secundario12 != null){
+          $ingre3_12 = DB::table('ingredients')->select('name')->where('name', '=', $menus->secundario12)->first();
+          $prod3_12 = DB::table('products')->select('cantidad')->where('name', '=', $ingre3_12->name)->decrement('cantidad', 1*$menus->cantidad);
           }
 
           if($menus->envolturaInterna != null){
@@ -754,7 +819,22 @@ class OrderController extends Controller
           $ingre5 = DB::table('ingredients')->select('name')->where('name', '=', $menus->envolturaExterna)->first();
           $prod5 = DB::table('products')->select('cantidad')->where('name', '=', $ingre5->name)->decrement('cantidad', 1*$menus->cantidad);
           }
-          
+
+          if($menus->envolturaExterna2 != null){
+          $ingre5_2 = DB::table('ingredients')->select('name')->where('name', '=', $menus->envolturaExterna2)->first();
+          $prod5_2 = DB::table('products')->select('cantidad')->where('name', '=', $ingre5_2->name)->decrement('cantidad', 1*$menus->cantidad);
+          }
+
+          if($menus->envolturaExterna3 != null){
+          $ingre5_3 = DB::table('ingredients')->select('name')->where('name', '=', $menus->envolturaExterna3)->first();
+          $prod5_3 = DB::table('products')->select('cantidad')->where('name', '=', $ingre5_3->name)->decrement('cantidad', 1*$menus->cantidad);
+          }
+
+          if($menus->envolturaExterna4 != null){
+          $ingre5_4 = DB::table('ingredients')->select('name')->where('name', '=', $menus->envolturaExterna4)->first();
+          $prod5_4 = DB::table('products')->select('cantidad')->where('name', '=', $ingre5_4->name)->decrement('cantidad', 1*$menus->cantidad);
+          }
+
           if($menus->ingrediente1 != null){
             $ingre6 = DB::table('ingredients')->select('name')->where('name', '=', $menus->ingrediente1)->first();
             $prod6 = DB::table('products')->select('cantidad')->where('name', '=', $ingre6->name)->decrement('cantidad', 1*$menus->cantidad);
