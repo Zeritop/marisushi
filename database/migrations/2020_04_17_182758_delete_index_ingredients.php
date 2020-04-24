@@ -13,7 +13,7 @@ class DeleteIndexIngredients extends Migration
      */
     
         //
-        public function up()
+    public function up()
     {
         Schema::table('ingredients', function(Blueprint $table)
         {
